@@ -708,14 +708,42 @@ footer {
 
 @media (max-width:768px) {
     .header-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        order: 1;
+        flex-shrink: 0;
+    }
+
+    #themeToggle {
+        order: 3;
+        flex-shrink: 0;
     }
 
     .search-container {
+        order: 2;
         margin: 0;
-        width: 100%
+        flex: 1;
+        min-width: 200px;
+        max-width: none;
+    }
+
+    /* If screen is very small, stack the search below but keep logo and toggle on top */
+    @media (max-width: 480px) {
+        .header-content {
+            flex-wrap: wrap;
+        }
+        
+        .search-container {
+            order: 4;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
     }
 
     .recipes-grid {
