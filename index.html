@@ -379,223 +379,78 @@
     </footer>
 
     <script>
-        const recipes = [
-            {
-                id: 1,
-                title: "Creamy Pasta Carbonara",
-                description: "Classic Italian pasta with eggs, cheese, and bacon",
-                category: "lunch",
-                time: "20 min",
-                servings: "4",
-                difficulty: "Easy",
-                ingredients: ["400g spaghetti", "200g pancetta or bacon", "4 large eggs", "100g Pecorino Romano cheese", "Black pepper", "Salt"],
-                instructions: ["Cook pasta in salted boiling water until al dente", "Fry pancetta until crispy, then set aside", "Whisk eggs with grated cheese and black pepper", "Toss hot pasta with pancetta and egg mixture", "Serve immediately with extra cheese"]
-            },
-            {
-                id: 2,
-                title: "Fluffy Pancakes",
-                description: "Perfect breakfast pancakes with a light and airy texture",
-                category: "breakfast",
-                time: "25 min",
-                servings: "4",
-                difficulty: "Easy",
-                ingredients: [
-                    "2 cups all-purpose flour",
-                    "2 tablespoons sugar",
-                    "2 teaspoons baking powder",
-                    "1/2 teaspoon salt",
-                    "2 eggs",
-                    "1 3/4 cups milk",
-                    "4 tablespoons melted butter"
-                ],
-                instructions: [
-                    "Mix dry ingredients in a bowl",
-                    "Whisk wet ingredients separately",
-                    "Combine wet and dry ingredients until just mixed",
-                    "Cook on buttered griddle until bubbles form",
-                    "Flip and cook until golden brown"
-                ]
-            },
-            {
-                id: 3,
-                title: "Grilled Salmon with Lemon",
-                description: "Fresh salmon fillet grilled with herbs and citrus",
-                category: "dinner",
-                time: "30 min",
-                servings: "2",
-                difficulty: "Medium",
-                ingredients: [
-                    "2 salmon fillets (6 oz each)",
-                    "2 lemons",
-                    "Fresh dill",
-                    "Olive oil",
-                    "Garlic cloves",
-                    "Salt and pepper"
-                ],
-                instructions: [
-                    "Preheat grill to medium-high heat",
-                    "Season salmon with salt, pepper, and garlic",
-                    "Place on oiled grill grates",
-                    "Grill for 4-5 minutes per side",
-                    "Garnish with fresh dill and lemon slices"
-                ]
-            },
-            {
-                id: 4,
-                title: "Chocolate Lava Cake",
-                description: "Decadent warm chocolate cake with flowing center",
-                category: "dessert",
-                time: "15 min",
-                servings: "2",
-                difficulty: "Medium",
-                ingredients: [
-                    "100g dark chocolate",
-                    "50g butter",
-                    "2 eggs",
-                    "2 egg yolks",
-                    "25g sugar",
-                    "15g flour",
-                    "Pinch of salt"
-                ],
-                instructions: [
-                    "Preheat oven to 200°C",
-                    "Melt chocolate and butter together",
-                    "Beat eggs, yolks, and sugar until thick",
-                    "Fold in chocolate mixture and flour",
-                    "Divide into ramekins and bake 12-14 minutes"
-                ]
-            },
-            {
-                id: 5,
-                title: "Veggie Stir Fry",
-                description: "Colorful mix of fresh vegetables in a savory sauce",
-                category: "lunch",
-                time: "20 min",
-                servings: "3",
-                difficulty: "Easy",
-                ingredients: [
-                    "2 cups mixed vegetables",
-                    "3 tablespoons soy sauce",
-                    "2 cloves garlic",
-                    "1 tablespoon sesame oil",
-                    "1 teaspoon ginger",
-                    "2 tablespoons vegetable oil"
-                ],
-                instructions: [
-                    "Heat oil in a wok or large pan",
-                    "Add garlic and ginger, stir-fry 30 seconds",
-                    "Add vegetables and stir-fry for 5-7 minutes",
-                    "Add soy sauce and sesame oil",
-                    "Serve hot over rice"
-                ]
-            },
-            {
-                id: 6,
-                title: "Greek Salad",
-                description: "Fresh and healthy salad with feta cheese and olives",
-                category: "lunch",
-                time: "10 min",
-                servings: "2",
-                difficulty: "Easy",
-                ingredients: [
-                    "2 tomatoes",
-                    "1 cucumber",
-                    "1/2 red onion",
-                    "100g feta cheese",
-                    "100g Kalamata olives",
-                    "Olive oil and lemon juice"
-                ],
-                instructions: [
-                    "Dice tomatoes and cucumber",
-                    "Slice onion thinly",
-                    "Combine vegetables in a bowl",
-                    "Add olives and crumbled feta",
-                    "Dress with olive oil and lemon juice"
-                ]
-            },
-            {
-                id: 7,
-                title: "Eggs Benedict",
-                description: "Poached eggs and hollandaise on toasted English muffin",
-                category: "breakfast",
-                time: "30 min",
-                servings: "2",
-                difficulty: "Medium",
-                ingredients: [
-                    "4 eggs",
-                    "2 English muffins",
-                    "100g butter",
-                    "2 egg yolks",
-                    "1 tablespoon lemon juice",
-                    "Cayenne pepper"
-                ],
-                instructions: [
-                    "Make hollandaise by whisking yolks over gentle heat",
-                    "Gradually add melted butter while whisking",
-                    "Add lemon juice and season",
-                    "Poach eggs in simmering water",
-                    "Top toasted muffins with eggs and sauce"
-                ]
-            },
-            {
-                id: 8,
-                title: "Beef Tacos",
-                description: "Seasoned ground beef with fresh toppings",
-                category: "dinner",
-                time: "25 min",
-                servings: "4",
-                difficulty: "Easy",
-                ingredients: ["500g ground beef", "8 taco shells", "1 onion", "2 tomatoes", "1 cup lettuce", "Taco seasoning", "Cheddar cheese"],
-                instructions: ["Brown ground beef in a pan", "Add taco seasoning and water", "Simmer for 10 minutes", "Warm taco shells", "Assemble with beef, lettuce, tomato, and cheese"]
-            },
-            {
-                id: 9,
-                title: "Palak Tofu",
-                description: "Spinach and tofu curry with aromatic spices and cashews",
-                category: "dinner",
-                time: "60 min",
-                servings: "5",
-                difficulty: "Medium",
-                ingredients: [
-                    "Cooking oil and/or Ghee (as needed)",
-                    "1/3 tsp Cumin Seeds",
-                    "5 Green Cardamom Pods",
-                    "2 1/2-inch piece Cinnamon Stick",
-                    "5 Cloves",
-                    "3-4 Green Chilies (adjust to taste)",
-                    "1.5 cup (225g) Onions, chopped",
-                    "2 tsp Ginger-Garlic Paste",
-                    "1.25 cup Tomatoes, chopped",
-                    "1.25 tsp Salt (or to taste)",
-                    "1.5 tsp Garam Masala",
-                    "1 cup Water (for cooking gravy)",
-                    "300g Baby Spinach, triple-washed",
-                    "25 Roasted Cashews",
-                    "0.75 cup Water (for blending spinach)",
-                    "1 block (~400g) Firm Tofu, pressed and cubed",
-                    "1.5 tsp Kasuri Methi (dried fenugreek leaves), crushed"
-                ],
-                instructions: [
-                    "Heat oil/ghee. Add whole spices and sizzle, then add green chilies and onions; fry thoroughly. Stir in ginger-garlic paste.",
-                    "Add tomatoes, salt, and garam masala; cook until softened.",
-                    "Pour in 1 cup of water. Cover and cook until about 20% of the water remains.",
-                    "Cool completely, then blend the mixture into a smooth puree. Set aside.",
-                    "In a separate pan, cook the spinach until wilted and the raw scent is gone. Let it cool.",
-                    "In a blender, combine the cooled spinach, roasted cashews, and 3/4 cup water. Puree until smooth.",
-                    "Optional: Lightly sauté the tofu cubes in a separate pan for a firmer texture.",
-                    "Reheat the blended onion-tomato gravy. Stir in the crushed kasuri methi.",
-                    "Pour in the spinach puree and stir to combine.",
-                    "Add the tofu cubes and gently mix.",
-                    "Cover and let the curry sit for 3-4 hours to allow the tofu to absorb the flavors.",
-                    "Reheat and enjoy with rice or roti."
-                ]
+        // Shim to support static recipe scripts for sites without a backend.
+        // Recipe files will either call `registerRecipe(recipe)` directly or
+        // push a factory into `window.__preRegisteredRecipes` if registerRecipe
+        // isn't available yet. This shim collects them and exposes registerRecipe.
+        window.__registeredRecipes = window.__registeredRecipes || [];
+        window.registerRecipe = function(recipe) {
+            // Accept either a recipe object or a function that returns one
+            if (typeof recipe === 'function') {
+                try { window.__registeredRecipes.push(recipe()); } catch(e) { console.error(e); }
+            } else {
+                window.__registeredRecipes.push(recipe);
             }
-        ];
+        };
 
-        let filteredRecipes = [...recipes];
+        // Process any pre-registered factories that recipe scripts may have queued
+        if (Array.isArray(window.__preRegisteredRecipes)) {
+            window.__preRegisteredRecipes.forEach(fn => {
+                try { window.registerRecipe(fn); } catch (e) { console.error(e); }
+            });
+            // clear to free memory
+            window.__preRegisteredRecipes.length = 0;
+        }
+        // Load static recipe scripts (these register themselves). This works on
+        // plain static hosting because script tags execute and call registerRecipe.
+        // If you later move to a backend, the recipe JSON/index.json fallback still works.
+        (function injectRecipeScripts(){
+            var base = 'recipes/';
+            var scripts = ['veggie-stir-fry.js','palak-tofu.js'];
+            scripts.forEach(function(s){
+                var sc = document.createElement('script');
+                sc.src = base + s;
+                sc.defer = false;
+                sc.async = false;
+                document.head.appendChild(sc);
+            });
+        })();
+
+        let recipes = [];
+        let filteredRecipes = [];
         let currentCategory = 'all';
         // units preference: 'metric' or 'imperial'
         let unitsPref = localStorage.getItem('units_pref') || 'metric';
+
+        // If there are pre-registered recipes (from static JS files), use them.
+        // Otherwise fall back to fetching JSON index (for hosted/backed setups).
+        async function loadRecipes() {
+            try {
+                if (window.__registeredRecipes && window.__registeredRecipes.length) {
+                    recipes = window.__registeredRecipes.slice();
+                } else {
+                    // First, attempt to load the index of recipe files
+                    const indexResponse = await fetch('recipes/index.json');
+                    const recipeFiles = await indexResponse.json();
+                    // Load each recipe file
+                    const recipePromises = recipeFiles.map(async (fileName) => {
+                        const response = await fetch(`recipes/${fileName}`);
+                        return await response.json();
+                    });
+                    recipes = await Promise.all(recipePromises);
+                }
+
+                filteredRecipes = [...recipes];
+                // Render recipes once loaded
+                renderRecipes(recipes);
+            } catch (error) {
+                console.error('Error loading recipes:', error);
+                // Fallback: show a message or use empty array
+                recipes = [];
+                filteredRecipes = [];
+                document.getElementById('recipesGrid').innerHTML = '<p>Unable to load recipes. Please check your connection.</p>';
+            }
+        }
 
         function getInitials(title) {
             return title.split(' ').slice(0, 2).map(w => w[0] ? w[0].toUpperCase() : '').join('');
@@ -877,8 +732,8 @@
         document.getElementById('searchInput').addEventListener('keypress', function (e) { if (e.key === 'Enter') searchRecipes(); });
         document.getElementById('recipeModal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
 
-        // initial render
-        renderRecipes(recipes);
+        // Load recipes from external files when page loads
+        document.addEventListener('DOMContentLoaded', loadRecipes);
     </script>
 </body>
 
