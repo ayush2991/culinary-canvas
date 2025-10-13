@@ -384,7 +384,21 @@ document.addEventListener('DOMContentLoaded', loadRecipes);
 
     // Initial theme setup
     const savedTheme = localStorage.getItem(THEME_KEY);
-    applyTheme(savedTheme);
+    const initialTheme = savedTheme ? savedTheme : getSystemTheme();
+    applyTheme(initialTheme);
+
+    // Reflect initial state in the toggle button UI
+    function updateToggleUI(theme) {
+        if (!toggleBtn) return;
+        if (theme === 'dark') {
+            toggleBtn.textContent = '☀️';
+            toggleBtn.setAttribute('aria-label', 'Switch to light mode');
+        } else {
+            toggleBtn.textContent = '🌙';
+            toggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+        }
+    }
+    updateToggleUI(initialTheme);
 
     // Toggle button click handler
     if (toggleBtn) {
@@ -398,6 +412,7 @@ document.addEventListener('DOMContentLoaded', loadRecipes);
             }
             applyTheme(next);
             localStorage.setItem(THEME_KEY, next);
+            updateToggleUI(next);
         });
     }
 

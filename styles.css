@@ -51,6 +51,7 @@
 }
 
 /* Manual theme override: dark mode */
+/* Keep a single block for manual dark theme overrides (variables). */
 html[data-theme="dark"] {
     color-scheme: dark;
     --bg: #1a1614;
@@ -97,16 +98,6 @@ html[data-theme="light"] {
     /* soft blush */
     --shadow: 0 6px 18px rgba(44, 24, 16, 0.06);
     /* warm shadow */
-}
-
-/* Manual theme override: dark mode */
-html[data-theme="dark"] {
-    color-scheme: dark;
-}
-
-/* Manual theme override: light mode */
-html[data-theme="light"] {
-    color-scheme: light;
 }
 
 html,
