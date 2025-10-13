@@ -106,10 +106,8 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-// Wire up search input/button and filter-buttons via event delegation
-const _searchBtn = document.getElementById('searchBtn');
+// Wire up search input and filter-buttons via event delegation
 const _searchInputEls = document.querySelectorAll('#searchInput');
-if (_searchBtn) _searchBtn.addEventListener('click', searchRecipes);
 if (_searchInputEls && _searchInputEls.length) _searchInputEls.forEach(el => el.addEventListener('input', searchRecipes));
 
 const _filterContainer = document.querySelector('.filter-buttons');
@@ -166,6 +164,17 @@ function searchRecipes() {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     filteredRecipes = recipes.filter(r => r.title.toLowerCase().includes(searchTerm) || r.description.toLowerCase().includes(searchTerm));
     renderRecipes(filteredRecipes);
+    
+    // update search count in the search icon
+    const countEl = document.getElementById('searchCount');
+    if (countEl) {
+        if (!searchTerm) {
+            countEl.style.display = 'none';
+        } else {
+            countEl.style.display = 'block';
+            countEl.textContent = String(filteredRecipes.length || 0);
+        }
+    }
 }
 
 // --- Ingredient scaling helpers ---
@@ -483,6 +492,21 @@ if (_searchInput) {
         if (e.key === 'Enter') searchRecipes();
     });
 }
+
+// Search icon focus and '/' shortcut
+const _searchIcon = document.getElementById('searchIcon');
+if (_searchIcon && _searchInput) {
+    _searchIcon.addEventListener('click', function () { _searchInput.focus(); });
+}
+document.addEventListener('keydown', function (e) {
+    // ignore if user is typing in input or textarea
+    const active = document.activeElement;
+    if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA')) return;
+    if (e.key === '/') {
+        e.preventDefault();
+        _searchInput && _searchInput.focus();
+    }
+});
 
 const _recipeModal = document.getElementById('recipeModal');
 if (_recipeModal) {
