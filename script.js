@@ -23,7 +23,8 @@ if (Array.isArray(window.__preRegisteredRecipes)) {
 
 let recipes = [];
 let filteredRecipes = [];
-let currentCategory = 'all';
+// maintain a set of active tag filters (empty means show all)
+let activeTags = new Set();
 
 // Load recipes from registered JS files (single source of truth)
 function loadRecipes() {
@@ -57,12 +58,15 @@ function renderRecipes(recipesToRender) {
         const imageContent = recipe.image 
             ? `<img src="${recipe.image}" alt="${recipe.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
             : `<div class="recipe-initials">${initials}</div>`;
-        
+        // render tag badges (use category as fallback tag if no tags defined)
+        const tags = Array.isArray(recipe.tags) && recipe.tags.length ? recipe.tags : (recipe.category ? [recipe.category] : []);
+        const tagsHtml = tags.map(t => `<span class="recipe-tag">${t}</span>`).join(' ');
+
         return `
         <div class="recipe-card" data-id="${recipe.id}" role="button" tabindex="0">
             <div class="recipe-image">
                 ${imageContent}
-                <div class="recipe-category">${recipe.category}</div>
+                <div class="recipe-tags">${tagsHtml}</div>
             </div>
             <div class="recipe-content">
                 <h3 class="recipe-title">${recipe.title}</h3>
@@ -110,19 +114,49 @@ if (_searchInputEls && _searchInputEls.length) _searchInputEls.forEach(el => el.
 
 const _filterContainer = document.querySelector('.filter-buttons');
 if (_filterContainer) {
+    // Buttons will now represent tags. Allow multi-select.
     _filterContainer.addEventListener('click', function (e) {
         const btn = e.target.closest('.filter-btn');
         if (!btn || !_filterContainer.contains(btn)) return;
-        const category = btn.getAttribute('data-category') || 'all';
-        filterRecipes(category, btn);
+        const tag = btn.getAttribute('data-tag');
+        if (!tag || tag === 'all') {
+            // clear all active tags
+            activeTags.clear();
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterRecipesByTags();
+            return;
+        }
+        // toggle tag
+        if (activeTags.has(tag)) {
+            activeTags.delete(tag);
+            btn.classList.remove('active');
+        } else {
+            activeTags.add(tag);
+            btn.classList.add('active');
+            // ensure 'All' is not active
+            const allBtn = _filterContainer.querySelector('[data-tag="all"]');
+            if (allBtn) allBtn.classList.remove('active');
+        }
+        filterRecipesByTags();
     });
 }
 
-function filterRecipes(category, btn) {
-    currentCategory = category;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    filteredRecipes = category === 'all' ? [...recipes] : recipes.filter(r => r.category === category);
+function filterRecipesByTags() {
+    // If no active tags, show all recipes
+    if (!activeTags || activeTags.size === 0) {
+        filteredRecipes = [...recipes];
+        renderRecipes(filteredRecipes);
+        return;
+    }
+    // Show recipes that include ALL selected tags (AND behavior)
+    const tagsArray = Array.from(activeTags);
+    filteredRecipes = recipes.filter(r => {
+        const recipeTags = Array.isArray(r.tags) ? r.tags.map(t => t.toLowerCase()) : [];
+        // fallback: if tags aren't defined, consider category as a single tag for compatibility
+        if (recipeTags.length === 0 && r.category) recipeTags.push(r.category.toLowerCase());
+        return tagsArray.every(t => recipeTags.includes(t.toLowerCase()));
+    });
     renderRecipes(filteredRecipes);
 }
 
