@@ -59,7 +59,7 @@ function renderRecipes(recipesToRender) {
             : `<div class="recipe-initials">${initials}</div>`;
         
         return `
-        <div class="recipe-card" onclick="openModal(${recipe.id})" role="button" tabindex="0">
+        <div class="recipe-card" data-id="${recipe.id}" role="button" tabindex="0">
             <div class="recipe-image">
                 ${imageContent}
                 <div class="recipe-category">${recipe.category}</div>
@@ -80,6 +80,44 @@ function renderRecipes(recipesToRender) {
     }).join('');
 }
 
+// Delegate clicks on recipe cards to open modals (avoids inline onclick)
+document.addEventListener('click', function (e) {
+    const grid = document.getElementById('recipesGrid');
+    if (!grid) return;
+    const card = e.target.closest('.recipe-card');
+    if (!card || !grid.contains(card)) return;
+    const id = Number(card.dataset.id);
+    if (!isNaN(id)) openModal(id);
+});
+
+// Keyboard accessibility: Enter/Space should open focused recipe card
+document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const active = document.activeElement;
+    if (!active || !active.classList.contains('recipe-card')) return;
+    const id = Number(active.dataset.id);
+    if (!isNaN(id)) {
+        e.preventDefault();
+        openModal(id);
+    }
+});
+
+// Wire up search input/button and filter-buttons via event delegation
+const _searchBtn = document.getElementById('searchBtn');
+const _searchInputEls = document.querySelectorAll('#searchInput');
+if (_searchBtn) _searchBtn.addEventListener('click', searchRecipes);
+if (_searchInputEls && _searchInputEls.length) _searchInputEls.forEach(el => el.addEventListener('input', searchRecipes));
+
+const _filterContainer = document.querySelector('.filter-buttons');
+if (_filterContainer) {
+    _filterContainer.addEventListener('click', function (e) {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn || !_filterContainer.contains(btn)) return;
+        const category = btn.getAttribute('data-category') || 'all';
+        filterRecipes(category, btn);
+    });
+}
+
 function filterRecipes(category, btn) {
     currentCategory = category;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -98,17 +136,23 @@ function searchRecipes() {
 
 // --- Ingredient scaling helpers ---
 function parseMixedNumber(token) {
-    // handles "1 1/2" or "3/4"
+    // handles "1 1/2", "3/4", decimals, and plain integers
+    // conservative: return null on anything unexpected
+    if (!token || typeof token !== 'string') return null;
     token = token.trim();
+    // mixed number like '1 1/2'
     const mixed = token.match(/^(\d+)\s+(\d+)\/(\d+)$/);
     if (mixed) {
         return parseInt(mixed[1], 10) + (parseInt(mixed[2], 10) / parseInt(mixed[3], 10));
     }
+    // simple fraction like '3/4'
     const frac = token.match(/^(\d+)\/(\d+)$/);
     if (frac) {
         return parseInt(frac[1], 10) / parseInt(frac[2], 10);
     }
-    const num = parseFloat(token);
+    // decimal or integer (allow comma as decimal separator)
+    const normalized = token.replace(',', '.');
+    const num = parseFloat(normalized);
     return isNaN(num) ? null : num;
 }
 
@@ -137,44 +181,58 @@ function formatNumber(n) {
 
 function scaleIngredient(ingredient, factor) {
     // Try to detect a leading quantity (mixed number, fraction, or decimal/integer, possibly attached to unit like '400g')
-    const trimmed = ingredient.trim();
-    // Mixed number like '1 1/2'
-    const mixedMatch = trimmed.match(/^(\d+\s+\d+\/\d+)(?:\s+|\b)(.*)/);
-    if (mixedMatch) {
-        const val = parseMixedNumber(mixedMatch[1]);
+    if (!ingredient || typeof ingredient !== 'string') return ingredient;
+    const original = ingredient;
+    let trimmed = ingredient.trim();
+
+    // preserve and strip common loose prefixes like 'about', '~', 'approx.'
+    const prefixMatch = trimmed.match(/^(about|approx\.?|~|approximately)\s+/i);
+    const prefix = prefixMatch ? prefixMatch[0] : '';
+    if (prefix) trimmed = trimmed.slice(prefix.length).trim();
+
+    // strip surrounding parentheses once (e.g. '(1 cup)') but remember them
+    let parenWrapper = false;
+    if (trimmed.startsWith('(') && trimmed.endsWith(')')) {
+        parenWrapper = true;
+        trimmed = trimmed.slice(1, -1).trim();
+    }
+
+    // handle simple ranges like '1-2 cups' or '1 to 2 cups' -> scale both sides
+    const rangeMatch = trimmed.match(/^(\d+(?:[\.,]\d+)?|\d+\s+\d+\/\d+|\d+\/\d+)\s*(?:-|to)\s*(\d+(?:[\.,]\d+)?|\d+\s+\d+\/\d+|\d+\/\d+)\b(?:\s*)(.*)$/i);
+    if (rangeMatch) {
+        const a = parseMixedNumber(rangeMatch[1]);
+        const b = parseMixedNumber(rangeMatch[2]);
+        const rest = rangeMatch[3] || '';
+        if (a == null || b == null) return original;
+        const aScaled = formatNumber(a * factor);
+        const bScaled = formatNumber(b * factor);
+        const out = `${aScaled}-${bScaled} ${rest}`.trim();
+        return parenWrapper ? `(${prefix}${out})` : `${prefix}${out}`;
+    }
+
+    // tokenise leading number (mixed, fraction, decimal) and optional unit (letters, %, µ, or abbreviations like 'tbsp')
+    // Accept units attached (400g) or separated (400 g)
+    const tokenMatch = trimmed.match(/^((?:\d+\s+\d+\/\d+)|(?:\d+\/\d+)|(?:\d+[\.,]?\d*))\s*([\p{L}%µ°]{0,4})\b(?:\s*)(.*)$/u);
+    if (tokenMatch) {
+        const numToken = tokenMatch[1];
+        const unit = tokenMatch[2] || '';
+        const rest = tokenMatch[3] || '';
+        const val = parseMixedNumber(numToken.replace(',', '.'));
+        if (val == null) return original;
         const scaled = val * factor;
-        return `${formatNumber(scaled)} ${mixedMatch[2]}`.trim();
+        const scaledStr = formatNumber(scaled);
+        // keep unit next to number if originally attached or present
+    // put a space between number and alphabetic unit (e.g., '1 cup'),
+    // but keep symbol-only units attached (e.g., '50%')
+    const needsSpace = unit && /[\p{L}]/u.test(unit);
+    const spaceBetween = needsSpace ? ' ' : '';
+    const combined = `${scaledStr}${spaceBetween}${unit}${rest ? ' ' + rest : ''}`.trim();
+        const withPrefix = `${prefix}${combined}`;
+        return parenWrapper ? `(${withPrefix})` : withPrefix;
     }
-    // fraction like '3/4'
-    const fracMatch = trimmed.match(/^(\d+\/\d+)(?:\s+|\b)(.*)/);
-    if (fracMatch) {
-        const val = parseMixedNumber(fracMatch[1]);
-        const scaled = val * factor;
-        return `${formatNumber(scaled)} ${fracMatch[2]}`.trim();
-    }
-    // number with optional unit attached (e.g., '400g' or '2kg') at start
-    const numUnitMatch = trimmed.match(/^([0-9]+(?:\.[0-9]+)?)([a-zA-Z%°µ]*)\b(?:\s*)(.*)$/);
-    if (numUnitMatch) {
-        const val = parseFloat(numUnitMatch[1]);
-        if (!isNaN(val)) {
-            const unit = numUnitMatch[2] || '';
-            const rest = numUnitMatch[3] || '';
-            const scaled = val * factor;
-            return `${formatNumber(scaled)}${unit} ${rest}`.trim();
-        }
-    }
-    // number with space then unit (e.g., '2 cups')
-    const numSpaceMatch = trimmed.match(/^([0-9]+(?:\.[0-9]+)?)(?:\s+)([^\s].*)$/);
-    if (numSpaceMatch) {
-        const val = parseFloat(numSpaceMatch[1]);
-        if (!isNaN(val)) {
-            const rest = numSpaceMatch[2];
-            const scaled = val * factor;
-            return `${formatNumber(scaled)} ${rest}`.trim();
-        }
-    }
-    // fallback: no leading number, return unchanged
-    return ingredient;
+
+    // No parsable leading number — leave unchanged
+    return original;
 }
 
 function openModal(recipeId) {
@@ -183,6 +241,8 @@ function openModal(recipeId) {
     const origServings = Number(recipe.servings) || 1;
     // load persisted servings for this recipe if present
     const savedKey = `recipe_servings_${recipe.id}`;
+    // Clear any persisted servings so modal always opens with the recipe's default
+    try { localStorage.removeItem(savedKey); } catch (e) { /* ignore storage errors */ }
     const saved = Number(localStorage.getItem(savedKey));
     // Force oat turmeric latte (id: 3) to always default to 1 serving
     const initialServings = recipe.id === 3 ? 1 : (saved && saved > 0 ? saved : origServings);

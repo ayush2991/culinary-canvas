@@ -23,8 +23,8 @@
                 🌙 / ☀️
             </button>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search recipes by name or description" oninput="searchRecipes()">
-                <button type="button" onclick="searchRecipes()">Search</button>
+                <input type="text" id="searchInput" placeholder="Search recipes by name or description">
+                <button type="button" id="searchBtn">Search</button>
             </div>
         </div>
     </header>
@@ -37,11 +37,11 @@
         </div>
 
         <div class="filter-buttons">
-            <button class="filter-btn active" type="button" onclick="filterRecipes('all', this)">All Recipes</button>
-            <button class="filter-btn" type="button" onclick="filterRecipes('breakfast', this)">Breakfast</button>
-            <button class="filter-btn" type="button" onclick="filterRecipes('lunch', this)">Lunch</button>
-            <button class="filter-btn" type="button" onclick="filterRecipes('dinner', this)">Dinner</button>
-            <button class="filter-btn" type="button" onclick="filterRecipes('dessert', this)">Dessert</button>
+            <button class="filter-btn active" type="button" data-category="all">All Recipes</button>
+            <button class="filter-btn" type="button" data-category="breakfast">Breakfast</button>
+            <button class="filter-btn" type="button" data-category="lunch">Lunch</button>
+            <button class="filter-btn" type="button" data-category="dinner">Dinner</button>
+            <button class="filter-btn" type="button" data-category="dessert">Dessert</button>
         </div>
 
         <div class="recipes-grid" id="recipesGrid"></div>
