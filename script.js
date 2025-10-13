@@ -258,37 +258,56 @@ function openModal(recipeId) {
     // build ingredients list with data-original attributes so we can rescale
     const ingredientsHtml = recipe.ingredients.map(ing => `<li data-orig="${ing.replace(/"/g, '\"')}">${ing}</li>`).join('');
     const imageHtml = recipe.image 
-        ? `<div style="text-align:center;margin-bottom:1rem;"><img src="${recipe.image}" alt="${recipe.title}" style="max-width:100%;height:auto;border-radius:8px;max-height:200px;object-fit:cover;"></div>`
+        ? `<div style="text-align:center;margin-bottom:2rem;position:relative;">
+             <img src="${recipe.image}" alt="${recipe.title}" style="max-width:100%;height:auto;border-radius:16px;max-height:300px;object-fit:cover;box-shadow:0 16px 40px rgba(23,32,42,0.15);">
+             <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(38,70,83,0.3);">${recipe.category}</div>
+           </div>`
         : '';
     modalBody.innerHTML = `
         <h2>${recipe.title}</h2>
         ${imageHtml}
         <div class="modal-section">
-            <h3>Time & Servings</h3>
-            <p><strong>Time:</strong> ${recipe.time}</p>
-            <p><strong>Difficulty:</strong> ${recipe.difficulty}</p>
-            <label style="display:inline-flex;align-items:center;gap:.5rem;margin-top:.5rem">Servings:
-                <input id="servingsInput" type="number" min="1" value="${initialServings}" style="width:64px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;margin-left:.5rem">
-            </label>
-        </div>
-        <div style="display:flex;gap:1rem;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <div>
-                <label style="font-size:.95rem;color:var(--muted);">Units:</label>
-                <select id="unitsSelect" style="margin-left:.5rem;padding:.25rem .5rem;border-radius:6px;border:1px solid var(--border)">
-                    <option value="metric">Metric</option>
-                    <option value="imperial">Imperial</option>
-                </select>
+            <h3>📋 Recipe Details</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:1.5rem">
+                <div style="text-align:center;padding:1rem;background:rgba(42,157,143,0.05);border-radius:12px;border:1px solid rgba(42,157,143,0.1)">
+                    <div style="font-size:1.5rem;margin-bottom:.5rem">⏱️</div>
+                    <div style="font-weight:600;color:var(--primary)">${recipe.time}</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Cook Time</div>
+                </div>
+                <div style="text-align:center;padding:1rem;background:rgba(42,157,143,0.05);border-radius:12px;border:1px solid rgba(42,157,143,0.1)">
+                    <div style="font-size:1.5rem;margin-bottom:.5rem">👥</div>
+                    <div style="font-weight:600;color:var(--primary)">${recipe.servings}</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Servings</div>
+                </div>
+                <div style="text-align:center;padding:1rem;background:rgba(42,157,143,0.05);border-radius:12px;border:1px solid rgba(42,157,143,0.1)">
+                    <div style="font-size:1.5rem;margin-bottom:.5rem">📊</div>
+                    <div style="font-weight:600;color:var(--primary)">${recipe.difficulty}</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Difficulty</div>
+                </div>
             </div>
-            <div>
-                <button id="resetServingsBtn" type="button" style="background:transparent;border:1px solid var(--border);padding:.4rem .6rem;border-radius:8px;cursor:pointer">Reset</button>
+            <div style="display:flex;gap:1rem;align-items:center;justify-content:center;flex-wrap:wrap;background:rgba(247,249,251,0.8);padding:1.5rem;border-radius:12px;border:1px solid var(--border)">
+                <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;color:var(--primary)">
+                    👥 Servings:
+                    <input id="servingsInput" type="number" min="1" value="${initialServings}" style="width:70px;padding:.5rem;border:2px solid var(--border);border-radius:8px;text-align:center;font-weight:600">
+                </label>
+                <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;color:var(--primary)">
+                    📏 Units:
+                    <select id="unitsSelect" style="padding:.5rem .75rem;border:2px solid var(--border);border-radius:8px;font-weight:600;background:white">
+                        <option value="metric">Metric</option>
+                        <option value="imperial">Imperial</option>
+                    </select>
+                </label>
+                <button id="resetServingsBtn" type="button" style="background:linear-gradient(135deg,var(--primary),var(--accent));color:white;border:none;padding:.5rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;transition:transform .2s ease">
+                    🔄 Reset
+                </button>
             </div>
         </div>
         <div class="modal-section">
-            <h3>Ingredients</h3>
+            <h3>🥘 Ingredients</h3>
             <ul id="ingredientsList">${ingredientsHtml}</ul>
         </div>
         <div class="modal-section">
-            <h3>Instructions</h3>
+            <h3>👨‍🍳 Instructions</h3>
             <ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol>
         </div>
     `;
@@ -323,6 +342,14 @@ function openModal(recipeId) {
         servingsInput.value = origServings;
         try { localStorage.removeItem(savedKey); } catch (e) { }
         rescale();
+    });
+    
+    // Add hover effects to reset button
+    resetBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px) scale(1.05)';
+    });
+    resetBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
     });
 
     // initial scale (in case origServings is not 1) and initial conversion

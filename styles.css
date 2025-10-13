@@ -131,105 +131,136 @@ header {
 
 .recipes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.25rem
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem
 }
 
 .recipe-card {
     background: var(--card);
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 32px rgba(23, 32, 42, 0.08);
     display: flex;
     flex-direction: column;
-    transition: transform .18s ease, box-shadow .18s ease
-}
-
-.recipe-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 40px rgba(23, 32, 42, 0.08)
-}
-
-.recipe-image {
-    height: 180px;
-    background: linear-gradient(135deg, rgba(38, 157, 143, 0.12), rgba(38, 70, 83, 0.06));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
     position: relative
 }
 
+.recipe-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 24px 64px rgba(23, 32, 42, 0.15);
+    border-color: var(--accent)
+}
+
+.recipe-image {
+    height: 220px;
+    background: linear-gradient(135deg, rgba(42, 157, 143, 0.1), rgba(38, 70, 83, 0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden
+}
+
+.recipe-image img {
+    transition: transform .3s ease
+}
+
+.recipe-card:hover .recipe-image img {
+    transform: scale(1.05)
+}
+
 .recipe-initials {
-    width: 72px;
-    height: 72px;
-    border-radius: 12px;
-    background: linear-gradient(180deg, var(--primary), var(--accent));
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: 700;
-    font-size: 1.05rem;
-    font-family: 'Merriweather', serif
+    font-size: 1.2rem;
+    font-family: 'Merriweather', serif;
+    box-shadow: 0 8px 24px rgba(38, 70, 83, 0.3)
 }
 
 .recipe-category {
     position: absolute;
-    left: 1rem;
-    top: 1rem;
-    background: rgba(23, 32, 42, 0.06);
-    border-radius: 999px;
-    padding: .35rem .6rem;
-    font-size: .78rem;
-    color: var(--muted);
-    border: 1px solid var(--border)
+    left: 1.25rem;
+    top: 1.25rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: .5rem .85rem;
+    font-size: .8rem;
+    color: var(--primary);
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(23, 32, 42, 0.1);
+    text-transform: capitalize
 }
 
 .recipe-content {
-    padding: 1.15rem 1rem 1.25rem;
+    padding: 1.5rem 1.25rem 1.75rem;
     display: flex;
     flex-direction: column;
-    flex: 1
+    flex: 1;
+    background: linear-gradient(180deg, transparent, rgba(247, 249, 251, 0.3))
 }
 
 .recipe-title {
-    font-weight: 600;
-    margin: 0 0 .4rem;
-    font-size: 1.05rem;
-    color: var(--text)
+    font-weight: 700;
+    margin: 0 0 .6rem;
+    font-size: 1.15rem;
+    color: var(--text);
+    font-family: 'Merriweather', serif;
+    line-height: 1.3
 }
 
 .recipe-description {
     color: var(--muted);
-    font-size: .92rem;
-    margin-bottom: .9rem;
-    flex: 1
+    font-size: .95rem;
+    margin-bottom: 1.25rem;
+    flex: 1;
+    line-height: 1.5
 }
 
 .recipe-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: .75rem
+    gap: 1rem;
+    margin-top: auto
 }
 
 .meta-item {
     display: flex;
     align-items: center;
-    gap: .45rem;
+    gap: .5rem;
     color: var(--muted);
-    font-size: .9rem
+    font-size: .9rem;
+    font-weight: 500
 }
 
 .view-recipe {
-    background: transparent;
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    padding: .45rem .8rem;
-    border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border: none;
+    color: white;
+    padding: .6rem 1.1rem;
+    border-radius: 12px;
     font-weight: 600;
-    cursor: pointer
+    cursor: pointer;
+    font-size: .9rem;
+    transition: all .2s ease;
+    box-shadow: 0 4px 16px rgba(38, 70, 83, 0.2)
+}
+
+.view-recipe:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(38, 70, 83, 0.3)
 }
 
 /* Modal */
@@ -237,63 +268,154 @@ header {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(10, 12, 15, 0.45);
+    background: rgba(10, 12, 15, 0.6);
+    backdrop-filter: blur(8px);
     align-items: center;
     justify-content: center;
-    padding: 1.25rem;
-    z-index: 999
+    padding: 1.5rem;
+    z-index: 999;
+    animation: fadeIn 0.3s ease-out
 }
 
 .modal.active {
     display: flex
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
 .modal-content {
     background: var(--card);
-    border-radius: 12px;
-    max-width: 720px;
+    border-radius: 24px;
+    max-width: 800px;
     width: 100%;
-    padding: 1.25rem 1.5rem;
-    max-height: 86vh;
+    padding: 2rem 2.5rem 2.5rem;
+    max-height: 90vh;
     overflow: auto;
-    border: 1px solid var(--border)
+    border: 1px solid var(--border);
+    box-shadow: 0 32px 80px rgba(23, 32, 42, 0.2);
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative
 }
 
 .modal h2 {
-    margin: 0 0 .75rem;
+    margin: 0 0 1.5rem;
     font-family: 'Merriweather', serif;
-    color: var(--primary)
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center
 }
 
 .close-modal {
     position: absolute;
-    right: 1rem;
-    top: 1rem;
-    background: transparent;
+    right: 1.5rem;
+    top: 1.5rem;
+    background: rgba(107, 114, 128, 0.1);
     border: none;
-    font-size: 1.25rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
     color: var(--muted);
-    cursor: pointer
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease
+}
+
+.close-modal:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    transform: scale(1.1)
 }
 
 .modal-section {
-    margin-bottom: .9rem
+    margin-bottom: 1.5rem;
+    background: rgba(247, 249, 251, 0.5);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border)
 }
 
 .modal-section h3 {
-    margin: 0 0 .45rem;
-    font-size: .98rem;
-    color: var(--text)
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    color: var(--primary);
+    font-weight: 700;
+    font-family: 'Merriweather', serif
 }
 
 .modal-section ul {
     margin: 0;
-    padding-left: 1.05rem
+    padding-left: 1.5rem;
+    list-style: none
 }
 
-.modal-section li {
-    margin: .35rem 0;
-    color: var(--muted)
+.modal-section ul li {
+    margin: .75rem 0;
+    color: var(--text);
+    font-size: .95rem;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.5rem
+}
+
+.modal-section ul li::before {
+    content: "•";
+    color: var(--accent);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem
+}
+
+.modal-section ol {
+    margin: 0;
+    padding-left: 1.5rem;
+    counter-reset: step-counter
+}
+
+.modal-section ol li {
+    margin: 1rem 0;
+    color: var(--text);
+    font-size: .95rem;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 2rem;
+    counter-increment: step-counter;
+    list-style: none
+}
+
+.modal-section ol li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+    font-weight: bold
 }
 
 footer {
@@ -308,7 +430,8 @@ footer {
 @media (max-width:768px) {
     .header-content {
         flex-direction: column;
-        align-items: flex-start
+        align-items: flex-start;
+        gap: 1rem
     }
 
     .search-bar {
@@ -317,6 +440,36 @@ footer {
     }
 
     .recipes-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr))
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem
+    }
+    
+    .recipe-card:hover {
+        transform: translateY(-6px) scale(1.01);
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+        border-radius: 16px;
+        max-height: 95vh
+    }
+    
+    .modal h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem
+    }
+    
+    .modal-section {
+        padding: 1rem;
+        margin-bottom: 1rem
+    }
+    
+    .close-modal {
+        right: 1rem;
+        top: 1rem;
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem
     }
 }
