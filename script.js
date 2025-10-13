@@ -540,9 +540,19 @@ document.addEventListener('DOMContentLoaded', loadRecipes);
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
-    // Initial theme setup
+    // Initial theme setup - check for saved preference first
     const savedTheme = localStorage.getItem(THEME_KEY);
-    const initialTheme = savedTheme ? savedTheme : getSystemTheme();
+    let initialTheme;
+    
+    if (savedTheme) {
+        // User has a saved preference, use it
+        initialTheme = savedTheme;
+    } else {
+        // No saved preference, use system preference
+        initialTheme = getSystemTheme();
+    }
+    
+    // Always explicitly set the theme to ensure it overrides any CSS defaults
     applyTheme(initialTheme);
 
     // Reflect initial state in the toggle button UI
@@ -577,7 +587,9 @@ document.addEventListener('DOMContentLoaded', loadRecipes);
     // Listen for system theme changes if no manual override
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         if (!localStorage.getItem(THEME_KEY)) {
-            applyTheme(e.matches ? 'dark' : 'light');
+            const newSystemTheme = e.matches ? 'dark' : 'light';
+            applyTheme(newSystemTheme);
+            updateToggleUI(newSystemTheme);
         }
     });
 })();
