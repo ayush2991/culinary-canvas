@@ -3,16 +3,61 @@
 }
 
 :root {
-    --bg: #f7f9fb;
+    --bg: #faf8f5;
+    /* soft warm white */
     --card: #ffffff;
-    --muted: #6b7280;
-    --text: #17202a;
-    --primary: #264653;
-    /* deep teal */
-    --accent: #2a9d8f;
-    /* muted teal */
-    --border: #e6eef0;
-    --shadow: 0 6px 18px rgba(23, 32, 42, 0.06);
+    --muted: #6b5b73;
+    /* muted purple-grey */
+    --text: #2c1810;
+    /* dark chocolate brown */
+    --primary: #8b4d6b;
+    /* warm berry/wine */
+    --accent: #d4848a;
+    /* soft rose */
+    --secondary: #a67b5b;
+    /* warm caramel */
+    --warm: #e8b4a0;
+    /* peachy cream */
+    --border: #ede4e0;
+    /* soft blush */
+    --shadow: 0 6px 18px rgba(44, 24, 16, 0.06);
+    /* warm shadow */
+}
+
+/* Dark mode color scheme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #1a1614;
+        /* dark warm brown */
+        --card: #2a211e;
+        /* dark card background */
+        --muted: #a294a3;
+        /* lighter muted for dark mode */
+        --text: #f4f0ed;
+        /* warm off-white text */
+        --primary: #c97a9a;
+        /* brighter berry for dark mode */
+        --accent: #e8a4aa;
+        /* lighter rose accent */
+        --secondary: #d4a884;
+        /* lighter caramel */
+        --warm: #f2c8b4;
+        /* lighter peach */
+        --border: #3d332f;
+        /* dark border */
+        --shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        /* darker shadow */
+    }
+}
+
+/* Manual theme override: dark mode */
+html[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+/* Manual theme override: light mode */
+html[data-theme="light"] {
+    color-scheme: light;
 }
 
 html,
@@ -85,7 +130,7 @@ header {
 }
 
 .hero {
-    background: linear-gradient(180deg, rgba(42, 157, 143, 0.06), rgba(38, 70, 83, 0.02));
+    background: linear-gradient(135deg, rgba(232, 180, 160, 0.15), rgba(212, 132, 138, 0.08));
     padding: 1.6rem;
     border-radius: 14px;
     border: 1px solid var(--border);
@@ -126,7 +171,7 @@ header {
 .filter-btn.active {
     border-color: var(--primary);
     color: var(--primary);
-    background: linear-gradient(90deg, rgba(38, 70, 83, 0.03), transparent)
+    background: linear-gradient(90deg, rgba(139, 77, 107, 0.08), rgba(232, 180, 160, 0.05))
 }
 
 .recipes-grid {
@@ -140,7 +185,7 @@ header {
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--border);
-    box-shadow: 0 8px 32px rgba(23, 32, 42, 0.08);
+    box-shadow: 0 8px 32px rgba(45, 24, 16, 0.08);
     display: flex;
     flex-direction: column;
     transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -150,13 +195,13 @@ header {
 
 .recipe-card:hover {
     transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 24px 64px rgba(23, 32, 42, 0.15);
-    border-color: var(--accent)
+    box-shadow: 0 24px 64px rgba(45, 24, 16, 0.15);
+    border-color: var(--warm)
 }
 
 .recipe-image {
     height: 220px;
-    background: linear-gradient(135deg, rgba(42, 157, 143, 0.1), rgba(38, 70, 83, 0.05));
+    background: linear-gradient(135deg, rgba(232, 180, 160, 0.12), rgba(212, 132, 138, 0.08));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -184,7 +229,7 @@ header {
     font-weight: 700;
     font-size: 1.2rem;
     font-family: 'Merriweather', serif;
-    box-shadow: 0 8px 24px rgba(38, 70, 83, 0.3)
+    box-shadow: 0 8px 24px rgba(139, 77, 107, 0.3)
 }
 
 .recipe-category {
@@ -207,8 +252,7 @@ header {
     padding: 1.5rem 1.25rem 1.75rem;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    background: linear-gradient(180deg, transparent, rgba(247, 249, 251, 0.3))
+    flex: 1
 }
 
 .recipe-title {
@@ -255,12 +299,12 @@ header {
     cursor: pointer;
     font-size: .9rem;
     transition: all .2s ease;
-    box-shadow: 0 4px 16px rgba(38, 70, 83, 0.2)
+    box-shadow: 0 4px 16px rgba(139, 77, 107, 0.25)
 }
 
 .view-recipe:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(38, 70, 83, 0.3)
+    box-shadow: 0 8px 24px rgba(139, 77, 107, 0.35)
 }
 
 /* Modal */
@@ -346,7 +390,7 @@ header {
 
 .modal-section {
     margin-bottom: 1.5rem;
-    background: rgba(247, 249, 251, 0.5);
+    background: rgba(254, 252, 247, 0.6);
     padding: 1.5rem;
     border-radius: 16px;
     border: 1px solid var(--border)
@@ -431,12 +475,12 @@ header {
 /* Visual distinction between ingredients and instructions */
 .recipe-content-grid .modal-section:first-child {
     min-height: 400px;
-    background: rgba(42, 157, 143, 0.03);
-    border-left: 4px solid var(--accent);
+    background: rgba(232, 180, 160, 0.06);
+    border-left: 4px solid var(--warm);
 }
 
 .recipe-content-grid .modal-section:last-child {
-    background: rgba(38, 70, 83, 0.03);
+    background: rgba(139, 77, 107, 0.04);
     border-left: 4px solid var(--primary);
 }
 
@@ -516,5 +560,76 @@ footer {
     
     .recipe-content-grid .modal-section:first-child {
         min-height: auto;
+    }
+}
+
+/* Dark mode specific adjustments */
+@media (prefers-color-scheme: dark) {
+    /* Enhance header backdrop filter for dark mode */
+    header {
+        background: rgba(26, 22, 20, 0.85);
+        backdrop-filter: blur(12px);
+    }
+    
+    /* Adjust hero background for dark mode */
+    .hero {
+        background: linear-gradient(135deg, rgba(242, 200, 180, 0.08), rgba(232, 164, 170, 0.05));
+        border-color: var(--border);
+    }
+    
+    /* Recipe card adjustments for dark mode */
+    .recipe-card {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    
+    .recipe-card:hover {
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Modal adjustments for dark mode */
+    .modal {
+        background: rgba(0, 0, 0, 0.75);
+    }
+    
+    .modal-content {
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Search input dark mode styling */
+    .search-bar input {
+        background: var(--card);
+        color: var(--text);
+    }
+    
+    .search-bar input::placeholder {
+        color: var(--muted);
+    }
+    
+    /* Modal section backgrounds for dark mode */
+    .modal-section {
+        background: rgba(42, 33, 30, 0.3);
+    }
+    
+    .recipe-content-grid .modal-section:first-child {
+        background: rgba(242, 200, 180, 0.04);
+    }
+
+    .recipe-content-grid .modal-section:last-child {
+        background: rgba(201, 122, 154, 0.04);
+    }
+    
+    /* Filter button adjustments */
+    .filter-btn.active {
+        background: linear-gradient(90deg, rgba(201, 122, 154, 0.12), rgba(242, 200, 180, 0.06));
+    }
+    
+    /* Better contrast for numbered steps in dark mode */
+    .modal-section ol li::before {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Bullet points color adjustment for dark mode */
+    .modal-section ul li::before {
+        color: var(--accent);
     }
 }

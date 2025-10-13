@@ -292,3 +292,52 @@ document.getElementById('recipeModal').addEventListener('click', function (e) {
 
 // Load recipes from external files when page loads
 document.addEventListener('DOMContentLoaded', loadRecipes);
+
+// --- Theme toggle logic ---
+(function() {
+    const root = document.documentElement;
+    const toggleBtn = document.getElementById('themeToggle');
+    const THEME_KEY = 'user_theme';
+
+    // Apply theme based on localStorage or system
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+        } else if (theme === 'light') {
+            root.setAttribute('data-theme', 'light');
+        } else {
+            root.removeAttribute('data-theme'); // fallback to system
+        }
+    }
+
+    // Detect system theme
+    function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    // Initial theme setup
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    applyTheme(savedTheme);
+
+    // Toggle button click handler
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            let current = root.getAttribute('data-theme');
+            let next;
+            if (!current) {
+                next = getSystemTheme() === 'dark' ? 'light' : 'dark';
+            } else {
+                next = current === 'dark' ? 'light' : 'dark';
+            }
+            applyTheme(next);
+            localStorage.setItem(THEME_KEY, next);
+        });
+    }
+
+    // Listen for system theme changes if no manual override
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem(THEME_KEY)) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+})();
