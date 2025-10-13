@@ -24,8 +24,6 @@ if (Array.isArray(window.__preRegisteredRecipes)) {
 let recipes = [];
 let filteredRecipes = [];
 let currentCategory = 'all';
-// units preference: 'metric' or 'imperial'
-let unitsPref = localStorage.getItem('units_pref') || 'metric';
 
 // Load recipes from registered JS files (single source of truth)
 function loadRecipes() {
@@ -137,61 +135,7 @@ function formatNumber(n) {
     return (Math.round(n * 100) / 100).toString();
 }
 
-// Unit conversion helper: convert value and unit to target system
-function convertUnit(value, unit, targetSystem) {
-    if (!unit) return { value, unit };
-    const u = unit.toLowerCase();
-    // normalize to base: grams for weight, ml for volume
-    const weightUnits = { g: 1, gram: 1, grams: 1, kg: 1000, kilogram: 1000, kilograms: 1000, oz: 0.0, ounce: 0.0, lb: 0.0, pound: 0.0 };
-    const volumeUnits = { ml: 1, milliliter: 1, l: 1000, liter: 1000, litre: 1000, tsp: 4.92892, teaspoon: 4.92892, tbsp: 14.7868, tablespoon: 14.7868, cup: 240 };
-
-    // detect weight units
-    if (/^(g|gram|grams|kg|kilogram|kilograms|oz|ounce|ounces|lb|lbs|pound|pounds)$/i.test(u)) {
-        // convert any to grams
-        let grams = null;
-        if (/^(g|gram|grams)$/i.test(u)) grams = value;
-        else if (/^(kg|kilogram|kilograms)$/i.test(u)) grams = value * 1000;
-        else if (/^(oz|ounce|ounces)$/i.test(u)) grams = value / 0.035274;
-        else if (/^(lb|lbs|pound|pounds)$/i.test(u)) grams = value / 0.00220462;
-
-        if (targetSystem === 'imperial') {
-            // prefer oz, but if > 16 oz, use lb
-            const oz = grams * 0.035274;
-            if (oz >= 16) return { value: oz / 16, unit: 'lb' };
-            return { value: oz, unit: 'oz' };
-        } else {
-            // metric: use g or kg
-            if (grams >= 1000) return { value: grams / 1000, unit: 'kg' };
-            return { value: grams, unit: 'g' };
-        }
-    }
-
-    // detect volume units
-    if (/^(ml|milliliter|l|liter|litre|tsp|teaspoon|tbsp|tablespoon|cup|cups|fl oz|floz|oz)$/i.test(u)) {
-        // convert any to ml
-        let ml = null;
-        if (/^(ml|milliliter)$/i.test(u)) ml = value;
-        else if (/^(l|liter|litre)$/i.test(u)) ml = value * 1000;
-        else if (/^(tsp|teaspoon)$/i.test(u)) ml = value * 4.92892;
-        else if (/^(tbsp|tablespoon)$/i.test(u)) ml = value * 14.7868;
-        else if (/^(cup|cups)$/i.test(u)) ml = value * 240;
-        else if (/^(fl oz|floz|oz)$/i.test(u)) ml = value / 0.033814;
-
-        if (targetSystem === 'imperial') {
-            const floz = ml * 0.033814;
-            if (floz >= 8) return { value: floz / 8, unit: 'cup' }; // use cups for larger volumes
-            return { value: floz, unit: 'fl oz' };
-        } else {
-            if (ml >= 1000) return { value: ml / 1000, unit: 'L' };
-            return { value: ml, unit: 'ml' };
-        }
-    }
-
-    // default: no conversion
-    return { value, unit };
-}
-
-function scaleIngredient(ingredient, factor, targetUnits) {
+function scaleIngredient(ingredient, factor) {
     // Try to detect a leading quantity (mixed number, fraction, or decimal/integer, possibly attached to unit like '400g')
     const trimmed = ingredient.trim();
     // Mixed number like '1 1/2'
@@ -216,11 +160,6 @@ function scaleIngredient(ingredient, factor, targetUnits) {
             const unit = numUnitMatch[2] || '';
             const rest = numUnitMatch[3] || '';
             const scaled = val * factor;
-            // try unit conversion if requested
-            if (targetUnits) {
-                const converted = convertUnit(scaled, unit, targetUnits);
-                return `${formatNumber(converted.value)}${converted.unit ? ' ' + converted.unit : ''} ${rest}`.trim();
-            }
             return `${formatNumber(scaled)}${unit} ${rest}`.trim();
         }
     }
@@ -231,14 +170,6 @@ function scaleIngredient(ingredient, factor, targetUnits) {
         if (!isNaN(val)) {
             const rest = numSpaceMatch[2];
             const scaled = val * factor;
-            // if rest starts with a unit token, attempt convert
-            const unitTokenMatch = rest.match(/^([a-zA-Z%°µ]+)\b(.*)$/);
-            if (unitTokenMatch && targetUnits) {
-                const unit = unitTokenMatch[1];
-                const tail = unitTokenMatch[2] ? unitTokenMatch[2].trim() : '';
-                const converted = convertUnit(scaled, unit, targetUnits);
-                return `${formatNumber(converted.value)} ${converted.unit ? converted.unit : unit} ${tail}`.trim();
-            }
             return `${formatNumber(scaled)} ${rest}`.trim();
         }
     }
@@ -290,38 +221,25 @@ function openModal(recipeId) {
                     👥 Servings:
                     <input id="servingsInput" type="number" min="1" value="${initialServings}" style="width:70px;padding:.5rem;border:2px solid var(--border);border-radius:8px;text-align:center;font-weight:600">
                 </label>
-                <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;color:var(--primary)">
-                    📏 Units:
-                    <select id="unitsSelect" style="padding:.5rem .75rem;border:2px solid var(--border);border-radius:8px;font-weight:600;background:white">
-                        <option value="metric">Metric</option>
-                        <option value="imperial">Imperial</option>
-                    </select>
-                </label>
                 <button id="resetServingsBtn" type="button" style="background:linear-gradient(135deg,var(--primary),var(--accent));color:white;border:none;padding:.5rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;transition:transform .2s ease">
                     🔄 Reset
                 </button>
             </div>
         </div>
-        <div class="modal-section">
-            <h3>🥘 Ingredients</h3>
-            <ul id="ingredientsList">${ingredientsHtml}</ul>
-        </div>
-        <div class="modal-section">
-            <h3>👨‍🍳 Instructions</h3>
-            <ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem" class="recipe-content-grid">
+            <div class="modal-section">
+                <h3>🥘 Ingredients</h3>
+                <ul id="ingredientsList">${ingredientsHtml}</ul>
+            </div>
+            <div class="modal-section">
+                <h3>👨‍🍳 Instructions</h3>
+                <ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol>
+            </div>
         </div>
     `;
 
     // attach input listener to rescale ingredients
     const servingsInput = document.getElementById('servingsInput');
-    // units select initial value
-    const unitsSelect = document.getElementById('unitsSelect');
-    unitsSelect.value = unitsPref;
-    unitsSelect.addEventListener('change', function () {
-        unitsPref = this.value;
-        try { localStorage.setItem('units_pref', unitsPref); } catch (e) { }
-        rescale();
-    });
 
     function rescale() {
         const desired = Number(servingsInput.value) || origServings;
@@ -329,8 +247,8 @@ function openModal(recipeId) {
         const list = document.getElementById('ingredientsList');
         Array.from(list.children).forEach(li => {
             const orig = li.getAttribute('data-orig');
-            // pass targetUnits based on unitsPref
-            li.textContent = scaleIngredient(orig, factor, unitsPref === 'metric' ? 'metric' : 'imperial');
+            // scale ingredients without unit conversion
+            li.textContent = scaleIngredient(orig, factor);
         });
         // persist chosen servings
         try { localStorage.setItem(savedKey, String(desired)); } catch (e) { /* ignore storage errors */ }

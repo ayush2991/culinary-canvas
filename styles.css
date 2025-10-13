@@ -300,8 +300,8 @@ header {
 .modal-content {
     background: var(--card);
     border-radius: 24px;
-    max-width: 800px;
-    width: 100%;
+    max-width: 1100px;
+    width: 95%;
     padding: 2rem 2.5rem 2.5rem;
     max-height: 90vh;
     overflow: auto;
@@ -418,6 +418,28 @@ header {
     font-weight: bold
 }
 
+/* Recipe content grid for side-by-side layout */
+.recipe-content-grid {
+    align-items: start;
+}
+
+.recipe-content-grid .modal-section {
+    height: fit-content;
+    margin-bottom: 0;
+}
+
+/* Visual distinction between ingredients and instructions */
+.recipe-content-grid .modal-section:first-child {
+    min-height: 400px;
+    background: rgba(42, 157, 143, 0.03);
+    border-left: 4px solid var(--accent);
+}
+
+.recipe-content-grid .modal-section:last-child {
+    background: rgba(38, 70, 83, 0.03);
+    border-left: 4px solid var(--primary);
+}
+
 footer {
     max-width: 1200px;
     margin: 2.25rem auto;
@@ -425,6 +447,19 @@ footer {
     color: var(--muted);
     text-align: center;
     font-size: .95rem
+}
+
+@media (max-width:1024px) and (min-width:769px) {
+    /* Tablet layout - keep side by side but with smaller gap */
+    .recipe-content-grid {
+        gap: 1.5rem;
+    }
+    
+    .modal-content {
+        padding: 2rem;
+        max-width: 90%;
+        width: 90%;
+    }
 }
 
 @media (max-width:768px) {
@@ -471,5 +506,15 @@ footer {
         width: 32px;
         height: 32px;
         font-size: 1.2rem
+    }
+    
+    /* Stack ingredients and instructions vertically on mobile */
+    .recipe-content-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .recipe-content-grid .modal-section:first-child {
+        min-height: auto;
     }
 }
