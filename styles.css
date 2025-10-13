@@ -1,0 +1,322 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f7f9fb;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --text: #17202a;
+    --primary: #264653;
+    /* deep teal */
+    --accent: #2a9d8f;
+    /* muted teal */
+    --border: #e6eef0;
+    --shadow: 0 6px 18px rgba(23, 32, 42, 0.06);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: var(--bg);
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: var(--text);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background: transparent;
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(6px);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem
+}
+
+.logo {
+    font-family: 'Merriweather', serif;
+    font-size: 1.25rem;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 0.2px
+}
+
+.search-bar {
+    display: flex;
+    gap: .5rem;
+    flex: 1;
+    max-width: 520px;
+    margin-left: 2rem
+}
+
+.search-bar input {
+    flex: 1;
+    padding: .65rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    font-size: 0.95rem;
+    color: var(--text)
+}
+
+.search-bar button {
+    padding: .65rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem
+}
+
+.hero {
+    background: linear-gradient(180deg, rgba(42, 157, 143, 0.06), rgba(38, 70, 83, 0.02));
+    padding: 1.6rem;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    text-align: left;
+    margin-bottom: 1.75rem
+}
+
+.hero h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.6rem;
+    margin: 0;
+    color: var(--primary)
+}
+
+.hero p {
+    margin-top: .5rem;
+    color: var(--muted);
+    font-size: 0.98rem
+}
+
+.filter-buttons {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin: 1.25rem 0 1.75rem
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: .5rem .9rem;
+    border-radius: 999px;
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 600
+}
+
+.filter-btn.active {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: linear-gradient(90deg, rgba(38, 70, 83, 0.03), transparent)
+}
+
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem
+}
+
+.recipe-card {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform .18s ease, box-shadow .18s ease
+}
+
+.recipe-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(23, 32, 42, 0.08)
+}
+
+.recipe-image {
+    height: 180px;
+    background: linear-gradient(135deg, rgba(38, 157, 143, 0.12), rgba(38, 70, 83, 0.06));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative
+}
+
+.recipe-initials {
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.05rem;
+    font-family: 'Merriweather', serif
+}
+
+.recipe-category {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    background: rgba(23, 32, 42, 0.06);
+    border-radius: 999px;
+    padding: .35rem .6rem;
+    font-size: .78rem;
+    color: var(--muted);
+    border: 1px solid var(--border)
+}
+
+.recipe-content {
+    padding: 1.15rem 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1
+}
+
+.recipe-title {
+    font-weight: 600;
+    margin: 0 0 .4rem;
+    font-size: 1.05rem;
+    color: var(--text)
+}
+
+.recipe-description {
+    color: var(--muted);
+    font-size: .92rem;
+    margin-bottom: .9rem;
+    flex: 1
+}
+
+.recipe-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .75rem
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    color: var(--muted);
+    font-size: .9rem
+}
+
+.view-recipe {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: .45rem .8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 12, 15, 0.45);
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    z-index: 999
+}
+
+.modal.active {
+    display: flex
+}
+
+.modal-content {
+    background: var(--card);
+    border-radius: 12px;
+    max-width: 720px;
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    max-height: 86vh;
+    overflow: auto;
+    border: 1px solid var(--border)
+}
+
+.modal h2 {
+    margin: 0 0 .75rem;
+    font-family: 'Merriweather', serif;
+    color: var(--primary)
+}
+
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--muted);
+    cursor: pointer
+}
+
+.modal-section {
+    margin-bottom: .9rem
+}
+
+.modal-section h3 {
+    margin: 0 0 .45rem;
+    font-size: .98rem;
+    color: var(--text)
+}
+
+.modal-section ul {
+    margin: 0;
+    padding-left: 1.05rem
+}
+
+.modal-section li {
+    margin: .35rem 0;
+    color: var(--muted)
+}
+
+footer {
+    max-width: 1200px;
+    margin: 2.25rem auto;
+    padding: 1rem;
+    color: var(--muted);
+    text-align: center;
+    font-size: .95rem
+}
+
+@media (max-width:768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+    .search-bar {
+        margin-left: 0;
+        width: 100%
+    }
+
+    .recipes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr))
+    }
+}
