@@ -5,7 +5,7 @@
         title: "Chikudikaya Kura (Cluster Bean Curry)",
         description: "Home-style cluster bean curry with tomato-onion masala — mildly spiced and garnished with cilantro.",
     category: "lunch",
-    tags: ["vegetarian", "gluten-free", "lunch"],
+    tags: ["vegan"],
         time: "25 min",
         servings: "4",
         difficulty: "Easy",

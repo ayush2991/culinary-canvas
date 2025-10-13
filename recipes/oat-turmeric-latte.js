@@ -5,7 +5,7 @@
     title: "Oat Turmeric Latte",
     description: "Warming golden milk latte with aromatic spices and creamy oat milk",
   category: "breakfast",
-  tags: ["vegetarian", "dairy-free", "breakfast"],
+  tags: ["dairy-free", "caffeine-free"],
     time: "5 min",
     servings: "1",
     difficulty: "Easy",

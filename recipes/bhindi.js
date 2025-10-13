@@ -5,7 +5,7 @@
     title: "Bhindi (Stir-fried Okra)",
     description: "Crispy, non-sticky bhindi tossed with aromatic spices — simple, quick and delicious.",
   category: "lunch",
-  tags: ["vegetarian", "gluten-free", "lunch"],
+  tags: ["vegan"],
     time: "20 min",
     servings: "4",
     difficulty: "Easy",

@@ -5,7 +5,7 @@
     title: "Chocolate Mousse (Ninja Blender)",
     description: "A quick, silky chocolate mousse made in a Ninja blender",
   category: "dessert",
-  tags: ["dessert"],
+  tags: ["dessert", "dairy-free", "caffeine-free"],
     time: "40 min",
     servings: "2",
     difficulty: "Easy",

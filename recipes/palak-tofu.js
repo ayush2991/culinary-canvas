@@ -5,7 +5,7 @@
     title: "Palak Tofu",
     description: "Spinach and tofu curry with aromatic spices and cashews",
   category: "dinner",
-  tags: ["vegetarian", "gluten-free", "dinner"],
+  tags: ["vegan", "gluten-free"],
     time: "60 min",
     servings: "5",
     difficulty: "Medium",
