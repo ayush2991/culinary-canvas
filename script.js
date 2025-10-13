@@ -56,10 +56,14 @@ function renderRecipes(recipesToRender) {
     const grid = document.getElementById('recipesGrid');
     grid.innerHTML = recipesToRender.map(recipe => {
         const initials = getInitials(recipe.title);
+        const imageContent = recipe.image 
+            ? `<img src="${recipe.image}" alt="${recipe.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
+            : `<div class="recipe-initials">${initials}</div>`;
+        
         return `
         <div class="recipe-card" onclick="openModal(${recipe.id})" role="button" tabindex="0">
             <div class="recipe-image">
-                <div class="recipe-initials">${initials}</div>
+                ${imageContent}
                 <div class="recipe-category">${recipe.category}</div>
             </div>
             <div class="recipe-content">
@@ -253,8 +257,12 @@ function openModal(recipeId) {
     const modalBody = document.getElementById('modalBody');
     // build ingredients list with data-original attributes so we can rescale
     const ingredientsHtml = recipe.ingredients.map(ing => `<li data-orig="${ing.replace(/"/g, '\"')}">${ing}</li>`).join('');
+    const imageHtml = recipe.image 
+        ? `<div style="text-align:center;margin-bottom:1rem;"><img src="${recipe.image}" alt="${recipe.title}" style="max-width:100%;height:auto;border-radius:8px;max-height:200px;object-fit:cover;"></div>`
+        : '';
     modalBody.innerHTML = `
         <h2>${recipe.title}</h2>
+        ${imageHtml}
         <div class="modal-section">
             <h3>Time & Servings</h3>
             <p><strong>Time:</strong> ${recipe.time}</p>

@@ -8,6 +8,7 @@
     time: "60 min",
     servings: "5",
     difficulty: "Medium",
+    image: "images/palak_tofu.png",
     ingredients: [
       "Cooking oil and/or Ghee (as needed)",
       "1/3 tsp Cumin Seeds",
