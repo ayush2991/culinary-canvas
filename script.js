@@ -282,13 +282,20 @@ function closeModal() {
 }
 
 // Event listeners
-document.getElementById('searchInput').addEventListener('keypress', function (e) { 
-    if (e.key === 'Enter') searchRecipes(); 
-});
+const _searchInput = document.getElementById('searchInput');
+if (_searchInput) {
+    _searchInput.addEventListener('input', function () { searchRecipes(); });
+    _searchInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') searchRecipes();
+    });
+}
 
-document.getElementById('recipeModal').addEventListener('click', function (e) { 
-    if (e.target === this) closeModal(); 
-});
+const _recipeModal = document.getElementById('recipeModal');
+if (_recipeModal) {
+    _recipeModal.addEventListener('click', function (e) { 
+        if (e.target === this) closeModal(); 
+    });
+}
 
 // Load recipes from external files when page loads
 document.addEventListener('DOMContentLoaded', loadRecipes);
