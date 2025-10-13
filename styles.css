@@ -418,6 +418,46 @@ header {
     }
 }
 
+/* bottom-sheet animation for mobile modals */
+@keyframes sheetUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.modal.sheet {
+    align-items: flex-end;
+    padding: 0.25rem;
+}
+
+.modal.sheet .modal-content {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px 12px 0 0;
+    animation: sheetUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(0);
+}
+
+/* small top-nav inside modal for quick jumps */
+.modal-top-nav {
+    display:flex;
+    gap:.5rem;
+    justify-content:center;
+    margin-bottom: .8rem;
+}
+.modal-top-nav button {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: .4rem .65rem;
+    border-radius: 999px;
+    font-weight:600;
+    color: var(--muted);
+    cursor: pointer;
+}
+.modal-top-nav button.active {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
 .modal-content {
     background: var(--card);
     border-radius: 24px;

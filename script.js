@@ -321,9 +321,17 @@ function openModal(recipeId) {
                          </svg>
                          <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(38,70,83,0.3);">${recipe.category}</div>
                      </div>`;
+    // Insert a small top-nav for quick jumps (Ingredients / Instructions)
+    const topNavHtml = `
+        <div class="modal-top-nav">
+            <button type="button" data-jump="ingredients">Ingredients</button>
+            <button type="button" data-jump="instructions">Instructions</button>
+        </div>`;
+
     modalBody.innerHTML = `
         <h2>${recipe.title}</h2>
         ${imageHtml}
+        ${topNavHtml}
         <div class="modal-section">
             <h3>📋 Recipe Details</h3>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:1.5rem">
@@ -364,6 +372,11 @@ function openModal(recipeId) {
             </div>
         </div>
     `;
+
+    // If on small screens, treat modal as a sheet (slide from bottom)
+    const modalEl = document.getElementById('recipeModal');
+    const isSmall = window.innerWidth <= 700;
+    if (isSmall) modalEl.classList.add('sheet');
 
     // attach input listener to rescale ingredients
     const servingsInput = document.getElementById('servingsInput');
@@ -414,10 +427,52 @@ function openModal(recipeId) {
     rescale();
 
     document.getElementById('recipeModal').classList.add('active');
+
+    // Quick-jump handlers
+    const topNav = modalBody.querySelector('.modal-top-nav');
+    if (topNav) {
+        const ingEl = document.querySelector('#ingredientsList');
+        const instrEl = modalBody.querySelector('ol');
+        topNav.addEventListener('click', function(e){
+            const btn = e.target.closest('button[data-jump]');
+            if (!btn) return;
+            const target = btn.getAttribute('data-jump');
+            if (target === 'ingredients' && ingEl) {
+                ingEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (target === 'instructions' && instrEl) {
+                instrEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            // mark active
+            topNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    }
+
+    // Persist and restore modal scroll position per recipe (session only)
+    const modalContent = document.querySelector('.modal-content');
+    const scrollKey = `modal_scroll_${recipe.id}`;
+    // restore
+    try {
+        const saved = sessionStorage.getItem(scrollKey);
+        if (saved && modalContent) modalContent.scrollTop = Number(saved) || 0;
+    } catch(e){}
+    // save on scroll (throttle)
+    let scrollTimer;
+    if (modalContent) {
+        modalContent.addEventListener('scroll', function(){
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(function(){
+                try { sessionStorage.setItem(scrollKey, String(modalContent.scrollTop)); } catch(e){}
+            }, 120);
+        });
+    }
 }
 
 function closeModal() { 
-    document.getElementById('recipeModal').classList.remove('active'); 
+    const modalEl = document.getElementById('recipeModal');
+    modalEl.classList.remove('active'); 
+    // remove sheet class so next open animates correctly
+    modalEl.classList.remove('sheet');
 }
 
 // Event listeners
