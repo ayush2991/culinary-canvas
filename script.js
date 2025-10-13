@@ -179,6 +179,22 @@ function formatNumber(n) {
     return (Math.round(n * 100) / 100).toString();
 }
 
+// Format an amount with unit normalization (e.g., 1000g -> 1 kg) and consistent display
+function formatAmount(amount, unit) {
+    if (amount == null) return '';
+    let amt = Number(amount);
+    if (isNaN(amt)) return '';
+    // Normalize grams to kg when large
+    if (unit === 'g' && Math.abs(amt) >= 1000) {
+        return `${formatNumber(amt / 1000)} kg`;
+    }
+    // normalize common abbreviations
+    const normalizedUnit = (unit || '').trim();
+    if (normalizedUnit === '%') return `${formatNumber(amt)}%`;
+    if (normalizedUnit) return `${formatNumber(amt)} ${normalizedUnit}`;
+    return formatNumber(amt);
+}
+
 function scaleIngredient(ingredient, factor) {
     // Try to detect a leading quantity (mixed number, fraction, or decimal/integer, possibly attached to unit like '400g')
     if (!ingredient || typeof ingredient !== 'string') return ingredient;
@@ -248,13 +264,29 @@ function openModal(recipeId) {
     const initialServings = recipe.id === 3 ? 1 : (saved && saved > 0 ? saved : origServings);
     const modalBody = document.getElementById('modalBody');
     // build ingredients list with data-original attributes so we can rescale
-    const ingredientsHtml = recipe.ingredients.map(ing => `<li data-orig="${ing.replace(/"/g, '\"')}">${ing}</li>`).join('');
-    const imageHtml = recipe.image 
-        ? `<div style="text-align:center;margin-bottom:2rem;position:relative;">
-             <img src="${recipe.image}" alt="${recipe.title}" style="max-width:100%;height:auto;border-radius:16px;max-height:300px;object-fit:cover;box-shadow:0 16px 40px rgba(23,32,42,0.15);">
-             <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(38,70,83,0.3);">${recipe.category}</div>
-           </div>`
-        : '';
+    const ingredientsHtml = recipe.ingredients.map(ing => {
+        if (typeof ing === 'object') {
+            const json = JSON.stringify(ing).replace(/"/g, '&quot;');
+            const display = (() => {
+                if (ing.amount == null) return ing.rest + (ing.note ? ` (${ing.note})` : '');
+                return `${formatAmount(ing.amount, ing.unit)} ${ing.rest}${ing.note ? ` (${ing.note})` : ''}`.replace(/\s+/g,' ').trim();
+            })();
+            return `<li data-orig="${json}">${display}</li>`;
+        }
+        return `<li data-orig="${ing.replace(/"/g, '\"')}">${ing}</li>`;
+    }).join('');
+        const imageHtml = recipe.image 
+                ? `<div style="text-align:center;margin-bottom:2rem;position:relative;">
+                         <img src="${recipe.image}" alt="${recipe.title}" style="max-width:100%;height:auto;border-radius:16px;max-height:300px;object-fit:cover;box-shadow:0 16px 40px rgba(23,32,42,0.15);">
+                         <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(38,70,83,0.3);">${recipe.category}</div>
+                     </div>`
+                : `<div style="text-align:center;margin-bottom:2rem;position:relative;">
+                         <svg width="100%" height="200" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" style="border-radius:16px;max-height:300px;object-fit:cover;box-shadow:0 16px 40px rgba(23,32,42,0.08);background:linear-gradient(135deg,rgba(139,77,107,0.06),rgba(212,132,138,0.04));">
+                             <rect width="100%" height="100%" fill="transparent" />
+                             <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="var(--muted)" font-size="20">${recipe.title}</text>
+                         </svg>
+                         <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(38,70,83,0.3);">${recipe.category}</div>
+                     </div>`;
     modalBody.innerHTML = `
         <h2>${recipe.title}</h2>
         ${imageHtml}
@@ -307,7 +339,20 @@ function openModal(recipeId) {
         const factor = desired / origServings;
         const list = document.getElementById('ingredientsList');
         Array.from(list.children).forEach(li => {
-            const orig = li.getAttribute('data-orig');
+            const origData = li.getAttribute('data-orig');
+            try {
+                const parsed = JSON.parse(origData);
+                // structured ingredient object
+                if (parsed && typeof parsed === 'object' && parsed.hasOwnProperty('rest')) {
+                    const amt = parsed.amount == null ? null : formatAmount(parsed.amount * factor, parsed.unit);
+                    const note = parsed.note ? ` (${parsed.note})` : '';
+                    li.textContent = amt ? `${amt} ${parsed.rest}${note}`.replace(/\s+/g,' ').trim() : `${parsed.rest}${note}`;
+                    return;
+                }
+            } catch (e) {
+                // not JSON — fall back to legacy string handling
+            }
+            const orig = origData;
             // scale ingredients without unit conversion
             li.textContent = scaleIngredient(orig, factor);
         });

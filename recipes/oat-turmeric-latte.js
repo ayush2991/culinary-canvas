@@ -10,12 +10,12 @@
     difficulty: "Easy",
     image: "images/oat_turmeric_latte.png",
     ingredients: [
-      "2/3 cup oat milk (enough to almost submerge instant frother)",
-      "1/8 tsp cardamom powder",
-      "1/8 tsp cinnamon powder", 
-      "1/8 tsp turmeric powder",
-      "1 pinch ground black pepper",
-      "1 tsp honey"
+      { amount: 0.66, unit: 'cup', rest: 'oat milk', note: 'enough to almost submerge instant frother' },
+      { amount: 0.125, unit: 'tsp', rest: 'cardamom powder' },
+      { amount: 0.125, unit: 'tsp', rest: 'cinnamon powder' },
+      { amount: 0.125, unit: 'tsp', rest: 'turmeric powder' },
+      { amount: null, unit: '', rest: 'ground black pepper', note: 'a pinch' },
+      { amount: 1, unit: 'tsp', rest: 'honey' }
     ],
     instructions: [
       "Add oat milk to your container until the instant frother is almost submerged.",
