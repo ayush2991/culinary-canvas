@@ -337,7 +337,40 @@ function openModal(recipeId) {
             <button type="button" data-jump="instructions">Instructions</button>
         </div>`;
 
-    modalBody.innerHTML = `
+    // Decide if we're on a small screen before rendering compact HTML
+    const isSmall = window.innerWidth <= 700;
+
+    // On small screens render a compact layout with collapsible sections
+    const compactHtml = isSmall ? `
+        <div class="compact-modal-header">
+            <h2 style="margin:0">${recipe.title}</h2>
+            <div class="compact-meta">
+                <div class="meta-item">⏱ ${recipe.time}</div>
+                <div class="meta-item">👥 ${recipe.servings}</div>
+                <div class="meta-item">📊 ${recipe.difficulty}</div>
+            </div>
+            ${imageHtml}
+        </div>
+        <div class="compact-servings">
+            <label class="servings-label">
+                👥 Servings:
+                <input id="servingsInput" type="number" min="1" value="${initialServings}" class="servings-input">
+            </label>
+            <button id="resetServingsBtn" type="button" class="reset-btn">🔄</button>
+        </div>
+        <div class="collapsible">
+            <details open>
+                <summary>🥘 Ingredients</summary>
+                <ul id="ingredientsList">${ingredientsHtml}</ul>
+            </details>
+        </div>
+        <div class="collapsible">
+            <details open>
+                <summary>👨‍🍳 Instructions</summary>
+                <ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol>
+            </details>
+        </div>
+    ` : `
         <h2>${recipe.title}</h2>
         ${imageHtml}
         ${topNavHtml}
@@ -370,7 +403,7 @@ function openModal(recipeId) {
                 </button>
             </div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem" class="recipe-content-grid">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem" class="recipe-content-grid">
             <div class="modal-section">
                 <h3>🥘 Ingredients</h3>
                 <ul id="ingredientsList">${ingredientsHtml}</ul>
@@ -382,18 +415,28 @@ function openModal(recipeId) {
         </div>
     `;
 
+    // Insert the constructed modal HTML into the modal body so queried
+    // elements (servingsInput, reset button, ingredient list, etc.) exist
+    // before we try to attach event listeners to them.
+    if (!modalBody) {
+        console.error('openModal: #modalBody element not found');
+        return;
+    }
+    modalBody.innerHTML = compactHtml;
+
     // If on small screens, treat modal as a sheet (slide from bottom)
     const modalEl = document.getElementById('recipeModal');
-    const isSmall = window.innerWidth <= 700;
-    if (isSmall) modalEl.classList.add('sheet');
+    if (modalEl && isSmall) modalEl.classList.add('sheet');
 
-    // attach input listener to rescale ingredients
+    // attach input listener to rescale ingredients (elements now exist)
     const servingsInput = document.getElementById('servingsInput');
 
     function rescale() {
-        const desired = Number(servingsInput.value) || origServings;
+        // Use servingsInput value if available, otherwise use original servings
+        const desired = servingsInput ? (Number(servingsInput.value) || origServings) : origServings;
         const factor = desired / origServings;
         const list = document.getElementById('ingredientsList');
+        if (!list) return; // safety check
         Array.from(list.children).forEach(li => {
             const origData = li.getAttribute('data-orig');
             try {
@@ -412,27 +455,38 @@ function openModal(recipeId) {
             // scale ingredients without unit conversion
             li.textContent = scaleIngredient(orig, factor);
         });
-        // persist chosen servings
-        try { localStorage.setItem(savedKey, String(desired)); } catch (e) { /* ignore storage errors */ }
+        // persist chosen servings only if we have servings input
+        if (servingsInput) {
+            try { localStorage.setItem(savedKey, String(desired)); } catch (e) { /* ignore storage errors */ }
+        }
     }
-    servingsInput.addEventListener('input', rescale);
+    
+    // Only add event listeners if the elements exist (desktop layout)
+    if (servingsInput) {
+        servingsInput.addEventListener('input', rescale);
+    }
+    
     // reset button
     const resetBtn = document.getElementById('resetServingsBtn');
-    resetBtn.addEventListener('click', function () {
-        servingsInput.value = origServings;
-        try { localStorage.removeItem(savedKey); } catch (e) { }
-        rescale();
-    });
-    
-    // Add hover effects to reset button
-    resetBtn.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-2px) scale(1.05)';
-    });
-    resetBtn.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
+    if (resetBtn && servingsInput) {
+        resetBtn.addEventListener('click', function () {
+            servingsInput.value = origServings;
+            try { localStorage.removeItem(savedKey); } catch (e) { }
+            rescale();
+        });
+    }
+    // Add hover effects to reset button (only if it exists)
+    if (resetBtn) {
+        resetBtn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.05)';
+        });
+        resetBtn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    }
 
     // initial scale (in case origServings is not 1) and initial conversion
+    // Always call rescale to ensure ingredients are properly formatted
     rescale();
 
     document.getElementById('recipeModal').classList.add('active');
