@@ -184,7 +184,8 @@ function openModal(recipeId) {
     // load persisted servings for this recipe if present
     const savedKey = `recipe_servings_${recipe.id}`;
     const saved = Number(localStorage.getItem(savedKey));
-    const initialServings = saved && saved > 0 ? saved : origServings;
+    // Force oat turmeric latte (id: 3) to always default to 1 serving
+    const initialServings = recipe.id === 3 ? 1 : (saved && saved > 0 ? saved : origServings);
     const modalBody = document.getElementById('modalBody');
     // build ingredients list with data-original attributes so we can rescale
     const ingredientsHtml = recipe.ingredients.map(ing => `<li data-orig="${ing.replace(/"/g, '\"')}">${ing}</li>`).join('');
