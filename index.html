@@ -378,6 +378,10 @@
         <p>&copy; 2025 Culinary Canvas — Crafted for food lovers.</p>
     </footer>
 
+    <!-- Load recipe files right before main script -->
+    <script src="recipes/veggie-stir-fry.js"></script>
+    <script src="recipes/palak-tofu.js"></script>
+
     <script>
         // Shim to support static recipe scripts for sites without a backend.
         // Recipe files will either call `registerRecipe(recipe)` directly or
@@ -401,20 +405,6 @@
             // clear to free memory
             window.__preRegisteredRecipes.length = 0;
         }
-        // Load static recipe scripts (these register themselves). This works on
-        // plain static hosting because script tags execute and call registerRecipe.
-        // If you later move to a backend, the recipe JSON/index.json fallback still works.
-        (function injectRecipeScripts(){
-            var base = 'recipes/';
-            var scripts = ['veggie-stir-fry.js','palak-tofu.js'];
-            scripts.forEach(function(s){
-                var sc = document.createElement('script');
-                sc.src = base + s;
-                sc.defer = false;
-                sc.async = false;
-                document.head.appendChild(sc);
-            });
-        })();
 
         let recipes = [];
         let filteredRecipes = [];
@@ -422,33 +412,24 @@
         // units preference: 'metric' or 'imperial'
         let unitsPref = localStorage.getItem('units_pref') || 'metric';
 
-        // If there are pre-registered recipes (from static JS files), use them.
-        // Otherwise fall back to fetching JSON index (for hosted/backed setups).
-        async function loadRecipes() {
+        // Load recipes from registered JS files (single source of truth)
+        function loadRecipes() {
             try {
                 if (window.__registeredRecipes && window.__registeredRecipes.length) {
                     recipes = window.__registeredRecipes.slice();
+                    filteredRecipes = [...recipes];
+                    renderRecipes(recipes);
                 } else {
-                    // First, attempt to load the index of recipe files
-                    const indexResponse = await fetch('recipes/index.json');
-                    const recipeFiles = await indexResponse.json();
-                    // Load each recipe file
-                    const recipePromises = recipeFiles.map(async (fileName) => {
-                        const response = await fetch(`recipes/${fileName}`);
-                        return await response.json();
-                    });
-                    recipes = await Promise.all(recipePromises);
+                    // No recipes registered - show message
+                    recipes = [];
+                    filteredRecipes = [];
+                    document.getElementById('recipesGrid').innerHTML = '<p>No recipes available. Please check that recipe JS files are loading correctly.</p>';
                 }
-
-                filteredRecipes = [...recipes];
-                // Render recipes once loaded
-                renderRecipes(recipes);
             } catch (error) {
                 console.error('Error loading recipes:', error);
-                // Fallback: show a message or use empty array
                 recipes = [];
                 filteredRecipes = [];
-                document.getElementById('recipesGrid').innerHTML = '<p>Unable to load recipes. Please check your connection.</p>';
+                document.getElementById('recipesGrid').innerHTML = '<p>Error loading recipes.</p>';
             }
         }
 
