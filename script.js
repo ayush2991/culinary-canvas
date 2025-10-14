@@ -508,7 +508,8 @@ function openModal(recipeId) {
     const shareBtn = document.getElementById('shareRecipeBtn');
     if (shareBtn) {
         shareBtn.addEventListener('click', function() {
-            const recipeUrl = `${window.location.origin}${window.location.pathname}#recipe-${recipe.id}`;
+            const slug = createSlugFromTitle(recipe.title);
+            const recipeUrl = `${window.location.origin}${window.location.pathname}#${slug}`;
             
             // Try to use the Web Share API if available (mobile devices)
             if (navigator.share) {
@@ -614,9 +615,21 @@ function closeModal() {
 }
 
 // URL hash management for direct linking to recipes
+// Creates user-friendly URLs like: #chocolate-mousse-ninja-blender, #palak-tofu, etc.
+function createSlugFromTitle(title) {
+    return title
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+        .trim('-'); // Remove leading/trailing hyphens
+}
+
 function updateUrlHash(recipeId) {
-    if (recipeId) {
-        window.history.replaceState(null, null, `#recipe-${recipeId}`);
+    const recipe = recipes.find(r => r.id === recipeId);
+    if (recipe) {
+        const slug = createSlugFromTitle(recipe.title);
+        window.history.replaceState(null, null, `#${slug}`);
     }
 }
 
@@ -626,9 +639,11 @@ function clearUrlHash() {
 
 function getRecipeIdFromHash() {
     const hash = window.location.hash;
-    if (hash.startsWith('#recipe-')) {
-        const id = parseInt(hash.substring(8)); // Remove '#recipe-' prefix
-        return isNaN(id) ? null : id;
+    if (hash && hash.startsWith('#')) {
+        const slug = hash.substring(1); // Remove '#' prefix
+        // Find recipe by matching slug to title
+        const recipe = recipes.find(r => createSlugFromTitle(r.title) === slug);
+        return recipe ? recipe.id : null;
     }
     return null;
 }
