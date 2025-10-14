@@ -33,6 +33,9 @@ function loadRecipes() {
             recipes = window.__registeredRecipes.slice();
             filteredRecipes = [...recipes];
             renderRecipes(recipes);
+            
+            // After recipes are loaded, check if URL hash points to a specific recipe
+            setTimeout(handleHashChange, 50);
         } else {
             // No recipes registered - show message
             recipes = [];
@@ -297,6 +300,10 @@ function scaleIngredient(ingredient, factor) {
 function openModal(recipeId) {
     const recipe = recipes.find(r => r.id === recipeId);
     if (!recipe) return;
+    
+    // Update URL hash to allow direct linking
+    updateUrlHash(recipe.id);
+    
     const origServings = Number(recipe.servings) || 1;
     // load persisted servings for this recipe if present
     const savedKey = `recipe_servings_${recipe.id}`;
@@ -343,7 +350,10 @@ function openModal(recipeId) {
     // On small screens render a compact layout with collapsible sections
     const compactHtml = isSmall ? `
         <div class="compact-modal-header">
-            <h2 style="margin:0">${recipe.title}</h2>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                <h2 style="margin:0; flex: 1;">${recipe.title}</h2>
+                <button type="button" id="shareRecipeBtn" style="background: var(--primary); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.85rem; margin-left: 1rem;" title="Share recipe">🔗 Share</button>
+            </div>
             <div class="compact-meta">
                 <div class="meta-item">⏱ ${recipe.time}</div>
                 <div class="meta-item">👥 ${recipe.servings}</div>
@@ -371,7 +381,10 @@ function openModal(recipeId) {
             </details>
         </div>
     ` : `
-        <h2>${recipe.title}</h2>
+        <h2 style="display: flex; justify-content: space-between; align-items: center;">
+            ${recipe.title}
+            <button type="button" id="shareRecipeBtn" style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-left: 1rem;" title="Share recipe">🔗 Share</button>
+        </h2>
         ${imageHtml}
         ${topNavHtml}
         <div class="modal-section">
@@ -491,6 +504,65 @@ function openModal(recipeId) {
 
     document.getElementById('recipeModal').classList.add('active');
 
+    // Share button functionality
+    const shareBtn = document.getElementById('shareRecipeBtn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', function() {
+            const recipeUrl = `${window.location.origin}${window.location.pathname}#recipe-${recipe.id}`;
+            
+            // Try to use the Web Share API if available (mobile devices)
+            if (navigator.share) {
+                navigator.share({
+                    title: recipe.title,
+                    text: `Check out this recipe: ${recipe.title}`,
+                    url: recipeUrl
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                    fallbackShare(recipeUrl);
+                });
+            } else {
+                fallbackShare(recipeUrl);
+            }
+        });
+    }
+
+    function fallbackShare(url) {
+        // Fallback: copy to clipboard
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url).then(() => {
+                showShareFeedback('Link copied to clipboard!');
+            }).catch(() => {
+                showShareFeedback('Share URL: ' + url);
+            });
+        } else {
+            // Older browsers fallback
+            const textArea = document.createElement('textarea');
+            textArea.value = url;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showShareFeedback('Link copied to clipboard!');
+            } catch (err) {
+                showShareFeedback('Share URL: ' + url);
+            }
+            document.body.removeChild(textArea);
+        }
+    }
+
+    function showShareFeedback(message) {
+        const shareBtn = document.getElementById('shareRecipeBtn');
+        if (shareBtn) {
+            const originalText = shareBtn.innerHTML;
+            shareBtn.innerHTML = '✓ ' + (message.includes('copied') ? 'Copied!' : 'URL Ready');
+            shareBtn.style.background = '#28a745';
+            setTimeout(() => {
+                shareBtn.innerHTML = originalText;
+                shareBtn.style.background = 'var(--primary)';
+            }, 2000);
+        }
+    }
+
     // Quick-jump handlers
     const topNav = modalBody.querySelector('.modal-top-nav');
     if (topNav) {
@@ -536,6 +608,45 @@ function closeModal() {
     modalEl.classList.remove('active'); 
     // remove sheet class so next open animates correctly
     modalEl.classList.remove('sheet');
+    
+    // Clear URL hash when closing modal
+    clearUrlHash();
+}
+
+// URL hash management for direct linking to recipes
+function updateUrlHash(recipeId) {
+    if (recipeId) {
+        window.history.replaceState(null, null, `#recipe-${recipeId}`);
+    }
+}
+
+function clearUrlHash() {
+    window.history.replaceState(null, null, window.location.pathname + window.location.search);
+}
+
+function getRecipeIdFromHash() {
+    const hash = window.location.hash;
+    if (hash.startsWith('#recipe-')) {
+        const id = parseInt(hash.substring(8)); // Remove '#recipe-' prefix
+        return isNaN(id) ? null : id;
+    }
+    return null;
+}
+
+function handleHashChange() {
+    const recipeId = getRecipeIdFromHash();
+    if (recipeId) {
+        // Only open modal if recipes are loaded and recipe exists
+        if (recipes.length > 0 && recipes.find(r => r.id === recipeId)) {
+            openModal(recipeId);
+        }
+    } else {
+        // If no hash or invalid hash, close modal if it's open
+        const modalEl = document.getElementById('recipeModal');
+        if (modalEl && modalEl.classList.contains('active')) {
+            closeModal();
+        }
+    }
 }
 
 // Event listeners
@@ -571,6 +682,15 @@ if (_recipeModal) {
 
 // Load recipes from external files when page loads
 document.addEventListener('DOMContentLoaded', loadRecipes);
+
+// Handle URL hash changes for direct linking
+window.addEventListener('hashchange', handleHashChange);
+
+// Check for recipe hash on page load (after recipes are loaded)
+window.addEventListener('load', function() {
+    // Give a small delay to ensure recipes are fully loaded
+    setTimeout(handleHashChange, 100);
+});
 
 // --- Theme toggle logic ---
 (function() {
