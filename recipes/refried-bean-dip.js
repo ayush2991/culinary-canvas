@@ -1,15 +1,15 @@
 (function(){
-  // Black Bean Dip recipe
+  // Refried bean dip recipe
   const recipe = {
     id: 6,
-    title: "Black Bean Dip",
-    description: "A flavorful and easy vegan black bean dip perfect for parties",
+    title: "Refried Bean Dip",
+    description: "A flavorful and easy vegan refried bean dip perfect for parties",
     category: "appetizer",
     tags: ["vegan", "appetizer", "dip"],
     time: "20 min",
     servings: "4",
     difficulty: "Easy",
-    image: "images/black-bean-dip.png",
+    image: "images/refried-bean-dip.png",
     ingredients: [
       { amount: null, unit: '', rest: 'Oil', note: 'a little bit' },
       { amount: 4, unit: '', rest: 'garlic cloves, minced' },
