@@ -9,6 +9,7 @@
         servings: "2",
         difficulty: "Easy",
         image: "images/ragi-malt.png",
+        references: [],
         ingredients: [
             { amount: 3, unit: 'tbsp', rest: 'ragi flour (finger millet flour)' },
             { amount: 0.5, unit: 'cup', rest: 'water', note: 'to dissolve flour' },

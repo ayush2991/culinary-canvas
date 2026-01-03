@@ -10,6 +10,7 @@
     servings: "4",
     difficulty: "Easy",
     image: "images/refried-bean-dip.png",
+    references: [],
     ingredients: [
       { amount: null, unit: '', rest: 'Oil', note: 'a little bit' },
       { amount: 4, unit: '', rest: 'garlic cloves, minced' },

@@ -9,6 +9,7 @@
         servings: "2",
         difficulty: "Easy",
         image: "images/carrot-edamame.png",
+        references: [],
         ingredients: [
             { amount: 4, unit: '', rest: 'medium carrots' },
             { amount: 1, unit: 'cup', rest: 'frozen edamame or green peas' },

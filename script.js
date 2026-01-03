@@ -346,6 +346,30 @@ function openModal(recipeId) {
         <div class="collapsible">
             <details open><summary>Ingredients</summary><ul id="ingredientsList">${ingredientsHtml}</ul></details>
             <details open><summary>Instructions</summary><ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol></details>
+            ${recipe.references && recipe.references.length > 0 ? `
+                <details><summary>References</summary>
+                    <ul style="list-style: none; padding-left: 0; margin-top: 1rem;">
+                        ${recipe.references.map(ref => {
+        const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(ref) || ref.startsWith('images/');
+        if (isImage) {
+            return `
+                                    <li style="margin-bottom: 1rem;">
+                                        <img src="${ref}" alt="Reference" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow); cursor: pointer;" onclick="window.open('${ref}', '_blank')">
+                                    </li>
+                                `;
+        }
+        return `
+                                <li style="margin-bottom: 0.75rem;">
+                                    <a href="${ref}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; word-break: break-all; font-size: 0.9rem;">
+                                        <svg width="14" height="14" style="flex-shrink: 0;"><use href="#icon-share"/></svg>
+                                        ${ref}
+                                    </a>
+                                </li>
+                            `;
+    }).join('')}
+                    </ul>
+                </details>
+            ` : ''}
         </div>
     ` : `
         <h2 style="display:flex;justify-content:space-between;align-items:center;">${recipe.title} <button type="button" id="shareRecipeBtn" class="reset-btn"><svg width="18" height="18"><use href="#icon-share"/></svg> Share</button></h2>
@@ -367,6 +391,31 @@ function openModal(recipeId) {
             <div class="modal-section"><h3>Ingredients</h3><ul id="ingredientsList">${ingredientsHtml}</ul></div>
             <div class="modal-section"><h3>Instructions</h3><ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol></div>
         </div>
+        ${recipe.references && recipe.references.length > 0 ? `
+            <div class="modal-section" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+                <h3>References</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    ${recipe.references.map(ref => {
+        const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(ref) || ref.startsWith('images/');
+        if (isImage) {
+            return `
+                                <li style="margin-bottom: 1rem; display: inline-block; margin-right: 1rem;">
+                                    <img src="${ref}" alt="Reference" style="max-height: 200px; border-radius: 4px; border: 1px solid var(--border); transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" onclick="window.open('${ref}', '_blank')">
+                                </li>
+                            `;
+        }
+        return `
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href="${ref}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-weight: 500;">
+                                    <svg width="14" height="14" style="flex-shrink: 0;"><use href="#icon-share"/></svg>
+                                    ${ref}
+                                </a>
+                            </li>
+                        `;
+    }).join('')}
+                </ul>
+            </div>
+        ` : ''}
     `;
     modalBody.innerHTML = compactHtml;
     const modalEl = document.getElementById('recipeModal');

@@ -9,6 +9,7 @@
         servings: "3",
         difficulty: "Easy",
         image: "images/instant-pot-oatmeal.png",
+        references: [],
         ingredients: [
             { amount: 1, unit: 'cup', rest: 'rolled oats', note: 'preferably extra thick' },
             { amount: 2, unit: 'cup', rest: 'almond milk' },

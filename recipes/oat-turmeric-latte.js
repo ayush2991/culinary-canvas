@@ -10,6 +10,7 @@
     servings: "1",
     difficulty: "Easy",
     image: "images/oat_turmeric_latte.png",
+    references: [],
     ingredients: [
       { amount: 0.66, unit: 'cup', rest: 'oat milk', note: 'enough to almost submerge instant frother' },
       { amount: 0.125, unit: 'tsp', rest: 'cardamom powder' },

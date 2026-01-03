@@ -9,6 +9,7 @@
         servings: "2",
         difficulty: "Easy",
         image: "images/masala-chai.png",
+        references: [],
         ingredients: [
             { amount: 1.5, unit: 'cup', rest: 'water' },
             { amount: 1, unit: 'cup', rest: 'whole milk', note: 'adjust for desired creaminess' },

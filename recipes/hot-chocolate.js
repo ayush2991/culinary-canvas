@@ -9,6 +9,7 @@
         servings: "2",
         difficulty: "Easy",
         image: "images/homemade-hot-chocolate.png",
+        references: ["https://celebratingsweets.com/homemade-hot-chocolate/#recipe"],
         ingredients: [
             { amount: 2, unit: 'cup', rest: 'milk', note: 'whole milk or extra creamy oat milk' },
             { amount: 2, unit: 'tbsp', rest: 'unsweetened cocoa powder' },

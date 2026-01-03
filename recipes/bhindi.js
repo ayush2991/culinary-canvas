@@ -10,6 +10,7 @@
     servings: "4",
     difficulty: "Easy",
     image: "images/bhindi.png",
+    references: [],
     // Ingredients as structured objects for more reliable scaling
     ingredients: [
       { amount: 400, unit: 'g', rest: 'bhindi (okra), washed, dried and cut into 1/2–1 inch pieces' },

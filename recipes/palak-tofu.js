@@ -10,6 +10,7 @@
     servings: "5",
     difficulty: "Medium",
     image: "images/palak_tofu.png",
+    references: [],
     ingredients: [
       { amount: null, unit: '', rest: 'Cooking oil and/or Ghee', note: 'as needed' },
       { amount: 0.333, unit: 'tsp', rest: 'Cumin Seeds' },

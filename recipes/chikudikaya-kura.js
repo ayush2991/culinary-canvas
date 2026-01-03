@@ -10,6 +10,7 @@
         servings: "4",
         difficulty: "Easy",
         image: "images/chikudikaya_kura.png",
+        references: [],
         ingredients: [
             { amount: 450, unit: 'g', rest: 'cluster beans (Chikudikaya), trimmed and cut into 1–2 inch pieces', note: 'approx 1 lb' },
             { amount: null, unit: '', rest: 'Water to cover beans in pressure cooker' },
