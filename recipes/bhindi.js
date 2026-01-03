@@ -1,11 +1,11 @@
- (function(){
+(function () {
   // Single definition of the Bhindi (Okra) recipe
   const recipe = {
     id: 1,
     title: "Bhindi (Stir-fried Okra)",
-    description: "Crispy, non-sticky bhindi tossed with aromatic spices — simple, quick and delicious.",
-  category: "lunch",
-  tags: ["vegan"],
+    description: "Savor the crunch of perfectly stir-fried okra, tossed in a fragrant blend of turmeric, cumin, and coriander. This homestyle classic transforms tender bhindi into a crispy, non-sticky delight, accented by caramelized onions and softened tomatoes.",
+    category: "lunch",
+    tags: ["vegan"],
     time: "20 min",
     servings: "4",
     difficulty: "Easy",

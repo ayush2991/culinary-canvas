@@ -1,11 +1,11 @@
-(function(){
+(function () {
     // Single definition of the Chikudikaya Kura recipe
     const recipe = {
         id: 4,
         title: "Chikudikaya Kura (Cluster Bean Curry)",
-        description: "Home-style cluster bean curry with tomato-onion masala — mildly spiced and garnished with cilantro.",
-    category: "lunch",
-    tags: ["vegan"],
+        description: "A comforting, heritage-style cluster bean curry simmered in a rich tomato-onion masala. Infused with tempered mustard seeds and earthy urad dal, this mildly spiced dish offers a deep, savory flavor profile finished with a burst of fresh cilantro.",
+        category: "lunch",
+        tags: ["vegan"],
         time: "25 min",
         servings: "4",
         difficulty: "Easy",

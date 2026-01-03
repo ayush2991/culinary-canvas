@@ -1,11 +1,11 @@
-(function(){
+(function () {
   // Single definition of the Palak Tofu recipe
   const recipe = {
     id: 2,
     title: "Palak Tofu",
-    description: "Spinach and tofu curry with aromatic spices and cashews",
-  category: "dinner",
-  tags: ["vegan", "gluten-free"],
+    description: "Experience a luxurious, velvet-smooth spinach curry where golden-sautéed tofu cubes meet a complex bouquet of green cardamom, cinnamon, and cloves. Enriched with roasted cashews and aromatic kasuri methi.",
+    category: "dinner",
+    tags: ["vegan", "gluten-free"],
     time: "60 min",
     servings: "5",
     difficulty: "Medium",

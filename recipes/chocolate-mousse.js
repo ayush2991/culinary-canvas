@@ -1,11 +1,11 @@
- (function(){
+(function () {
   // Chocolate Mousse (Ninja Blender) recipe
   const recipe = {
     id: 5,
     title: "Chocolate Mousse (Ninja Blender)",
-    description: "A quick, silky chocolate mousse made in a Ninja blender",
-  category: "dessert",
-  tags: ["dessert", "dairy-free", "caffeine-free"],
+    description: "Indulge in this decadently silky chocolate mousse, whipped to airy perfection in seconds. A wholesome treat that balances rich cocoa with subtle hints of vanilla and honey, offering a sophisticated dessert experience.",
+    category: "dessert",
+    tags: ["dessert", "dairy-free", "caffeine-free"],
     time: "40 min",
     servings: "2",
     difficulty: "Easy",
@@ -16,7 +16,7 @@
       { amount: 2, unit: 'tbsp', rest: 'honey' },
       { amount: 2, unit: 'tbsp', rest: 'cocoa powder' },
       { amount: 1, unit: 'tsp', rest: 'vanilla essence' },
-      {amount: null, unit: '', rest: 'Chopped, soaked walnuts or almonds (optional)', note: 'a small handful' }
+      { amount: null, unit: '', rest: 'Chopped, soaked walnuts or almonds (optional)', note: 'a small handful' }
     ],
     instructions: [
       "Place all ingredients (eggs, milk, honey, cocoa powder and vanilla essence) into the Ninja blender pitcher.",

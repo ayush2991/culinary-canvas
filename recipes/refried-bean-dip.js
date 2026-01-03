@@ -1,9 +1,9 @@
-(function(){
+(function () {
   // Refried bean dip recipe
   const recipe = {
     id: 6,
     title: "Refried Bean Dip",
-    description: "A flavorful and easy vegan refried bean dip perfect for parties",
+    description: "Elevate your appetizer game with this smoky, ultra-creamy refried bean dip. Sautéed with aromatic garlic and spicy jalapeños, then finished with melted vegan cheese and zesty salsa—the ultimate crowd-pleasing dip.",
     category: "appetizer",
     tags: ["vegan", "appetizer", "dip"],
     time: "20 min",

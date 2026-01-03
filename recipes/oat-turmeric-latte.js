@@ -1,11 +1,11 @@
-(function(){
+(function () {
   // Single definition of the Oat Turmeric Latte recipe
   const recipe = {
     id: 3,
     title: "Oat Turmeric Latte",
-    description: "Warming golden milk latte with aromatic spices and creamy oat milk",
-  category: "breakfast",
-  tags: ["dairy-free", "caffeine-free"],
+    description: "A vibrant, soothing golden milk latte infused with healing turmeric, warming cardamom, and a touch of black pepper for vitality. Perfectly frothed with creamy oat milk and finished with a delicate swirl of honey.",
+    category: "breakfast",
+    tags: ["dairy-free", "caffeine-free"],
     time: "5 min",
     servings: "1",
     difficulty: "Easy",
