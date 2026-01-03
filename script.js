@@ -348,7 +348,7 @@ function openModal(recipeId) {
             <details open><summary>Instructions</summary><ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol></details>
         </div>
     ` : `
-        <h2 style="display:flex;justify-content:space-between;align-items:center;">${recipe.title} <button type="button" id="shareRecipeBtn" class="reset-btn" style="padding:0.5rem 1rem;"><svg width="18" height="18"><use href="#icon-share"/></svg> Share</button></h2>
+        <h2 style="display:flex;justify-content:space-between;align-items:center;">${recipe.title} <button type="button" id="shareRecipeBtn" class="reset-btn"><svg width="18" height="18"><use href="#icon-share"/></svg> Share</button></h2>
         ${imageHtml}
         <div class="modal-top-nav">
             <button type="button" data-jump="ingredients" class="active">Ingredients</button>
@@ -412,6 +412,28 @@ function openModal(recipeId) {
             setTimeout(() => btn.innerHTML = old, 2000);
         });
     }
+
+    // Scroll to section logic
+    const topNav = modalEl.querySelector('.modal-top-nav');
+    if (topNav) {
+        topNav.addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const targetId = btn.getAttribute('data-jump');
+
+            // Remove active class from all buttons and add to clicked one
+            topNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Find all h3s (Ingredients/Instructions)
+            const headers = modalEl.querySelectorAll('.modal-section h3');
+            const targetHeader = Array.from(headers).find(h => h.textContent.toLowerCase().includes(targetId));
+
+            if (targetHeader) {
+                targetHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
 }
 
 function closeModal() {
@@ -420,6 +442,10 @@ function closeModal() {
     modalEl.classList.remove('sheet');
     window.history.replaceState(null, null, window.location.pathname);
 }
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+});
 
 function createSlugFromTitle(title) {
     return title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim('-');
