@@ -5,7 +5,7 @@
     title: "Chocolate Mousse (Ninja Blender)",
     description: "Indulge in this decadently silky chocolate mousse, whipped to airy perfection in seconds. A wholesome treat that balances rich cocoa with subtle hints of vanilla and honey, offering a sophisticated dessert experience.",
     category: "dessert",
-    tags: ["dessert", "dairy-free", "caffeine-free"],
+    tags: ["dessert", "dairy-free"],
     time: "40 min",
     servings: "2",
     difficulty: "Easy",
