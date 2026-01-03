@@ -3,10 +3,10 @@
 // push a factory into `window.__preRegisteredRecipes` if registerRecipe
 // isn't available yet. This shim collects them and exposes registerRecipe.
 window.__registeredRecipes = window.__registeredRecipes || [];
-window.registerRecipe = function(recipe) {
+window.registerRecipe = function (recipe) {
     // Accept either a recipe object or a function that returns one
     if (typeof recipe === 'function') {
-        try { window.__registeredRecipes.push(recipe()); } catch(e) { console.error(e); }
+        try { window.__registeredRecipes.push(recipe()); } catch (e) { console.error(e); }
     } else {
         window.__registeredRecipes.push(recipe);
     }
@@ -33,7 +33,7 @@ function loadRecipes() {
             recipes = window.__registeredRecipes.slice();
             filteredRecipes = [...recipes];
             renderRecipes(recipes);
-            
+
             // After recipes are loaded, check if URL hash points to a specific recipe
             setTimeout(handleHashChange, 50);
         } else {
@@ -58,7 +58,7 @@ function renderRecipes(recipesToRender) {
     const grid = document.getElementById('recipesGrid');
     grid.innerHTML = recipesToRender.map(recipe => {
         const initials = getInitials(recipe.title);
-        const imageContent = recipe.image 
+        const imageContent = recipe.image
             ? `<img src="${recipe.image}" alt="${recipe.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
             : `<div class="recipe-initials">${initials}</div>`;
         // render tag badges (use category as fallback tag if no tags defined)
@@ -76,8 +76,14 @@ function renderRecipes(recipesToRender) {
                 <p class="recipe-description">${recipe.description}</p>
                 <div class="recipe-meta">
                     <div style="display:flex;gap:.6rem;align-items:center">
-                        <div class="meta-item">⏱ ${recipe.time}</div>
-                        <div class="meta-item">👥 ${recipe.servings}</div>
+                        <div class="meta-item">
+                            <svg width="14" height="14"><use href="#icon-time"/></svg>
+                            ${recipe.time}
+                        </div>
+                        <div class="meta-item">
+                            <svg width="14" height="14"><use href="#icon-users"/></svg>
+                            ${recipe.servings}
+                        </div>
                     </div>
                     <button class="view-recipe" type="button">View Recipe</button>
                 </div>
@@ -167,7 +173,7 @@ function searchRecipes() {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     filteredRecipes = recipes.filter(r => r.title.toLowerCase().includes(searchTerm) || r.description.toLowerCase().includes(searchTerm));
     renderRecipes(filteredRecipes);
-    
+
     // update search count in the search icon
     const countEl = document.getElementById('searchCount');
     if (countEl) {
@@ -284,11 +290,11 @@ function scaleIngredient(ingredient, factor) {
         const scaled = val * factor;
         const scaledStr = formatNumber(scaled);
         // keep unit next to number if originally attached or present
-    // put a space between number and alphabetic unit (e.g., '1 cup'),
-    // but keep symbol-only units attached (e.g., '50%')
-    const needsSpace = unit && /[\p{L}]/u.test(unit);
-    const spaceBetween = needsSpace ? ' ' : '';
-    const combined = `${scaledStr}${spaceBetween}${unit}${rest ? ' ' + rest : ''}`.trim();
+        // put a space between number and alphabetic unit (e.g., '1 cup'),
+        // but keep symbol-only units attached (e.g., '50%')
+        const needsSpace = unit && /[\p{L}]/u.test(unit);
+        const spaceBetween = needsSpace ? ' ' : '';
+        const combined = `${scaledStr}${spaceBetween}${unit}${rest ? ' ' + rest : ''}`.trim();
         const withPrefix = `${prefix}${combined}`;
         return parenWrapper ? `(${withPrefix})` : withPrefix;
     }
@@ -300,10 +306,10 @@ function scaleIngredient(ingredient, factor) {
 function openModal(recipeId) {
     const recipe = recipes.find(r => r.id === recipeId);
     if (!recipe) return;
-    
+
     // Update URL hash to allow direct linking
     updateUrlHash(recipe.id);
-    
+
     const origServings = Number(recipe.servings) || 1;
     // load persisted servings for this recipe if present
     const savedKey = `recipe_servings_${recipe.id}`;
@@ -319,18 +325,18 @@ function openModal(recipeId) {
             const json = JSON.stringify(ing).replace(/"/g, '&quot;');
             const display = (() => {
                 if (ing.amount == null) return ing.rest + (ing.note ? ` (${ing.note})` : '');
-                return `${formatAmount(ing.amount, ing.unit)} ${ing.rest}${ing.note ? ` (${ing.note})` : ''}`.replace(/\s+/g,' ').trim();
+                return `${formatAmount(ing.amount, ing.unit)} ${ing.rest}${ing.note ? ` (${ing.note})` : ''}`.replace(/\s+/g, ' ').trim();
             })();
             return `<li data-orig="${json}">${display}</li>`;
         }
         return `<li data-orig="${ing.replace(/"/g, '\"')}">${ing}</li>`;
     }).join('');
-        const imageHtml = recipe.image 
-                ? `<div style="text-align:center;margin-bottom:2rem;position:relative;">
+    const imageHtml = recipe.image
+        ? `<div style="text-align:center;margin-bottom:2rem;position:relative;">
                          <img src="${recipe.image}" alt="${recipe.title}" style="max-width:100%;height:auto;border-radius:16px;max-height:300px;object-fit:cover;box-shadow:0 16px 40px rgba(23,32,42,0.15);">
                          <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(38,70,83,0.3);">${recipe.category}</div>
                      </div>`
-                : `<div style="text-align:center;margin-bottom:2rem;position:relative;">
+        : `<div style="text-align:center;margin-bottom:2rem;position:relative;">
                          <svg width="100%" height="200" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" style="border-radius:16px;max-height:300px;object-fit:cover;box-shadow:0 16px 40px rgba(23,32,42,0.08);background:linear-gradient(135deg,rgba(139,77,107,0.06),rgba(212,132,138,0.04));">
                              <rect width="100%" height="100%" fill="transparent" />
                              <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="var(--muted)" font-size="20">${recipe.title}</text>
@@ -340,7 +346,7 @@ function openModal(recipeId) {
     // Insert a small top-nav for quick jumps (Ingredients / Instructions)
     const topNavHtml = `
         <div class="modal-top-nav">
-            <button type="button" data-jump="ingredients">Ingredients</button>
+            <button type="button" data-jump="ingredients" class="active">Ingredients</button>
             <button type="button" data-jump="instructions">Instructions</button>
         </div>`;
 
@@ -352,77 +358,90 @@ function openModal(recipeId) {
         <div class="compact-modal-header">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
                 <h2 style="margin:0; flex: 1;">${recipe.title}</h2>
-                <button type="button" id="shareRecipeBtn" style="background: var(--primary); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.85rem; margin-left: 1rem;" title="Share recipe">🔗 Share</button>
+                <button type="button" id="shareRecipeBtn" title="Share recipe">
+                    <svg width="18" height="18"><use href="#icon-share"/></svg> 
+                    Share
+                </button>
             </div>
             <div class="compact-meta">
-                <div class="meta-item">⏱ ${recipe.time}</div>
-                <div class="meta-item">👥 ${recipe.servings}</div>
-                <div class="meta-item">📊 ${recipe.difficulty}</div>
+                <div class="meta-item">
+                     <svg width="14" height="14"><use href="#icon-time"/></svg>
+                     ${recipe.time}
+                </div>
+                <div class="meta-item">
+                    <svg width="14" height="14"><use href="#icon-users"/></svg>
+                    ${recipe.servings}
+                </div>
+                <div class="meta-item">
+                    <svg width="14" height="14"><use href="#icon-difficulty"/></svg>
+                    ${recipe.difficulty}
+                </div>
             </div>
             ${imageHtml}
         </div>
         <div class="compact-servings">
             <label class="servings-label">
-                👥 Servings:
+                <svg width="16" height="16"><use href="#icon-users"/></svg>
+                Servings:
                 <input id="servingsInput" type="number" min="1" value="${initialServings}" class="servings-input">
             </label>
-            <button id="resetServingsBtn" type="button" class="reset-btn">🔄</button>
+            <button id="resetServingsBtn" type="button" class="reset-btn">Reset</button>
         </div>
         <div class="collapsible">
             <details open>
-                <summary>🥘 Ingredients</summary>
+                <summary>Ingredients</summary>
                 <ul id="ingredientsList">${ingredientsHtml}</ul>
             </details>
         </div>
         <div class="collapsible">
             <details open>
-                <summary>👨‍🍳 Instructions</summary>
+                <summary>Instructions</summary>
                 <ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol>
             </details>
         </div>
     ` : `
         <h2 style="display: flex; justify-content: space-between; align-items: center;">
             ${recipe.title}
-            <button type="button" id="shareRecipeBtn" style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-left: 1rem;" title="Share recipe">🔗 Share</button>
+            <button type="button" id="shareRecipeBtn" title="Share recipe" class="desktop-share-btn">
+                <svg width="18" height="18"><use href="#icon-share"/></svg> 
+                Share
+            </button>
         </h2>
         ${imageHtml}
         ${topNavHtml}
-        <div class="modal-section">
-            <h3>📋 Recipe Details</h3>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:1.5rem">
-                <div style="text-align:center;padding:1rem;background:rgba(42,157,143,0.05);border-radius:12px;border:1px solid rgba(42,157,143,0.1)">
-                    <div style="font-size:1.5rem;margin-bottom:.5rem">⏱️</div>
-                    <div style="font-weight:600;color:var(--primary)">${recipe.time}</div>
-                    <div style="font-size:.8rem;color:var(--muted)">Cook Time</div>
-                </div>
-                <div style="text-align:center;padding:1rem;background:rgba(42,157,143,0.05);border-radius:12px;border:1px solid rgba(42,157,143,0.1)">
-                    <div style="font-size:1.5rem;margin-bottom:.5rem">👥</div>
-                    <div style="font-weight:600;color:var(--primary)">${recipe.servings}</div>
-                    <div style="font-size:.8rem;color:var(--muted)">Servings</div>
-                </div>
-                <div style="text-align:center;padding:1rem;background:rgba(42,157,143,0.05);border-radius:12px;border:1px solid rgba(42,157,143,0.1)">
-                    <div style="font-size:1.5rem;margin-bottom:.5rem">📊</div>
-                    <div style="font-weight:600;color:var(--primary)">${recipe.difficulty}</div>
-                    <div style="font-size:.8rem;color:var(--muted)">Difficulty</div>
-                </div>
+        <div class="modal-section details-grid">
+            <div class="detail-item">
+                <div class="detail-icon"><svg width="24" height="24"><use href="#icon-time"/></svg></div>
+                <div class="detail-value">${recipe.time}</div>
+                <div class="detail-label">Cook Time</div>
             </div>
-            <div style="display:flex;gap:1rem;align-items:center;justify-content:center;flex-wrap:wrap;background:rgba(247,249,251,0.8);padding:1.5rem;border-radius:12px;border:1px solid var(--border)">
-                <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;color:var(--primary)">
-                    👥 Servings:
-                    <input id="servingsInput" type="number" min="1" value="${initialServings}" style="width:70px;padding:.5rem;border:2px solid var(--border);border-radius:8px;text-align:center;font-weight:600">
-                </label>
-                <button id="resetServingsBtn" type="button" style="background:linear-gradient(135deg,var(--primary),var(--accent));color:white;border:none;padding:.5rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;transition:transform .2s ease">
-                    🔄 Reset
-                </button>
+            <div class="detail-item">
+                <div class="detail-icon"><svg width="24" height="24"><use href="#icon-users"/></svg></div>
+                <div class="detail-value">${recipe.servings}</div>
+                <div class="detail-label">Servings</div>
             </div>
+            <div class="detail-item">
+                <div class="detail-icon"><svg width="24" height="24"><use href="#icon-difficulty"/></svg></div>
+                <div class="detail-value">${recipe.difficulty}</div>
+                <div class="detail-label">Difficulty</div>
+            </div>
+        </div>
+        
+        <div class="compact-servings desktop-servings">
+            <label class="servings-label">
+                <svg width="16" height="16"><use href="#icon-users"/></svg>
+                Servings:
+                <input id="servingsInput" type="number" min="1" value="${initialServings}" class="servings-input">
+            </label>
+            <button id="resetServingsBtn" type="button" class="reset-btn">Reset</button>
         </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem" class="recipe-content-grid">
             <div class="modal-section">
-                <h3>🥘 Ingredients</h3>
+                <h3>Ingredients</h3>
                 <ul id="ingredientsList">${ingredientsHtml}</ul>
             </div>
             <div class="modal-section">
-                <h3>👨‍🍳 Instructions</h3>
+                <h3>Instructions</h3>
                 <ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol>
             </div>
         </div>
@@ -458,7 +477,7 @@ function openModal(recipeId) {
                 if (parsed && typeof parsed === 'object' && parsed.hasOwnProperty('rest')) {
                     const amt = parsed.amount == null ? null : formatAmount(parsed.amount * factor, parsed.unit);
                     const note = parsed.note ? ` (${parsed.note})` : '';
-                    li.textContent = amt ? `${amt} ${parsed.rest}${note}`.replace(/\s+/g,' ').trim() : `${parsed.rest}${note}`;
+                    li.textContent = amt ? `${amt} ${parsed.rest}${note}`.replace(/\s+/g, ' ').trim() : `${parsed.rest}${note}`;
                     return;
                 }
             } catch (e) {
@@ -473,12 +492,12 @@ function openModal(recipeId) {
             try { localStorage.setItem(savedKey, String(desired)); } catch (e) { /* ignore storage errors */ }
         }
     }
-    
+
     // Only add event listeners if the elements exist (desktop layout)
     if (servingsInput) {
         servingsInput.addEventListener('input', rescale);
     }
-    
+
     // reset button
     const resetBtn = document.getElementById('resetServingsBtn');
     if (resetBtn && servingsInput) {
@@ -490,10 +509,10 @@ function openModal(recipeId) {
     }
     // Add hover effects to reset button (only if it exists)
     if (resetBtn) {
-        resetBtn.addEventListener('mouseenter', function() {
+        resetBtn.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-2px) scale(1.05)';
         });
-        resetBtn.addEventListener('mouseleave', function() {
+        resetBtn.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
         });
     }
@@ -507,10 +526,10 @@ function openModal(recipeId) {
     // Share button functionality
     const shareBtn = document.getElementById('shareRecipeBtn');
     if (shareBtn) {
-        shareBtn.addEventListener('click', function() {
+        shareBtn.addEventListener('click', function () {
             const slug = createSlugFromTitle(recipe.title);
             const recipeUrl = `${window.location.origin}${window.location.pathname}#${slug}`;
-            
+
             // Try to use the Web Share API if available (mobile devices)
             if (navigator.share) {
                 navigator.share({
@@ -555,11 +574,11 @@ function openModal(recipeId) {
         const shareBtn = document.getElementById('shareRecipeBtn');
         if (shareBtn) {
             const originalText = shareBtn.innerHTML;
-            shareBtn.innerHTML = '✓ ' + (message.includes('copied') ? 'Copied!' : 'URL Ready');
-            shareBtn.style.background = '#28a745';
+            shareBtn.innerHTML = '✓ ' + (message.includes('copied') ? 'Copied' : 'Ready');
             setTimeout(() => {
-                shareBtn.innerHTML = originalText;
-                shareBtn.style.background = 'var(--primary)';
+                const icon = `<svg width="18" height="18"><use href="#icon-share"/></svg>`;
+                shareBtn.innerHTML = icon + ' Share';
+                // Reset style handled by CSS primarily, but inline style override removal might be needed
             }, 2000);
         }
     }
@@ -569,7 +588,7 @@ function openModal(recipeId) {
     if (topNav) {
         const ingEl = document.querySelector('#ingredientsList');
         const instrEl = modalBody.querySelector('ol');
-        topNav.addEventListener('click', function(e){
+        topNav.addEventListener('click', function (e) {
             const btn = e.target.closest('button[data-jump]');
             if (!btn) return;
             const target = btn.getAttribute('data-jump');
@@ -591,25 +610,25 @@ function openModal(recipeId) {
     try {
         const saved = sessionStorage.getItem(scrollKey);
         if (saved && modalContent) modalContent.scrollTop = Number(saved) || 0;
-    } catch(e){}
+    } catch (e) { }
     // save on scroll (throttle)
     let scrollTimer;
     if (modalContent) {
-        modalContent.addEventListener('scroll', function(){
+        modalContent.addEventListener('scroll', function () {
             clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(function(){
-                try { sessionStorage.setItem(scrollKey, String(modalContent.scrollTop)); } catch(e){}
+            scrollTimer = setTimeout(function () {
+                try { sessionStorage.setItem(scrollKey, String(modalContent.scrollTop)); } catch (e) { }
             }, 120);
         });
     }
 }
 
-function closeModal() { 
+function closeModal() {
     const modalEl = document.getElementById('recipeModal');
-    modalEl.classList.remove('active'); 
+    modalEl.classList.remove('active');
     // remove sheet class so next open animates correctly
     modalEl.classList.remove('sheet');
-    
+
     // Clear URL hash when closing modal
     clearUrlHash();
 }
@@ -690,8 +709,8 @@ document.addEventListener('keydown', function (e) {
 
 const _recipeModal = document.getElementById('recipeModal');
 if (_recipeModal) {
-    _recipeModal.addEventListener('click', function (e) { 
-        if (e.target === this) closeModal(); 
+    _recipeModal.addEventListener('click', function (e) {
+        if (e.target === this) closeModal();
     });
 }
 
@@ -702,13 +721,13 @@ document.addEventListener('DOMContentLoaded', loadRecipes);
 window.addEventListener('hashchange', handleHashChange);
 
 // Check for recipe hash on page load (after recipes are loaded)
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     // Give a small delay to ensure recipes are fully loaded
     setTimeout(handleHashChange, 100);
 });
 
 // --- Theme toggle logic ---
-(function() {
+(function () {
     const root = document.documentElement;
     const toggleBtn = document.getElementById('themeToggle');
     const THEME_KEY = 'user_theme';
@@ -732,7 +751,7 @@ window.addEventListener('load', function() {
     // Initial theme setup - check for saved preference first
     const savedTheme = localStorage.getItem(THEME_KEY);
     let initialTheme;
-    
+
     if (savedTheme) {
         // User has a saved preference, use it
         initialTheme = savedTheme;
@@ -740,7 +759,7 @@ window.addEventListener('load', function() {
         // No saved preference, use system preference
         initialTheme = getSystemTheme();
     }
-    
+
     // Always explicitly set the theme to ensure it overrides any CSS defaults
     applyTheme(initialTheme);
 
@@ -748,10 +767,10 @@ window.addEventListener('load', function() {
     function updateToggleUI(theme) {
         if (!toggleBtn) return;
         if (theme === 'dark') {
-            toggleBtn.textContent = '☀️';
+            toggleBtn.innerHTML = '<svg width="20" height="20"><use href="#icon-sun"/></svg>';
             toggleBtn.setAttribute('aria-label', 'Switch to light mode');
         } else {
-            toggleBtn.textContent = '🌙';
+            toggleBtn.innerHTML = '<svg width="20" height="20"><use href="#icon-moon"/></svg>';
             toggleBtn.setAttribute('aria-label', 'Switch to dark mode');
         }
     }
@@ -759,7 +778,7 @@ window.addEventListener('load', function() {
 
     // Toggle button click handler
     if (toggleBtn) {
-        toggleBtn.addEventListener('click', function() {
+        toggleBtn.addEventListener('click', function () {
             let current = root.getAttribute('data-theme');
             let next;
             if (!current) {
