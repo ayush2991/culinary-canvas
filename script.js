@@ -24,7 +24,7 @@ let activeTags = new Set();
 const COLLECTIONS = [
     { title: "Brewed & Blended", categories: ["beverage"] },
     { title: "Morning Rituals", categories: ["breakfast"] },
-    { title: "Main Events", categories: ["dinner", "lunch"] },
+    { title: "Main Events", categories: ["mains"] },
     { title: "Small Bites & Dips", categories: ["dip", "appetizer"] },
     { title: "Sweet Retreats", categories: ["dessert"] }
 ];
