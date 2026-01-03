@@ -9,7 +9,7 @@
     time: "60 min",
     servings: "5",
     difficulty: "Medium",
-    image: "images/palak_tofu.png",
+    image: "images/palak-tofu.png",
     references: [],
     ingredients: [
       { amount: null, unit: '', rest: 'Cooking oil and/or Ghee', note: 'as needed' },
@@ -42,7 +42,7 @@
       "Pour in the spinach puree and stir to combine.",
       "Add the tofu cubes and gently mix.",
       "Cover and let the curry sit for 3-4 hours to allow the tofu to absorb the flavors.",
-      "Reheat and enjoy with rice or roti."
+      "Optionally garnish with more chopped roasted cashews."
     ]
   };
 
