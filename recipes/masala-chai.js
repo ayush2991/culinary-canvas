@@ -15,7 +15,7 @@
             { amount: 0.5, unit: 'inch', rest: 'ginger', note: 'crushed' },
             { amount: 4, unit: '', rest: 'green cardamom pods', note: 'crushed' },
             { amount: 3, unit: 'tsp', rest: 'black tea leaves (CTC)' },
-            { amount: 3, unit: 'tsp', rest: 'sugar', note: 'to taste' },
+            { amount: 4, unit: 'tsp', rest: 'sugar', note: 'to taste' },
             { amount: 1, unit: 'cup', rest: 'whole milk', note: 'adjust for desired creaminess' }
         ],
         instructions: [
