@@ -12,7 +12,6 @@
         references: ["https://www.indianhealthyrecipes.com/semiya-upma-vermicelli-upma-recipe/"],
         ingredients: [
             { amount: 1, unit: 'cup', rest: 'Semiya (vermicelli)' },
-            { amount: 1.5, unit: 'cups', rest: 'Water' },
             { amount: 1.5, unit: 'tbsp', rest: 'Oil or Ghee' },
             { amount: 2, unit: 'tbsp', rest: 'Peanuts or cashews' },
             { amount: 0.25, unit: 'tsp', rest: 'Mustard seeds' },
@@ -24,6 +23,7 @@
             { amount: 1, unit: '', rest: 'Green chili & small piece of ginger, chopped' },
             { amount: 1, unit: 'sprig', rest: 'Curry leaves' },
             { amount: 1.5, unit: 'cup', rest: 'Mixed vegetables (carrot, peas, beans)', note: 'optional' },
+            { amount: 1.5, unit: 'cups', rest: 'Water' },
             { amount: 0.66, unit: 'tsp', rest: 'Salt', note: 'adjust to taste' },
             { amount: 1, unit: 'tbsp', rest: 'Lemon juice', note: 'optional' },
             { amount: 2, unit: 'tbsp', rest: 'Coriander leaves, chopped' }

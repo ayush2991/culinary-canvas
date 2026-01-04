@@ -13,8 +13,8 @@
     references: [],
     // Ingredients as structured objects for more reliable scaling
     ingredients: [
-      { amount: 400, unit: 'g', rest: 'bhindi (okra), washed, dried and cut into 1/2–1 inch pieces' },
       { amount: 2.5, unit: 'tbsp', rest: 'cooking oil (vegetable or peanut)' },
+      { amount: 400, unit: 'g', rest: 'bhindi (okra), washed, dried and cut into 1/2–1 inch pieces' },
       { amount: 1, unit: 'tsp', rest: 'minced garlic', note: 'optional' },
       { amount: 1, unit: '', rest: 'green chilies, slit', note: 'optional' },
       { amount: 1, unit: '', rest: 'medium onion, finely chopped' },
@@ -22,8 +22,8 @@
       { amount: 0.5, unit: 'tsp', rest: 'turmeric powder' },
       { amount: 1, unit: 'tsp', rest: 'cumin powder' },
       { amount: 1, unit: 'tsp', rest: 'coriander powder' },
-      { amount: 1, unit: 'tsp', rest: 'red chili powder (adjust to taste)' },
-      { amount: null, unit: '', rest: 'Salt to taste' }
+      { amount: null, unit: '', rest: 'Salt to taste' },
+      { amount: 1, unit: 'tsp', rest: 'red chili powder (adjust to taste)' }
     ],
     instructions: [
       "Heat oil in a wide pan on medium-high. Add the bhindi in a single layer (don't overcrowd) and fry, stirring occasionally, until the okra is no longer sticky and starts to brown — about 8-10 minutes.",

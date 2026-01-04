@@ -12,11 +12,11 @@
         references: [],
         ingredients: [
             { amount: 1.5, unit: 'cup', rest: 'water' },
-            { amount: 1, unit: 'cup', rest: 'whole milk', note: 'adjust for desired creaminess' },
+            { amount: 0.5, unit: 'inch', rest: 'ginger', note: 'crushed' },
+            { amount: 4, unit: '', rest: 'green cardamom pods', note: 'crushed' },
             { amount: 3, unit: 'tsp', rest: 'black tea leaves (CTC)' },
             { amount: 3, unit: 'tsp', rest: 'sugar', note: 'to taste' },
-            { amount: 0.5, unit: 'inch', rest: 'ginger', note: 'crushed' },
-            { amount: 4, unit: '', rest: 'green cardamom pods', note: 'crushed' }
+            { amount: 1, unit: 'cup', rest: 'whole milk', note: 'adjust for desired creaminess' }
         ],
         instructions: [
             "Tip: For the perfect cup, use a small pot so the liquid doesn't evaporate too quickly. Use CTC tea (Crush, Tear, Curl), which looks like small brown pebbles and produces a much stronger, maltier brew than standard tea bags.",

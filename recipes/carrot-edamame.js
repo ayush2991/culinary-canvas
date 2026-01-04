@@ -14,13 +14,13 @@
             { amount: 4, unit: '', rest: 'medium carrots' },
             { amount: 1, unit: 'cup', rest: 'frozen edamame or green peas' },
             { amount: null, unit: '', rest: 'water for boiling' },
+            { amount: 0.25, unit: 'tsp', rest: 'turmeric powder' },
+            { amount: 0.5, unit: 'tsp', rest: 'salt', note: 'plus pinch for boiling' },
             { amount: 1, unit: 'tbsp', rest: 'oil' },
             { amount: 0.5, unit: 'tsp', rest: 'mustard seeds' },
             { amount: 0.5, unit: 'tsp', rest: 'cumin seeds (jeera)' },
             { amount: 0.5, unit: '', rest: 'dry red chili' },
             { amount: 0.5, unit: 'cup', rest: 'diced onion' },
-            { amount: 0.25, unit: 'tsp', rest: 'turmeric powder' },
-            { amount: 0.5, unit: 'tsp', rest: 'salt', note: 'plus pinch for boiling' },
             { amount: 1, unit: 'tbsp', rest: 'roasted sesame powder' }
         ],
         instructions: [
