@@ -22,10 +22,9 @@ let activeTags = new Set();
 
 // Mapping for Home View bucketing
 const COLLECTIONS = [
-    { title: "Brewed & Blended", categories: ["beverage"] },
-    { title: "Morning Rituals", categories: ["breakfast"] },
-    { title: "Main Events", categories: ["mains"] },
-    { title: "Small Bites & Dips", categories: ["dip", "appetizer"] },
+    { title: "Sips & Elixirs", categories: ["beverage"] },
+    { title: "The Breakfast Table", categories: ["breakfast"] },
+    { title: "Savory Mains & Bites", categories: ["mains", "appetizer", "dip"] },
     { title: "Sweet Retreats", categories: ["dessert"] }
 ];
 
