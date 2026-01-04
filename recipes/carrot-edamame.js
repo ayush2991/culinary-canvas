@@ -9,7 +9,7 @@
         servings: "2",
         difficulty: "Easy",
         image: "images/carrot-edamame.png",
-        references: [],
+        references: ["https://docs.google.com/document/d/1titM6fsADb8gf8R2OuG4Rxy_nAXnPSbmax2Z6wBiJb0/edit?usp=sharing"],
         ingredients: [
             { amount: 4, unit: '', rest: 'medium carrots' },
             { amount: 1, unit: 'cup', rest: 'frozen edamame or green peas' },

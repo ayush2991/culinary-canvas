@@ -10,7 +10,7 @@
     servings: "5",
     difficulty: "Medium",
     image: "images/palak-tofu.png",
-    references: [],
+    references: ["https://www.indianhealthyrecipes.com/palak-paneer-recipe-easy-paneer-recipes-step-by-step-pics/#wprm-recipe-container-38742"],
     ingredients: [
       { amount: null, unit: '', rest: 'Cooking oil and/or Ghee', note: 'as needed' },
       { amount: 0.333, unit: 'tsp', rest: 'Cumin Seeds' },
