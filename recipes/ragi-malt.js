@@ -19,7 +19,7 @@
             { amount: null, unit: '', rest: 'chopped nuts (almonds/pistachios)', note: 'optional topping' }
         ],
         instructions: [
-            "In a small bowl, whisk the ragi flour with 1/2 cup of water until there are no lumps.",
+            "In a small bowl, whisk the ragi flour with water until there are no lumps.",
             "In a saucepan, bring the milk to a boil over medium heat.",
             "Lower the heat and slowly pour in the ragi mixture while stirring constantly to prevent lumps.",
             "Add the jaggery powder and continue to cook on low heat for 5-6 minutes until the mixture thickens and turns glossy.",

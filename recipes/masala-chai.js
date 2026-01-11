@@ -26,13 +26,13 @@
             "Bring the chai to a boil. When the foam rises to the top of the pot, turn the heat down or lift the pot. Do this 2 or 3 times to develop a rich, cooked-milk flavor.",
             "Turn off the heat and strain the chai directly into your mug.",
             "Add the sugar and stir until dissolved."
-        }
-};
+        ]
+    };
 
-if (typeof window.registerRecipe === 'function') {
-    window.registerRecipe(recipe);
-} else {
-    window.__preRegisteredRecipes = window.__preRegisteredRecipes || [];
-    window.__preRegisteredRecipes.push(() => recipe);
-}
-}) ();
+    if (typeof window.registerRecipe === 'function') {
+        window.registerRecipe(recipe);
+    } else {
+        window.__preRegisteredRecipes = window.__preRegisteredRecipes || [];
+        window.__preRegisteredRecipes.push(() => recipe);
+    }
+})();
