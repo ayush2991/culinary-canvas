@@ -9,7 +9,7 @@
         servings: "3",
         difficulty: "Easy",
         image: "images/spicy-pan-fried-tofu.png",
-        references: [],
+        references: ["images/spicy-pan-fried-tofu-ref.jpg"],
         ingredients: [
             { amount: 1, unit: 'block', rest: 'Firm Tofu', note: 'drained and patted dry' },
             { amount: 3, unit: 'tbsp', rest: 'Oil', note: 'plus more if needed' },
