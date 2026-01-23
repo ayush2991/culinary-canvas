@@ -9,7 +9,7 @@
         servings: "2",
         difficulty: "Medium",
         image: "images/rajma.png",
-        references: [],
+        references: ["https://docs.google.com/document/d/1titM6fsADb8gf8R2OuG4Rxy_nAXnPSbmax2Z6wBiJb0/edit?usp=sharing"],
         ingredients: [
             { amount: 1, unit: 'rice cup', rest: 'Rajma (Kidney beans)', note: 'soaked overnight' },
             { amount: 3, unit: 'rice cups', rest: 'Water', note: 'approx 180 ml each, for cooking' },
