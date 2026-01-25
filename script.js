@@ -115,7 +115,7 @@ function renderRecipes(recipesToRender) {
                     <h2 class="section-title">${collection.title}</h2>
                     <span class="section-count">${collectionRecipes.length} recipes</span>
                 </div>
-                <div class="carousel-track">
+                <div class="carousel-track${collection.title === 'Savory Mains & Bites' ? ' multi-row' : ''}">
                     ${collectionRecipes.map(r => createRecipeCardHtml(r)).join('')}
                 </div>
             </div>

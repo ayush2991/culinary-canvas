@@ -515,7 +515,7 @@ html[data-theme="dark"] .recipe-tag,
     width: 36px;
     height: 36px;
     display: flex;
-    alignItems: center;
+    align-items: center;
     justify-content: center;
     border-radius: 50%;
     z-index: 10;
@@ -998,6 +998,33 @@ footer p {
 .carousel-track::-webkit-scrollbar {
     display: none;
     /* Webkit */
+}
+
+.carousel-track.multi-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    scroll-snap-type: none;
+}
+
+.carousel-track.multi-row .recipe-card {
+    flex: 1 1 320px;
+    max-width: calc(33.333% - 1rem);
+    /* Roughly 3 columns on large screens */
+}
+
+@media (max-width: 1100px) {
+    .carousel-track.multi-row .recipe-card {
+        max-width: calc(50% - 0.75rem);
+        /* 2 columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-track.multi-row .recipe-card {
+        max-width: 100%;
+        /* 1 column on mobile */
+        flex: 0 0 100%;
+    }
 }
 
 .carousel-track .recipe-card {
