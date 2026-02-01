@@ -6,25 +6,24 @@
         category: "beverage",
         tags: ["breakfast", "beverage", "gluten-free", "vegetarian"],
         time: "10 min",
-        servings: "2",
+        servings: "1",
         difficulty: "Easy",
         image: "images/ragi-malt.png",
-        references: [],
+        references: ["images/ragi-malt-ref.png"],
         ingredients: [
-            { amount: 3, unit: 'tbsp', rest: 'ragi flour (finger millet flour)' },
-            { amount: 0.5, unit: 'cup', rest: 'water', note: 'to dissolve flour' },
-            { amount: 1.5, unit: 'cup', rest: 'milk', note: 'dairy or plant-based' },
-            { amount: 2, unit: 'tbsp', rest: 'jaggery powder', note: 'adjust to taste' },
-            { amount: 0.25, unit: 'tsp', rest: 'cardamom powder' },
-            { amount: null, unit: '', rest: 'chopped nuts (almonds/pistachios)', note: 'optional topping' }
+            { amount: 0.75, unit: 'cup', rest: 'water' },
+            { amount: 0.25, unit: 'cup', rest: 'water', note: 'to dissolve flour' },
+            { amount: 0.5, unit: 'cup', rest: 'milk', note: 'almond milk for dairy free version' },
+            { amount: 1.5, unit: 'tbsp', rest: 'ragi flour' },
+            { amount: 1, unit: 'spoon', rest: 'honey or jaggery' }
         ],
         instructions: [
-            "In a small bowl, whisk the ragi flour with water until there are no lumps.",
-            "In a saucepan, bring the milk to a boil over medium heat.",
-            "Lower the heat and slowly pour in the ragi mixture while stirring constantly to prevent lumps.",
-            "Add the jaggery powder and continue to cook on low heat for 5-6 minutes until the mixture thickens and turns glossy.",
-            "Stir in the cardamom powder.",
-            "Pour into cups and serve warm, topped with chopped nuts if desired."
+            "Bring the main portion of water to boil.",
+            "Meanwhile mix ragi flour with the reserved room temperature water thoroughly.",
+            "Once water is boiling, add the dissolved ragi water to the pot slowly and whisk or mix as you add to prevent clumps.",
+            "Bring that to boil and let it boil for 5 mins until ragi cooks and mix periodically.",
+            "Add milk to the pot and let it warm up to desired drinking temperature.",
+            "Pour into a cup, mix in honey or jaggery to sweeten and enjoy!"
         ]
     };
 
