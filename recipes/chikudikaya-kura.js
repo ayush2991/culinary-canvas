@@ -21,7 +21,7 @@
             { amount: 2, unit: '', rest: 'dry red chilies (broken)', note: 'adjust to taste' },
             { amount: 1, unit: 'sprig', rest: 'curry leaves' },
             { amount: 1, unit: 'tsp', rest: 'fresh ginger, grated', note: 'optional' },
-            { amount: 1, unit: '', rest: 'medium onion, finely chopped' },
+            { amount: 1, unit: '', rest: 'small onion, finely chopped' },
             { amount: 1, unit: '', rest: 'medium tomato, finely diced' },
             { amount: 0.5, unit: 'tsp', rest: 'turmeric powder' },
             { amount: 1, unit: 'tsp', rest: 'red chili powder', note: 'adjust to taste' },
