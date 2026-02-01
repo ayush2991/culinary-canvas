@@ -1,5 +1,4 @@
 (function () {
-  // Single definition of the Bhindi (Okra) recipe
   const recipe = {
     id: 1,
     title: "Bhindi (Stir-fried Okra)",
@@ -7,35 +6,33 @@
     category: "mains",
     tags: ["mains", "vegan"],
     time: "20 min",
-    servings: "4",
+    servings: "3",
     difficulty: "Easy",
     image: "images/bhindi.png",
-    references: [],
-    // Ingredients as structured objects for more reliable scaling
+    references: ["images/bhindi-fry-ref.png"],
     ingredients: [
-      { amount: 2.5, unit: 'tbsp', rest: 'cooking oil (vegetable or peanut)' },
-      { amount: 400, unit: 'g', rest: 'bhindi (okra), washed, dried and cut into 1/2–1 inch pieces' },
+      { amount: 2, unit: 'tbsp', rest: 'cooking oil' },
+      { amount: 450, unit: 'g', rest: 'bhindi (okra), washed, dried and cut into 1/2–1 inch pieces' },
       { amount: 1, unit: 'tsp', rest: 'minced garlic', note: 'optional' },
-      { amount: 1, unit: '', rest: 'green chilies, slit', note: 'optional' },
-      { amount: 1, unit: '', rest: 'medium onion, finely chopped' },
-      { amount: 1, unit: '', rest: 'medium tomato, finely chopped' },
+      { amount: 1, unit: '', rest: 'green chili, slit', note: 'optional' },
+      { amount: 0.33, unit: '', rest: 'large onion, finely chopped' },
+      { amount: 1, unit: '', rest: 'small tomato, finely chopped' },
       { amount: 0.5, unit: 'tsp', rest: 'turmeric powder' },
-      { amount: 1, unit: 'tsp', rest: 'cumin powder' },
-      { amount: 1, unit: 'tsp', rest: 'coriander powder' },
+      { amount: 0.75, unit: 'tsp', rest: 'cumin powder' },
+      { amount: 0.75, unit: 'tsp', rest: 'coriander powder' },
       { amount: null, unit: '', rest: 'Salt to taste' },
-      { amount: 1, unit: 'tsp', rest: 'red chili powder (adjust to taste)' }
+      { amount: 0.5, unit: 'tsp', rest: 'red chili powder (adjust to taste)' }
     ],
     instructions: [
-      "Heat oil in a wide pan on medium-high. Add the bhindi in a single layer (don't overcrowd) and fry, stirring occasionally, until the okra is no longer sticky and starts to brown — about 8-10 minutes.",
-      "If using, add minced garlic and slit green chilies and fry for 1-2 minutes until fragrant.",
-      "Add the chopped onions and cook until translucent and lightly golden.",
-      "Add the chopped tomatoes and stir to combine. Cook until the tomatoes turn soft and mushy; you may cover and simmer for a few minutes if needed.",
-      "Stir in turmeric, cumin powder, coriander powder and salt. Cook for another 1-2 minutes so spices bloom.",
-      "Finish with red chili powder (and adjust salt). Serve hot with roti, paratha or steamed rice. Enjoy! 😋"
+      "Heat oil in a wide pan and add the bhindi pieces.",
+      "Fry until the bhindi is no longer sticky. At this stage, add the minced garlic and green chilies (if using) and fry for another 1–2 minutes.",
+      "Add the finely chopped onions and sauté until they become translucent.",
+      "Stir in the chopped tomatoes and add the salt, turmeric, cumin, coriander, and red chili powder. Stir well to combine.",
+      "Cook until the tomatoes turn mushy. You can cover and cook here if needed.",
+      "Add more salt if needed. Serve hot and enjoy!",
     ]
   };
 
-  // Register the recipe (single source of truth)
   if (typeof window.registerRecipe === 'function') {
     window.registerRecipe(recipe);
   } else {
