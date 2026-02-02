@@ -1,6 +1,6 @@
 (function () {
     const recipe = {
-        id: 23,
+        id: 24,
         title: "Tadka-First Palak Matar Toor–Masoor Dal (No Onion)",
         description: "A nutritious, comforting, and onion-free dal made with a blend of toor and masoor lentils, fresh spinach, and sweet green peas. The unique 'tadka-first' method ensures a rich, garlic-infused flavor base.",
         category: "mains",
@@ -9,7 +9,7 @@
         servings: "3",
         difficulty: "Easy",
         image: "images/palak-matar-dal.png",
-        references: [],
+        references: ["images/palak-matar-dal-ref.png"],
         ingredients: [
             { amount: 0.5, unit: 'rice cup', rest: 'Toor dal', note: '' },
             { amount: 0.5, unit: 'rice cup', rest: 'Masoor dal', note: '' },
