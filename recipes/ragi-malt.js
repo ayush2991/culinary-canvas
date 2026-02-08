@@ -4,7 +4,7 @@
         title: "Ragi Malt",
         description: "A nutritious, calcium-rich drink made from finger millet flour. Sweetened with jaggery and flavored with cardamom, it's a perfect warming breakfast.",
         category: "beverage",
-        tags: ["breakfast", "beverage", "gluten-free", "vegetarian"],
+        tags: ["beverage", "gluten-free", "vegetarian"],
         time: "10 min",
         servings: "1",
         difficulty: "Easy",
