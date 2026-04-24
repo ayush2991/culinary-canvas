@@ -4,7 +4,7 @@
         title: "Rajma (Kidney Bean Curry)",
         description: "A comforting North Indian staple featuring tender kidney beans simmered in a rich, spiced tomato-onion gravy with a hint of yogurt for creaminess. Perfect with steamed basmati rice.",
         category: "mains",
-        tags: ["vegetarian", "gluten-free"],
+        tags: ["gluten-free"],
         time: "45 min",
         servings: "2",
         difficulty: "Medium",

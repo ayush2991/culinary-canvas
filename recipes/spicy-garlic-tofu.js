@@ -5,7 +5,7 @@
     title: "Spicy Garlic Tofu",
     description: "Soft tofu cubes tossed in a savory, spicy garlic sauce. Quick to make and perfect served over rice with a kick of red chili and sriracha.",
     category: "mains",
-    tags: ["vegan", "dairy-free", "spicy"],
+    tags: ["dairy-free"],
     time: "20 min",
     servings: "2",
     difficulty: "Easy",

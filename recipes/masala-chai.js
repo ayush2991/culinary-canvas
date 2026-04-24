@@ -4,7 +4,7 @@
         title: "Authentic Indian Masala Chai",
         description: "A perfect cup of traditional masala chai, brewed with aromatic spices and fresh milk for a rich, cooked-milk flavor.",
         category: "beverage",
-        tags: ["beverage", "vegetarian", "gluten-free"],
+        tags: ["gluten-free"],
         time: "10 min",
         servings: "2",
         difficulty: "Easy",

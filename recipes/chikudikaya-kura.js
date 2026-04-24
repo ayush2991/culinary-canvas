@@ -5,7 +5,7 @@
         title: "Chikudikaya (Valor) Curry (WIP)",
         description: "A comforting, heritage-style cluster bean curry simmered in a rich tomato-onion masala. Infused with tempered mustard seeds and earthy urad dal, this mildly spiced dish offers a deep, savory flavor profile finished with a burst of fresh cilantro.",
         category: "mains",
-        tags: ["mains", "vegan"],
+        tags: ["dairy-free", "gluten-free"],
         time: "60 min",
         servings: "3",
         difficulty: "Medium",

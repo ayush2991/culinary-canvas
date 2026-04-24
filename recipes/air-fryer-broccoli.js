@@ -4,7 +4,7 @@
         title: "10 Minute Air Fryer Broccoli",
         description: "Ultra-crispy, healthy, and quick air-fried broccoli florets. A perfect side dish that takes only 10 minutes from prep to plate.",
         category: "appetizer",
-        tags: ["vegetarian", "vegan", "gluten-free", "healthy"],
+        tags: ["dairy-free", "gluten-free"],
         time: "10 min",
         servings: "2",
         difficulty: "Easy",

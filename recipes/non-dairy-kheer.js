@@ -4,7 +4,7 @@
         title: "Non-Dairy Rice Kheer",
         description: "A rich, creamy, and entirely plant-based version of the classic Indian rice pudding. Made with coconut and almond milk for a luscious texture without the dairy.",
         category: "dessert",
-        tags: ["dessert", "vegan", "dairy-free", "gluten-free"],
+        tags: ["dairy-free", "gluten-free", "caffeine-free"],
         time: "60 min",
         servings: "4",
         difficulty: "Medium",

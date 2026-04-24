@@ -53,14 +53,14 @@ function createRecipeCardHtml(recipe) {
         ? `<img src="${recipe.image}" alt="${recipe.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
         : `<div class="recipe-initials">${initials}</div>`;
 
-    const tags = Array.isArray(recipe.tags) && recipe.tags.length ? recipe.tags : (recipe.category ? [recipe.category] : []);
+    const tags = Array.isArray(recipe.tags) && recipe.tags.length ? recipe.tags : [];
     const tagsHtml = tags.map(t => `<span class="recipe-tag">${t}</span>`).join(' ');
 
     return `
     <div class="recipe-card" data-id="${recipe.id}" role="button" tabindex="0">
         <div class="recipe-image">
             ${imageContent}
-            <div class="recipe-tags">${tagsHtml}</div>
+            ${tagsHtml ? `<div class="recipe-tags">${tagsHtml}</div>` : ''}
         </div>
         <div class="recipe-content">
             <h3 class="recipe-title">${recipe.title}</h3>

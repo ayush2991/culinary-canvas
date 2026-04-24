@@ -4,7 +4,7 @@
         title: "Vermicelli Kheer (Seviyan Kheer)",
         description: "Vermicelli Kheer (also known as Seviyan Kheer or Semiya Payasam) is one of the most beloved and quickest Indian desserts. It’s creamy, aromatic, and can be enjoyed both warm or chilled. A rich and delicious foolproof recipe.",
         category: "dessert",
-        tags: ["dessert", "vegetarian"],
+        tags: ["caffeine-free"],
         time: "25 min",
         servings: "2",
         difficulty: "Easy",

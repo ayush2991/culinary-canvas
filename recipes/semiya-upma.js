@@ -4,7 +4,7 @@
         title: "Semiya Upma (Vermicelli Upma)",
         description: "A quick, non-sticky South Indian breakfast. Roasted vermicelli tossed with crunchy nuts, tempered spices, and optional veggies for a perfectly textured morning meal.",
         category: "breakfast",
-        tags: ["breakfast", "vegetarian", "vegan"],
+        tags: ["dairy-free"],
         time: "20 min",
         servings: "3",
         difficulty: "Easy",
@@ -12,7 +12,7 @@
         references: ["https://www.indianhealthyrecipes.com/semiya-upma-vermicelli-upma-recipe/"],
         ingredients: [
             { amount: 1, unit: 'cup', rest: 'Semiya (vermicelli)' },
-            { amount: 1.5, unit: 'tbsp', rest: 'Oil or Ghee' },
+            { amount: 1.5, unit: 'tbsp', rest: 'Ghee', note: 'or oil for vegan version' },
             { amount: 2, unit: 'tbsp', rest: 'Peanuts or cashews' },
             { amount: 0.25, unit: 'tsp', rest: 'Mustard seeds' },
             { amount: 0.5, unit: 'tsp', rest: 'Cumin seeds' },

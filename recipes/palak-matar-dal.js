@@ -4,7 +4,7 @@
         title: "Tadka-First Palak Matar Toor–Masoor Dal (No Onion)",
         description: "A nutritious, comforting, and onion-free dal made with a blend of toor and masoor lentils, fresh spinach, and sweet green peas. The unique 'tadka-first' method ensures a rich, garlic-infused flavor base.",
         category: "mains",
-        tags: ["mains", "vegetarian", "gluten-free"],
+        tags: ["gluten-free"],
         time: "35 min",
         servings: "3",
         difficulty: "Easy",

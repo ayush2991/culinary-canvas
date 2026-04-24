@@ -4,7 +4,7 @@
         title: "Rice Kheer (Indian Rice Pudding)",
         description: "A classic Indian dessert made with slow-cooked rice, full-fat milk, and aromatic cardamom. This rich and creamy pudding is a staple for celebrations and comfort.",
         category: "dessert",
-        tags: ["dessert", "vegetarian", "gluten-free"],
+        tags: ["gluten-free", "caffeine-free"],
         time: "40 min",
         servings: "2",
         difficulty: "Medium",

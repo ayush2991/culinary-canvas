@@ -5,7 +5,7 @@
     title: "Oat Turmeric Latte",
     description: "A vibrant, soothing golden milk latte infused with healing turmeric, warming cardamom, and a touch of black pepper for vitality. Perfectly frothed with creamy oat milk and finished with a delicate swirl of honey.",
     category: "beverage",
-    tags: ["dairy-free", "caffeine-free"],
+    tags: ["dairy-free", "gluten-free", "caffeine-free"],
     time: "5 min",
     servings: "1",
     difficulty: "Easy",

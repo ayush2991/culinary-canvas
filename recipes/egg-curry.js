@@ -4,7 +4,7 @@
         title: "Indian Egg Curry",
         description: "A flavorful and protein-packed North Indian curry featuring hard-boiled eggs shallow-fried and simmered in a rich, spiced tomato-onion gravy. Perfect with paratha or steamed basmati rice.",
         category: "mains",
-        tags: ["mains", "gluten-free"],
+        tags: ["dairy-free", "gluten-free"],
         time: "60 min",
         servings: "3",
         difficulty: "Medium",

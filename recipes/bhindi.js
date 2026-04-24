@@ -4,7 +4,7 @@
     title: "Bhindi (Stir-fried Okra)",
     description: "Savor the crunch of perfectly stir-fried okra, tossed in a fragrant blend of turmeric, cumin, and coriander. This homestyle classic transforms tender bhindi into a crispy, non-sticky delight, accented by caramelized onions and softened tomatoes.",
     category: "mains",
-    tags: ["mains", "vegan"],
+    tags: ["dairy-free", "gluten-free"],
     time: "20 min",
     servings: "3",
     difficulty: "Easy",

@@ -5,7 +5,7 @@
     title: "Iced Beetroot Rose Latte",
     description: "A refreshing, vibrant pink latte featuring earthy beetroot powder infused with delicate rose water. Creamy oat milk creates a beautiful marble effect over ice, finished with crunchy cacao nibs and fragrant dried rose petals for the perfect Instagram-worthy drink.",
     category: "beverage",
-    tags: ["dairy-free", "caffeine-free", "vegan"],
+    tags: ["dairy-free", "gluten-free", "caffeine-free"],
     time: "5 min",
     servings: "1",
     difficulty: "Easy",

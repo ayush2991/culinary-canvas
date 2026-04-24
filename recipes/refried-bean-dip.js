@@ -5,7 +5,7 @@
     title: "Refried Bean Dip",
     description: "Elevate your appetizer game with this smoky, ultra-creamy refried bean dip. Sautéed with aromatic garlic and spicy jalapeños, then finished with melted vegan cheese and zesty salsa—the ultimate crowd-pleasing dip.",
     category: "appetizer",
-    tags: ["vegan", "appetizer", "dip"],
+    tags: ["dairy-free", "gluten-free"],
     time: "20 min",
     servings: "4",
     difficulty: "Easy",

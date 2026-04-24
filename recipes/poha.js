@@ -4,7 +4,7 @@
         title: "Kanda Batata Poha",
         description: "A classic Maharashtrian snack of flattened rice. Light, savory, and accented with onions, potatoes, and crunchy peanuts—the ultimate comfort breakfast.",
         category: "breakfast",
-        tags: ["breakfast", "vegan", "gluten-free"],
+        tags: ["dairy-free", "gluten-free"],
         time: "20 min",
         servings: "2",
         difficulty: "Easy",

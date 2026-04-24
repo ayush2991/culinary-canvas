@@ -4,7 +4,7 @@
         title: "Two Over-Medium Eggs",
         description: "Perfectly cooked over-medium eggs with whites that are fully set and yolks that are thick, jammy, and just slightly runny. A quick, high-protein breakfast staple.",
         category: "breakfast",
-        tags: ["breakfast", "gluten-free"],
+        tags: ["gluten-free", "dairy-free"],
         time: "5 min",
         servings: "1",
         difficulty: "Easy",
@@ -12,7 +12,7 @@
         references: [],
         ingredients: [
             { amount: 2, unit: 'large', rest: 'Eggs', note: 'fresh, cold or room temp' },
-            { amount: 1, unit: 'tsp', rest: 'Unsalted Butter', note: 'or oil' },
+            { amount: 1, unit: 'tsp', rest: 'Unsalted Butter', note: 'or oil for dairy-free version' },
             { amount: 1, unit: 'pinch', rest: 'Salt', note: 'to taste' },
             { amount: 1, unit: 'pinch', rest: 'Black Pepper', note: 'freshly cracked' },
             { amount: null, unit: '', rest: 'Optional: Chives or Parsley', note: 'finely chopped, for garnish' }

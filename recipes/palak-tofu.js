@@ -5,7 +5,7 @@
     title: "Palak Tofu",
     description: "Experience a luxurious, velvet-smooth spinach curry where golden-sautéed tofu cubes meet a complex bouquet of green cardamom, cinnamon, and cloves. Enriched with roasted cashews and aromatic kasuri methi.",
     category: "mains",
-    tags: ["mains", "vegan", "gluten-free"],
+    tags: ["gluten-free"],
     time: "60 min",
     servings: "5",
     difficulty: "Medium",

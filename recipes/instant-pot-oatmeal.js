@@ -4,7 +4,7 @@
         title: "Instant Pot Oatmeal",
         description: "Creamy, hands-off oatmeal made in the Instant Pot. Perfectly cooked rolled oats with warming spices and your favorite toppings.",
         category: "breakfast",
-        tags: ["breakfast", "vegan", "gluten-free", "dairy-free"],
+        tags: ["gluten-free", "dairy-free"],
         time: "20 min",
         servings: "3",
         difficulty: "Easy",
