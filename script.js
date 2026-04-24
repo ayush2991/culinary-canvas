@@ -314,6 +314,7 @@ function openModal(recipeId) {
         }
         return `<li data-orig="${ing.replace(/"/g, '\"')}">${ing}</li>`;
     }).join('');
+    // mobile branch only
     const imageHtml = recipe.image
         ? `<div style="text-align:center;margin-bottom:2rem;position:relative;">
              <img src="${recipe.image}" alt="${recipe.title}" style="max-width:100%;height:auto;border-radius:16px;max-height:300px;object-fit:cover;box-shadow:0 16px 40px rgba(0,0,0,0.15);">
