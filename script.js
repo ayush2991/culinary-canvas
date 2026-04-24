@@ -346,19 +346,31 @@ function openModal(recipeId) {
         </div>` : '';
     const isSmall = window.innerWidth <= 700;
     const compactHtml = isSmall ? `
-        <div class="compact-modal-header">
-            <h2 style="margin-bottom:1rem;">${recipe.title}</h2>
-            <div class="compact-meta">
-                <div class="meta-item"><svg width="14" height="14"><use href="#icon-time"/></svg>${recipe.time}</div>
-                <div class="meta-item"><svg width="14" height="14"><use href="#icon-users"/></svg>${recipe.servings}</div>
-                <div class="meta-item"><svg width="14" height="14"><use href="#icon-difficulty"/></svg>${recipe.difficulty}</div>
+        <div class="compact-modal-header" style="padding: 1.5rem 4.5rem 0.5rem 1.5rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;">
+                <h2 style="margin:0;font-family:'Merriweather',serif;">${recipe.title}</h2>
+                <button type="button" id="shareRecipeBtn" class="reset-btn" style="flex-shrink:0;padding:0.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin-right:-0.5rem;"><svg width="18" height="18"><use href="#icon-share"/></svg></button>
             </div>
-            ${imageHtml}
-            <button type="button" id="shareRecipeBtn" class="reset-btn" style="width:100%;margin-bottom:1rem;"><svg width="18" height="18"><use href="#icon-share"/></svg> Share</button>
+            <div class="modal-stat-bar" style="background:transparent;border:none;padding:0;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:1rem;">
+                <div class="stat-col">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-value">${recipe.time}</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-col">
+                    <span class="stat-label">Difficulty</span>
+                    <span class="stat-value">${recipe.difficulty}</span>
+                </div>
+            </div>
         </div>
         <div class="compact-servings">
-            <label class="servings-label"><svg width="16" height="16"><use href="#icon-users"/></svg> Servings: <input id="servingsInput" type="number" min="1" value="${initialServings}" class="servings-input"></label>
-            <button id="resetServingsBtn" type="button" class="reset-btn">Reset</button>
+            <div class="servings-label"><span class="stat-label">Servings</span></div>
+            <div class="stat-servings-stepper">
+                <button type="button" class="servings-step-btn" id="servingsDecBtn">−</button>
+                <input id="servingsInput" type="number" min="1" value="${initialServings}" class="stat-servings-input">
+                <button type="button" class="servings-step-btn" id="servingsIncBtn">+</button>
+            </div>
+            <button id="resetServingsBtn" type="button" class="reset-btn" style="margin-left:auto;">Reset</button>
         </div>
         <div class="collapsible">
             <details open><summary>Ingredients</summary><ul id="ingredientsList">${ingredientsHtml}</ul></details>
@@ -407,7 +419,11 @@ function openModal(recipeId) {
                 <div class="stat-divider"></div>
                 <div class="stat-col">
                     <span class="stat-label">Servings</span>
-                    <input id="servingsInput" type="number" min="1" value="${initialServings}" class="stat-servings-input">
+                    <div class="stat-servings-stepper">
+                        <button type="button" class="servings-step-btn" id="servingsDecBtn">−</button>
+                        <input id="servingsInput" type="number" min="1" value="${initialServings}" class="stat-servings-input">
+                        <button type="button" class="servings-step-btn" id="servingsIncBtn">+</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -452,6 +468,8 @@ function openModal(recipeId) {
         });
     }
     servingsInput?.addEventListener('input', rescale);
+    document.getElementById('servingsDecBtn')?.addEventListener('click', () => { servingsInput.value = Math.max(1, Number(servingsInput.value) - 1); rescale(); });
+    document.getElementById('servingsIncBtn')?.addEventListener('click', () => { servingsInput.value = Number(servingsInput.value) + 1; rescale(); });
     document.getElementById('resetServingsBtn')?.addEventListener('click', () => { servingsInput.value = origServings; rescale(); });
     rescale();
     modalEl.classList.add('active');
