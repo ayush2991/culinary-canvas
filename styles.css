@@ -525,6 +525,195 @@ html[data-theme="dark"] .recipe-tag,
     background: var(--secondary);
 }
 
+/* ── Desktop modal: flex-column shell ── */
+.modal-content.desktop-modal {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
+.desktop-modal #modalBody {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+/* ── Desktop modal header ── */
+.modal-header {
+    flex-shrink: 0;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header-top {
+    padding: 1rem 3.5rem 1rem 1.5rem; /* right padding clears the absolute close button */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.modal-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.modal-stat-bar {
+    display: flex;
+    align-items: center;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 0.5rem 1.5rem;
+}
+
+.stat-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-right: 1.25rem;
+}
+
+.stat-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.stat-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.stat-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+    margin-right: 1.25rem;
+    flex-shrink: 0;
+}
+
+.stat-servings-input {
+    width: 48px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 1px 4px;
+    color: var(--text);
+    background: var(--card);
+}
+
+.stat-servings-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+}
+
+/* ── Desktop modal two-pane body ── */
+.modal-pane-body {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.modal-pane {
+    overflow-y: auto;
+    padding: 1.25rem 1.5rem;
+}
+
+.pane-ingredients {
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+}
+
+.pane-instructions {
+    background: var(--card);
+}
+
+.pane-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+
+/* Ingredient rows */
+.pane-ingredients ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pane-ingredients li {
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+.pane-ingredients li:last-child {
+    border-bottom: none;
+}
+
+/* Instruction steps with numbered badges */
+.pane-instructions ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: step-counter;
+}
+
+.pane-instructions ol > li {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text);
+    counter-increment: step-counter;
+    margin-bottom: 0;
+}
+
+.pane-instructions ol > li:last-child {
+    border-bottom: none;
+}
+
+.pane-instructions ol > li::before {
+    content: counter(step-counter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    background: var(--primary);
+    color: var(--bg);
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
 .modal h2 {
     font-family: 'Merriweather', serif;
     font-size: 2.25rem;
