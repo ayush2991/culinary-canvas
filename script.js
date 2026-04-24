@@ -323,6 +323,26 @@ function openModal(recipeId) {
              <h3>${recipe.title}</h3>
              <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;">${recipe.category}</div>
            </div>`;
+    const referencesHtml = recipe.references && recipe.references.length > 0 ? `
+        <div style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.25rem;">
+            <div class="pane-section-label">References</div>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                ${recipe.references.map(ref => {
+                    const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(ref) || ref.startsWith('images/');
+                    if (isImage) {
+                        return `<li style="margin-bottom: 1rem;">
+                            <img src="${ref}" alt="Reference" style="max-height: 200px; border-radius: 4px; border: 1px solid var(--border); cursor: pointer;" onclick="window.open('${ref}', '_blank')">
+                        </li>`;
+                    }
+                    return `<li style="margin-bottom: 0.5rem;">
+                        <a href="${ref}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 500;">
+                            <svg width="14" height="14" style="flex-shrink:0"><use href="#icon-share"/></svg>
+                            ${ref}
+                        </a>
+                    </li>`;
+                }).join('')}
+            </ul>
+        </div>` : '';
     const isSmall = window.innerWidth <= 700;
     const compactHtml = isSmall ? `
         <div class="compact-modal-header">
@@ -368,54 +388,49 @@ function openModal(recipeId) {
             ` : ''}
         </div>
     ` : `
-        <h2 style="display:flex;justify-content:space-between;align-items:center;">${recipe.title} <button type="button" id="shareRecipeBtn" class="reset-btn"><svg width="18" height="18"><use href="#icon-share"/></svg> Share</button></h2>
-        ${imageHtml}
-        <div class="modal-top-nav">
-            <button type="button" data-jump="ingredients" class="active">Ingredients</button>
-            <button type="button" data-jump="instructions">Instructions</button>
-        </div>
-        <div class="modal-section details-grid">
-            <div class="detail-item"><div class="detail-icon"><svg width="24" height="24"><use href="#icon-time"/></svg></div><div class="detail-value">${recipe.time}</div><div class="detail-label">Time</div></div>
-            <div class="detail-item"><div class="detail-icon"><svg width="24" height="24"><use href="#icon-users"/></svg></div><div class="detail-value">${recipe.servings}</div><div class="detail-label">Servings</div></div>
-            <div class="detail-item"><div class="detail-icon"><svg width="24" height="24"><use href="#icon-difficulty"/></svg></div><div class="detail-value">${recipe.difficulty}</div><div class="detail-label">Difficulty</div></div>
-        </div>
-        <div class="desktop-servings" style="display:flex;justify-content:center;gap:1.5rem;padding:1rem;background:var(--secondary);border-radius:12px;margin:2rem 0;">
-            <label class="servings-label"><svg width="16" height="16"><use href="#icon-users"/></svg> Servings: <input id="servingsInput" type="number" min="1" value="${initialServings}" class="servings-input"></label>
-            <button id="resetServingsBtn" type="button" class="reset-btn">Reset</button>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
-            <div class="modal-section"><h3>Ingredients</h3><ul id="ingredientsList">${ingredientsHtml}</ul></div>
-            <div class="modal-section"><h3>Instructions</h3><ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol></div>
-        </div>
-        ${recipe.references && recipe.references.length > 0 ? `
-            <div class="modal-section" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 2rem;">
-                <h3>References</h3>
-                <ul style="list-style: none; padding-left: 0;">
-                    ${recipe.references.map(ref => {
-        const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(ref) || ref.startsWith('images/');
-        if (isImage) {
-            return `
-                                <li style="margin-bottom: 1rem; display: inline-block; margin-right: 1rem;">
-                                    <img src="${ref}" alt="Reference" style="max-height: 200px; border-radius: 4px; border: 1px solid var(--border); transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" onclick="window.open('${ref}', '_blank')">
-                                </li>
-                            `;
-        }
-        return `
-                            <li style="margin-bottom: 0.5rem;">
-                                <a href="${ref}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-weight: 500;">
-                                    <svg width="14" height="14" style="flex-shrink: 0;"><use href="#icon-share"/></svg>
-                                    ${ref}
-                                </a>
-                            </li>
-                        `;
-    }).join('')}
-                </ul>
+        <div class="modal-header">
+            <div class="modal-header-top">
+                <h2 class="modal-title">${recipe.title}</h2>
+                <button type="button" id="shareRecipeBtn" class="reset-btn"><svg width="18" height="18"><use href="#icon-share"/></svg> Share</button>
             </div>
-        ` : ''}
+            <div class="modal-stat-bar">
+                <div class="stat-col">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-value">${recipe.time}</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-col">
+                    <span class="stat-label">Difficulty</span>
+                    <span class="stat-value">${recipe.difficulty}</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-col">
+                    <span class="stat-label">Servings</span>
+                    <input id="servingsInput" type="number" min="1" value="${initialServings}" class="stat-servings-input">
+                </div>
+            </div>
+        </div>
+        <div class="modal-pane-body">
+            <div class="modal-pane pane-ingredients">
+                <div class="pane-section-label">Ingredients</div>
+                <ul id="ingredientsList">${ingredientsHtml}</ul>
+            </div>
+            <div class="modal-pane pane-instructions">
+                <div class="pane-section-label">Instructions</div>
+                <ol>${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}</ol>
+                ${referencesHtml}
+            </div>
+        </div>
     `;
     modalBody.innerHTML = compactHtml;
     const modalEl = document.getElementById('recipeModal');
-    if (isSmall) modalEl.classList.add('sheet');
+    const modalContent = modalEl.querySelector('.modal-content');
+    if (isSmall) {
+        modalEl.classList.add('sheet');
+        modalContent.classList.remove('desktop-modal');
+    } else {
+        modalContent.classList.add('desktop-modal');
+    }
 
     const servingsInput = document.getElementById('servingsInput');
     function rescale() {
@@ -458,33 +473,13 @@ function openModal(recipeId) {
         });
     }
 
-    // Scroll to section logic
-    const topNav = modalEl.querySelector('.modal-top-nav');
-    if (topNav) {
-        topNav.addEventListener('click', (e) => {
-            const btn = e.target.closest('button');
-            if (!btn) return;
-            const targetId = btn.getAttribute('data-jump');
-
-            // Remove active class from all buttons and add to clicked one
-            topNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Find all h3s (Ingredients/Instructions)
-            const headers = modalEl.querySelectorAll('.modal-section h3');
-            const targetHeader = Array.from(headers).find(h => h.textContent.toLowerCase().includes(targetId));
-
-            if (targetHeader) {
-                targetHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    }
 }
 
 function closeModal() {
     const modalEl = document.getElementById('recipeModal');
     modalEl.classList.remove('active');
     modalEl.classList.remove('sheet');
+    modalEl.querySelector('.modal-content')?.classList.remove('desktop-modal');
     window.history.replaceState(null, null, window.location.pathname);
 }
 
