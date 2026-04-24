@@ -2,7 +2,7 @@
     const recipe = {
         id: 25,
         title: "Egg Bhurji",
-        description: "A vibrant and savory Indian street-food classic. These masala scrambled eggs are packed with onions, tomatoes, green chilies, and a blend of aromatic spices, making for a quick, high-protein breakfast or a satisfying meal with rice or roti.",
+        description: "Masala scrambled eggs with onions, tomatoes, green chilies, and spices. A quick high-protein breakfast, great with rice.",
         category: "breakfast",
         tags: ["gluten-free", "dairy-free"],
         time: "15 min",

@@ -3,7 +3,7 @@
   const recipe = {
     id: 2,
     title: "Palak Tofu",
-    description: "Experience a luxurious, velvet-smooth spinach curry where golden-sautéed tofu cubes meet a complex bouquet of green cardamom, cinnamon, and cloves. Enriched with roasted cashews and aromatic kasuri methi.",
+    description: "Spinach curry with sautéed tofu, whole spices, roasted cashews, and kasuri methi. A plant-based take on palak paneer.",
     category: "mains",
     tags: ["gluten-free"],
     time: "60 min",

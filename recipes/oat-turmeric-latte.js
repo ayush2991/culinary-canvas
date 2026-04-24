@@ -3,7 +3,7 @@
   const recipe = {
     id: 3,
     title: "Oat Turmeric Latte",
-    description: "A vibrant, soothing golden milk latte infused with healing turmeric, warming cardamom, and a touch of black pepper for vitality. Perfectly frothed with creamy oat milk and finished with a delicate swirl of honey.",
+    description: "Golden milk latte made with oat milk, turmeric, cardamom, and a drizzle of honey. Warming and caffeine-free.",
     category: "beverage",
     tags: ["dairy-free", "gluten-free", "caffeine-free"],
     time: "5 min",

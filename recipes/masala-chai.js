@@ -1,7 +1,7 @@
 (function () {
     const recipe = {
         id: 10,
-        title: "Authentic Indian Masala Chai",
+        title: "Masala Chai",
         description: "A perfect cup of traditional masala chai, brewed with aromatic spices and fresh milk for a rich, cooked-milk flavor.",
         category: "beverage",
         tags: ["gluten-free"],

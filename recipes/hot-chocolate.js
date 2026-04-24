@@ -2,7 +2,7 @@
     const recipe = {
         id: 7,
         title: "Hot Chocolate",
-        description: "Creamy Homemade Hot Chocolate. A combination of cocoa powder and chocolate chips make this hot chocolate extra flavorful and delicious! Ready in minutes.",
+        description: "Homemade hot chocolate made with cocoa powder and melted chocolate chips. Rich and creamy, ready in 10 minutes.",
         category: "dessert",
         tags: ["gluten-free"],
         time: "10 min",

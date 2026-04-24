@@ -1,8 +1,8 @@
 (function () {
     const recipe = {
         id: 23,
-        title: "Non-Dairy Rice Kheer",
-        description: "A rich, creamy, and entirely plant-based version of the classic Indian rice pudding. Made with coconut and almond milk for a luscious texture without the dairy.",
+        title: "Coconut Kheer",
+        description: "Plant-based Indian rice pudding made with coconut and almond milk, cardamom, and saffron. Dairy-free and rich.",
         category: "dessert",
         tags: ["dairy-free", "gluten-free", "caffeine-free"],
         time: "60 min",

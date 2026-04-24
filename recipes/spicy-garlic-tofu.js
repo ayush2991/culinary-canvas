@@ -3,7 +3,7 @@
   const recipe = {
     id: 28,
     title: "Spicy Garlic Tofu",
-    description: "Soft tofu cubes tossed in a savory, spicy garlic sauce. Quick to make and perfect served over rice with a kick of red chili and sriracha.",
+    description: "Firm tofu in a spicy garlic sauce with soy, sriracha, and red chili. Ready in 20 minutes over rice.",
     category: "mains",
     tags: ["dairy-free"],
     time: "20 min",

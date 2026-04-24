@@ -2,8 +2,8 @@
   // Chocolate Mousse (Ninja Blender) recipe
   const recipe = {
     id: 5,
-    title: "Chocolate Mousse (Ninja Blender)",
-    description: "Indulge in this decadently silky chocolate mousse, whipped to airy perfection in seconds. A wholesome treat that balances rich cocoa with subtle hints of vanilla and honey, offering a sophisticated dessert experience.",
+    title: "Chocolate Mousse",
+    description: "Silky chocolate mousse blended with cocoa, honey, and almond milk. Chilled to set, ready in 40 minutes.",
     category: "dessert",
     tags: ["dairy-free", "gluten-free"],
     time: "40 min",

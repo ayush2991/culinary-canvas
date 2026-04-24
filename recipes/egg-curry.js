@@ -1,8 +1,8 @@
 (function () {
     const recipe = {
         id: 22,
-        title: "Indian Egg Curry",
-        description: "A flavorful and protein-packed North Indian curry featuring hard-boiled eggs shallow-fried and simmered in a rich, spiced tomato-onion gravy. Perfect with paratha or steamed basmati rice.",
+        title: "Egg Curry",
+        description: "Hard-boiled eggs shallow-fried and simmered in a spiced tomato-onion gravy. Serve with paratha or basmati rice.",
         category: "mains",
         tags: ["dairy-free", "gluten-free"],
         time: "60 min",

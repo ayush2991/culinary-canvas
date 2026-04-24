@@ -1,8 +1,8 @@
 (function () {
     const recipe = {
         id: 21,
-        title: "Rajma (Kidney Bean Curry)",
-        description: "A comforting North Indian staple featuring tender kidney beans simmered in a rich, spiced tomato-onion gravy with a hint of yogurt for creaminess. Perfect with steamed basmati rice.",
+        title: "Rajma",
+        description: "Kidney beans simmered in a spiced tomato-onion gravy with yogurt. A North Indian staple, best with rice.",
         category: "mains",
         tags: ["gluten-free"],
         time: "45 min",

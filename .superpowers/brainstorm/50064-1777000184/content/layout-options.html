@@ -1,0 +1,82 @@
+<h2>Where should we reclaim space?</h2>
+<p class="subtitle">Three areas are eating the most vertical space. Pick which to tackle (can select multiple).</p>
+
+<div class="options" data-multiselect>
+
+  <div class="option" data-choice="cards" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Shorter recipe cards</h3>
+      <p>Card images are currently 200–240px tall. Reducing to ~140px and tightening text padding would fit ~40% more cards on screen without scrolling.</p>
+      <div style="margin-top:1rem;display:flex;gap:1rem;align-items:flex-end">
+        <div style="background:#e7e5e4;border-radius:6px;width:90px;height:70px;display:flex;flex-direction:column;overflow:hidden;font-size:9px;">
+          <div style="background:#d4a373;flex:0 0 38px;"></div>
+          <div style="padding:4px;flex:1;display:flex;flex-direction:column;gap:2px;">
+            <div style="background:#ccc;height:5px;border-radius:2px;"></div>
+            <div style="background:#e5e5e5;height:4px;border-radius:2px;width:80%"></div>
+          </div>
+        </div>
+        <span style="color:#78716c;font-size:11px;">→</span>
+        <div style="background:#e7e5e4;border-radius:6px;width:90px;height:52px;display:flex;flex-direction:column;overflow:hidden;font-size:9px;">
+          <div style="background:#d4a373;flex:0 0 22px;"></div>
+          <div style="padding:3px;flex:1;display:flex;flex-direction:column;gap:2px;">
+            <div style="background:#ccc;height:4px;border-radius:2px;"></div>
+            <div style="background:#e5e5e5;height:3px;border-radius:2px;width:80%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="columns" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>More columns</h3>
+      <p>Cards have a 320–340px minimum width, giving 3 columns on a 1200px screen. Dropping to ~260px minimum allows 4 columns — 33% more cards per row.</p>
+      <div style="margin-top:1rem;display:flex;gap:1rem;align-items:center">
+        <div style="display:flex;gap:4px">
+          <div style="background:#d4a373;border-radius:3px;width:28px;height:36px;opacity:0.7"></div>
+          <div style="background:#d4a373;border-radius:3px;width:28px;height:36px;opacity:0.7"></div>
+          <div style="background:#d4a373;border-radius:3px;width:28px;height:36px;opacity:0.7"></div>
+        </div>
+        <span style="color:#78716c;font-size:11px;">→</span>
+        <div style="display:flex;gap:3px">
+          <div style="background:#d4a373;border-radius:3px;width:22px;height:36px;opacity:0.7"></div>
+          <div style="background:#d4a373;border-radius:3px;width:22px;height:36px;opacity:0.7"></div>
+          <div style="background:#d4a373;border-radius:3px;width:22px;height:36px;opacity:0.7"></div>
+          <div style="background:#d4a373;border-radius:3px;width:22px;height:36px;opacity:0.7"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="whitespace" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Tighter section spacing</h3>
+      <p>The gap between home collections is 4rem (~64px). The container has 3rem top margin and filters have 3rem bottom margin. Halving these saves ~200px of blank space before you even start reading.</p>
+      <div style="margin-top:1rem;display:flex;gap:1rem;align-items:center;font-size:10px;color:#78716c">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+          <div style="background:#d4a373;height:8px;width:60px;border-radius:2px;opacity:0.7"></div>
+          <div style="height:16px;width:2px;background:#ccc;border-radius:1px"></div>
+          <div style="background:#d4a373;height:8px;width:60px;border-radius:2px;opacity:0.7"></div>
+          <div style="height:16px;width:2px;background:#ccc;border-radius:1px"></div>
+          <div style="background:#d4a373;height:8px;width:60px;border-radius:2px;opacity:0.7"></div>
+          <div style="font-size:9px;color:#a8a29e">4rem gaps</div>
+        </div>
+        <span>→</span>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+          <div style="background:#d4a373;height:8px;width:60px;border-radius:2px;opacity:0.7"></div>
+          <div style="height:8px;width:2px;background:#ccc;border-radius:1px"></div>
+          <div style="background:#d4a373;height:8px;width:60px;border-radius:2px;opacity:0.7"></div>
+          <div style="height:8px;width:2px;background:#ccc;border-radius:1px"></div>
+          <div style="background:#d4a373;height:8px;width:60px;border-radius:2px;opacity:0.7"></div>
+          <div style="font-size:9px;color:#a8a29e">2rem gaps</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:1.5rem">Select one or more, or just tell me in the terminal.</p>

@@ -1,8 +1,8 @@
 (function () {
     const recipe = {
         id: 13,
-        title: "Carrot Edamame Dry Curry",
-        description: "A simple, wholesome stir-fry of tender carrots and edamame (or peas), tempered with aromatic mustard seeds and cumin. Finished with earthy roasted sesame powder for a delightful nutty flavor.",
+        title: "Carrot Edamame Curry",
+        description: "Carrots and edamame stir-fried with mustard seeds, cumin, and finished with roasted sesame powder.",
         category: "mains",
         tags: ["dairy-free", "gluten-free"],
         time: "20 min",

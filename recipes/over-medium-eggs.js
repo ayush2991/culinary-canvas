@@ -1,8 +1,8 @@
 (function () {
     const recipe = {
         id: 17,
-        title: "Two Over-Medium Eggs",
-        description: "Perfectly cooked over-medium eggs with whites that are fully set and yolks that are thick, jammy, and just slightly runny. A quick, high-protein breakfast staple.",
+        title: "Fried Eggs",
+        description: "Over-medium eggs with fully set whites and thick, jammy yolks. A 5-minute high-protein breakfast staple.",
         category: "breakfast",
         tags: ["gluten-free", "dairy-free"],
         time: "5 min",

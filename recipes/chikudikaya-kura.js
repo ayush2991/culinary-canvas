@@ -2,8 +2,8 @@
     // Single definition of the Chikudikaya Kura recipe
     const recipe = {
         id: 4,
-        title: "Chikudikaya (Valor) Curry (WIP)",
-        description: "A comforting, heritage-style cluster bean curry simmered in a rich tomato-onion masala. Infused with tempered mustard seeds and earthy urad dal, this mildly spiced dish offers a deep, savory flavor profile finished with a burst of fresh cilantro.",
+        title: "Chikudikaya (WIP)",
+        description: "Cluster bean curry simmered in a tomato-onion masala with mustard seeds and spices. A classic Andhra comfort dish.",
         category: "mains",
         tags: ["dairy-free", "gluten-free"],
         time: "60 min",

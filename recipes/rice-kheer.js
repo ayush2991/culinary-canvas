@@ -1,8 +1,8 @@
 (function () {
     const recipe = {
         id: 20,
-        title: "Rice Kheer (Indian Rice Pudding)",
-        description: "A classic Indian dessert made with slow-cooked rice, full-fat milk, and aromatic cardamom. This rich and creamy pudding is a staple for celebrations and comfort.",
+        title: "Rice Kheer",
+        description: "Classic Indian rice pudding slow-cooked with full-fat milk, cardamom, and saffron. A staple for celebrations.",
         category: "dessert",
         tags: ["gluten-free", "caffeine-free"],
         time: "40 min",
