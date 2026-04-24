@@ -1003,7 +1003,9 @@ footer p {
 .carousel-track.multi-row {
     flex-wrap: wrap;
     overflow-x: visible;
+    overflow-y: visible;
     scroll-snap-type: none;
+    justify-content: flex-start;
 }
 
 .carousel-track.multi-row .recipe-card {
