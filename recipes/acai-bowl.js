@@ -3,7 +3,7 @@
   const recipe = {
     id: 27,
     title: "Acai Bowl",
-    description: "A refreshing and nutritious acai bowl topped with fresh berries, banana and peanut butter. Perfect for a healthy breakfast or snack.",
+    description: "A refreshing and nutritious acai bowl topped with fresh mango, banana and peanut butter. Perfect for a healthy breakfast or snack.",
     category: "breakfast",
     tags: ["vegan", "dairy-free", "gluten-free"],
     time: "10 min",
