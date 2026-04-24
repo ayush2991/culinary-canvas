@@ -9,7 +9,7 @@
     time: "5 min",
     servings: "1",
     difficulty: "Easy",
-    image: "images/iced_beetroot_rose_latte.png",
+    image: "images/iced-beetroot-rose-latte.png",
     references: [],
     ingredients: [
       {amount: 2, unit: 'tbsp', rest: 'hot water', note: 'to dissolve beetroot powder' },
