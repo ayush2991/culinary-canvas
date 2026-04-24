@@ -821,16 +821,6 @@ html[data-theme="dark"] .recipe-tag,
     transform: none;
 }
 
-.modal-top-nav button {
-    border-radius: 6px;
-}
-
-.modal-top-nav button.active {
-    background: var(--text);
-    color: var(--bg);
-    border-color: var(--text);
-}
-
 /* Mobile Resets */
 @media (max-width: 768px) {
     .recipe-content-grid {
