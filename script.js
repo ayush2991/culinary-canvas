@@ -108,11 +108,14 @@ function renderRecipes(recipesToRender) {
         if (collectionRecipes.length > 0) {
             homeHtml += `
             <div class="carousel-container">
-                <div class="section-header">
-                    <h2 class="section-title">${collection.title}</h2>
-                    <span class="section-count">${collectionRecipes.length} recipes</span>
+                <div class="section-header" role="button" tabindex="0">
+                    <div style="display:flex;align-items:baseline;gap:0.75rem;">
+                        <h2 class="section-title">${collection.title}</h2>
+                        <span class="section-count">${collectionRecipes.length} recipes</span>
+                    </div>
+                    <svg class="section-chevron" width="20" height="20"><use href="#icon-chevron-down"/></svg>
                 </div>
-                <div class="carousel-track${collection.title === 'Savory Mains & Bites' || collection.title === 'The Breakfast Table' ? ' multi-row' : ''}">
+                <div class="carousel-track multi-row">
                     ${collectionRecipes.map(r => createRecipeCardHtml(r)).join('')}
                 </div>
             </div>
@@ -128,11 +131,14 @@ function renderRecipes(recipesToRender) {
     if (remaining.length > 0) {
         homeHtml += `
         <div class="carousel-container">
-            <div class="section-header">
-                <h2 class="section-title">Fresh Finds</h2>
-                <span class="section-count">${remaining.length} recipes</span>
+            <div class="section-header" role="button" tabindex="0">
+                <div style="display:flex;align-items:baseline;gap:0.75rem;">
+                    <h2 class="section-title">Fresh Finds</h2>
+                    <span class="section-count">${remaining.length} recipes</span>
+                </div>
+                <svg class="section-chevron" width="20" height="20"><use href="#icon-chevron-down"/></svg>
             </div>
-            <div class="carousel-track">
+            <div class="carousel-track multi-row">
                 ${remaining.map(r => createRecipeCardHtml(r)).join('')}
             </div>
         </div>
@@ -144,6 +150,13 @@ function renderRecipes(recipesToRender) {
 
 // Delegate clicks on recipe cards
 document.addEventListener('click', function (e) {
+    const header = e.target.closest('.section-header');
+    if (header) {
+        const container = header.closest('.carousel-container');
+        container.classList.toggle('collapsed');
+        return;
+    }
+
     const card = e.target.closest('.recipe-card');
     if (!card) return;
     const id = Number(card.dataset.id);
@@ -154,11 +167,18 @@ document.addEventListener('click', function (e) {
 document.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     const active = document.activeElement;
-    if (!active || !active.classList.contains('recipe-card')) return;
-    const id = Number(active.dataset.id);
-    if (!isNaN(id)) {
+    if (!active) return;
+
+    if (active.classList.contains('section-header')) {
         e.preventDefault();
-        openModal(id);
+        active.closest('.carousel-container').classList.toggle('collapsed');
+        return;
+    }
+
+    if (active.classList.contains('recipe-card')) {
+        e.preventDefault();
+        const id = Number(active.dataset.id);
+        if (!isNaN(id)) openModal(id);
     }
 });
 

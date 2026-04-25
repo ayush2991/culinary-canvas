@@ -1021,10 +1021,34 @@ footer p {
 .section-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     margin-bottom: 1.25rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.section-header:hover {
+    opacity: 0.8;
+}
+
+.section-chevron {
+    color: var(--muted);
+    transition: transform 0.3s ease;
+}
+
+.carousel-container.collapsed .section-chevron {
+    transform: rotate(-90deg);
+}
+
+.carousel-container.collapsed .carousel-track {
+    display: none;
+}
+
+.carousel-container.collapsed {
+    margin-bottom: 0.5rem;
 }
 
 .section-title {
