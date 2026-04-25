@@ -35,7 +35,7 @@ Recipe files load before `script.js`. If `registerRecipe` isn't defined yet, rec
 
 ### Ingredient Scaling
 
-Ingredients can be stored as either plain strings or structured objects `{ amount, unit, rest, note }`. The `scaleIngredient()` function handles plain strings (including ranges, fractions, and mixed numbers). Structured objects are scaled directly in `openModal()`. The `data-orig` attribute on each `<li>` stores the original value for rescaling.
+Ingredients can be stored as either plain strings or structured objects `{ amount, unit, rest, note }`. The optional `note` field (e.g. `"to taste"`) is shown in parentheses after the ingredient and is never scaled. If `amount` is `null` or omitted, only `rest` (and `note`) are displayed. The `scaleIngredient()` function handles plain strings (including ranges, fractions, and mixed numbers). Structured objects are scaled directly in `openModal()`. The `data-orig` attribute on each `<li>` stores the original value for rescaling.
 
 ## Adding a New Recipe
 
@@ -76,7 +76,10 @@ Ingredients can be stored as either plain strings or structured objects `{ amoun
 
 ### Recipe IDs
 
-IDs must be unique integers. Check existing recipe files for the highest current ID and increment.
+IDs must be unique integers. Find the current highest with:
+```bash
+grep -h "id:" recipes/*.js | grep -o '[0-9]*' | sort -n | tail -1
+```
 
 ### Tags vs. Category
 
@@ -85,3 +88,17 @@ IDs must be unique integers. Check existing recipe files for the highest current
 
 ### Valid filter tags (defined in `index.html` filter buttons)
 `dairy-free`, `gluten-free`, `vegetarian`, `vegan`, `dessert`, `appetizer`, `dip`, `beverage`, `breakfast`, `mains`
+
+### The `references` field
+
+Each entry in `references` is either an image path (matched by extension or `images/` prefix — rendered inline) or a URL (rendered as a link). References appear in a collapsible section at the bottom of the modal.
+
+## Modal Layout
+
+The modal has two layouts driven by `window.innerWidth <= 700`:
+- **Desktop (> 700px)**: Two-pane layout — left pane shows the image/stats/ingredients, right pane shows instructions and references.
+- **Mobile (≤ 700px)**: Single-column layout with collapsible `<details>` sections for ingredients and instructions.
+
+## Carousel Collapsibility
+
+Each collection section on the home view is a `.carousel-container`. Clicking (or pressing Enter/Space on) the `.section-header` toggles the `collapsed` class on the container, which hides its content. This is purely CSS-driven via the `collapsed` class in `styles.css`.
