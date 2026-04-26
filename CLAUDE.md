@@ -87,7 +87,7 @@ grep -h "id:" recipes/*.js | grep -o '[0-9]*' | sort -n | tail -1
 - `tags` controls which **filter buttons** match the recipe. Tags and category are independent; a recipe should have both.
 
 ### Valid filter tags (defined in `index.html` filter buttons)
-`dairy-free`, `gluten-free`, `vegetarian`, `vegan`, `dessert`, `appetizer`, `dip`, `beverage`, `breakfast`, `mains`
+`caffeine-free`, `gluten-free`, `dairy-free`
 
 ### The `references` field
 
