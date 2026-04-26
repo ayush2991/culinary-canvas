@@ -14,10 +14,10 @@
     ingredients: [
       { amount: 1, unit: 'tsp', rest: 'beetroot powder' },
       { amount: 0.5, unit: 'tsp', rest: 'rose water' },
-      { amount: 1, unit: 'tsp', rest: 'maple syrup or agave', note: 'liquid sweeteners dissolve better in cold drinks' },
+      { amount: 1.5, unit: 'tsp', rest: 'maple syrup or agave', note: 'liquid sweeteners dissolve better in cold drinks' },
       { amount: 2, unit: 'tbsp', rest: 'hot water', note: 'to dissolve beetroot powder' },
       { amount: 3, unit: 'cubes', rest: 'ice' },
-      { amount: 1, unit: 'cup', rest: 'chilled creamy oat milk (Califia Farms Barista Blend)' },
+      { amount: 6, unit: 'cup', rest: 'chilled creamy oat milk (Califia Farms Barista Blend)' },
       { amount: null, unit: '', rest: 'dried rose petals', note: 'for garnish' }
     ],
     instructions: [
