@@ -11,11 +11,11 @@
     image: "images/iced-black-sesame-latte.png",
     references: ["https://www.ohhowcivilized.com/iced-black-sesame-latte/#wprm-recipe-container-29585"],
     ingredients: [
-      { amount: 1, unit: 'tbsp', rest: 'black sesame paste', note: '(sugar-free)' },
+      { amount: 1, unit: 'tbsp', rest: 'black sesame paste', note: 'sugar-free' },
       { amount: 1, unit: 'tbsp', rest: 'brown sugar', note: 'or 3/4 white sugar' },
       { amount: 0.25, unit: 'cup', rest: 'hot water' },
       { amount: 3, unit: 'cubes', rest: 'ice' },
-      { amount: 1, unit: 'cup', rest: 'creamy oat milk', note: '(Califia Farms Barista Blend)' },
+      { amount: 1, unit: 'cup', rest: 'creamy oat milk', note: 'Califia Farms Barista Blend' },
     ],
     instructions: [
       "Combine black sesame paste, brown sugar, and hot water in a cup. Mix with a handheld milk frother until fully combined. Some dark spots are normal — the paste won't dissolve completely.",
