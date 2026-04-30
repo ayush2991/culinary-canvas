@@ -1,7 +1,7 @@
 (function () {
   // Single definition of the Iced Beetroot Rose Latte recipe
   const recipe = {
-    id: 26,
+    id: 24,
     title: "Iced Beetroot Rose Latte",
     description: "Pink latte with beetroot powder, rose water, and chilled oat milk over ice. Caffeine-free and naturally sweet.",
     category: "beverage",

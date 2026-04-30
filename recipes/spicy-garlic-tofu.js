@@ -1,7 +1,7 @@
 (function () {
   // Single definition of the Spicy Garlic Tofu recipe
   const recipe = {
-    id: 28,
+    id: 25,
     title: "Spicy Garlic Tofu",
     description: "Firm tofu in a spicy garlic sauce with soy, sriracha, and red chili. Ready in 20 minutes over rice.",
     category: "mains",

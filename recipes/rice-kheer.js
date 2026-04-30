@@ -1,6 +1,6 @@
 (function () {
     const recipe = {
-        id: 20,
+        id: 18,
         title: "Rice Kheer",
         description: "Classic Indian rice pudding slow-cooked with full-fat milk, cardamom, and saffron. A staple for celebrations.",
         category: "dessert",

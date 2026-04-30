@@ -1,6 +1,6 @@
 (function () {
     const recipe = {
-        id: 23,
+        id: 21,
         title: "Coconut Kheer",
         description: "Plant-based Indian rice pudding made with coconut and almond milk, cardamom, and saffron. Dairy-free and rich.",
         category: "dessert",

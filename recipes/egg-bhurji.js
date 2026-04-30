@@ -1,6 +1,6 @@
 (function () {
     const recipe = {
-        id: 25,
+        id: 23,
         title: "Egg Bhurji",
         description: "Masala scrambled eggs with onions, tomatoes, green chilies, and spices. A quick high-protein breakfast, great with rice.",
         category: "breakfast",
