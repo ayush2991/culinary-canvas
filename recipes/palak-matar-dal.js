@@ -1,6 +1,6 @@
 (function () {
     const recipe = {
-        id: 24,
+        id: 22,
         title: "Palak Matar Dal",
         description: "Toor and masoor dal with spinach and peas, using a tadka-first method for a rich garlic base. Onion-free.",
         category: "mains",

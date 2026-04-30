@@ -1,6 +1,6 @@
 (function () {
     const recipe = {
-        id: 22,
+        id: 20,
         title: "Egg Curry",
         description: "Hard-boiled eggs shallow-fried and simmered in a spiced tomato-onion gravy. Serve with paratha or basmati rice.",
         category: "mains",
