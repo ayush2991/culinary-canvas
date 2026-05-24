@@ -10,7 +10,7 @@
     servings: 2,
     difficulty: "Easy",
     image: "images/oat-egg-scramble.png",
-    references: [],
+    references: ["https://www.youtube.com/watch?v=HR8HWvzy1XA"],
     ingredients: [
       { amount: 4, unit: "", rest: "Egg whites" },
       { amount: 2, unit: "large", rest: "Eggs" },
