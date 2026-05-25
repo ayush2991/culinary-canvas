@@ -29,8 +29,8 @@
       },
       { amount: 3, unit: "cubes", rest: "ice" },
       {
-        amount: 6,
-        unit: "oz",
+        amount: 0.75,
+        unit: "cup",
         rest: "chilled creamy oat milk",
         note: "Califia Farms Barista Blend",
       },
