@@ -7,7 +7,7 @@
     category: "appetizer",
     tags: ["gluten-free", "dairy-free"],
     time: "2 days",
-    servings: 2,
+    servings: "3",
     difficulty: "Easy",
     image: "images/moong-dal-sprout-chaat.png",
     references: [],
@@ -19,6 +19,7 @@
       { amount: 4, unit: "tbsp", rest: "Onion", note: "finely chopped" },
       { amount: 0.5, unit: "medium", rest: "Tomato", note: "chopped" },
       { amount: 0.33, unit: "medium", rest: "Lemon", note: "juiced" },
+      { amount: 1, unit: 'sprinkle', rest: 'bhujia', note: 'for topping' },
       {
         amount: 1,
         unit: "handful",
@@ -32,7 +33,8 @@
       "Drain the water completely and rinse. Cover the glass jar with a dark cloth, tilt it and place on a trayand let it sit for about 1.5 days or until sprouts are ¼ to ½ inch long.",
       "Transfer the sprouts to a container and refrigerate until ready to use, up to 3 days.",
       "Transfer the sprouts to a pot. Add water until they are halfway submerged and add a generous pinch of salt. Bring to a boil, then lower the heat and simmer covered for 5 minutes until tender but still crisp. Drain well.",
-      "Combine the warm sprouts with the chopped onion, tomato, and peanuts in a large bowl. Toss in the red chilli powder, garam masala, coriander powder, salt and lemon juice. Mix well and serve immediately.",
+      "Combine the warm sprouts with the chopped onion, tomato, red chilli powder, garam masala, coriander powder, salt, lemon juice and mix.",
+      "Top with roasted peanuts and bhujia and serve."
     ],
   };
 
