@@ -45,7 +45,7 @@
       "In a small bowl or cup, mix beetroot powder, rose water, and sweetener with hot water to create a smooth syrup.",
       "Add ice cubes to a tall glass (~12 oz capacity). Pour oat milk over the ice, leaving a little room at the top.",
       "Slowly pour pink beetroot mixture all over the milk. It will create a beautiful marble effect as it sinks.",
-      "Add rose petals right on top of the ice so they stay afloat for that perfect photo look.",
+      "Top with dried rose petals.",
     ],
   };
 
