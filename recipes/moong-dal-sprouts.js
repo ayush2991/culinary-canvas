@@ -13,8 +13,8 @@
     references: [],
     ingredients: [
       { amount: 100, unit: "g", rest: "Green Moong Dal" },
-      { amount: 0.66, unit: "tsp", rest: "Red Chili Powder" },
-      { amount: 0.66, unit: "tsp", rest: "Coriander Powder" },
+      { amount: 0.75, unit: "tsp", rest: "Red Chili Powder" },
+      { amount: 0.75, unit: "tsp", rest: "Coriander Powder" },
       { amount: 0.5, unit: "tsp", rest: "Garam Masala" },
       { amount: 4, unit: "tbsp", rest: "Onion", note: "finely chopped" },
       { amount: 0.5, unit: "medium", rest: "Tomato", note: "chopped" },
@@ -26,7 +26,7 @@
         rest: "Roasted Peanuts",
         note: "for topping",
       },
-      { amount: 1, unit: "pinch", rest: "Salt" },
+      { amount: 2, unit: "big pinch", rest: "Salt" },
     ],
     instructions: [
       "Rinse the green moong dal 2-3 times in fresh water. Submerge it in the sprouts jar with twice the amount of water and let it soak overnight (12 hours).",
