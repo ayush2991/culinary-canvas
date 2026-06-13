@@ -12,7 +12,7 @@
     image: "images/oat_turmeric_latte.png",
     references: [],
     ingredients: [
-      { amount: 0.66, unit: 'cup', rest: 'oat milk', note: 'enough to almost submerge instant frother' },
+      { amount: 0.5, unit: 'cup', rest: 'oat milk', note: ' Elmhurst barista brand - watery oatmilk, enough to almost submerge instant frother' },
       { amount: 0.125, unit: 'tsp', rest: 'cardamom powder' },
       { amount: 0.125, unit: 'tsp', rest: 'cinnamon powder' },
       { amount: 0.125, unit: 'tsp', rest: 'turmeric powder' },
