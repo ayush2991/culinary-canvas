@@ -4,7 +4,7 @@
     id: 2,
     title: "Palak Tofu",
     description: "Spinach curry with sautéed tofu, whole spices, roasted cashews, and kasuri methi. A plant-based take on palak paneer.",
-    category: "mains",
+    category: "curry",
     tags: ["gluten-free"],
     time: "60 min",
     servings: "5",

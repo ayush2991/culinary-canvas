@@ -4,7 +4,7 @@
     title: "One Pot Chickpea Curry",
     description:
       "Tender chickpeas simmered in a spiced tomato-onion gravy infused with whole cardamom and cinnamon, finished with rich coconut cream.",
-    category: "mains",
+    category: "curry",
     tags: ["gluten-free", "dairy-free"],
     time: "45 min",
     servings: "3",

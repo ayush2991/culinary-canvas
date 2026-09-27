@@ -22,10 +22,11 @@ let activeTags = new Set();
 
 // Mapping for Home View bucketing
 const COLLECTIONS = [
-    { title: "Sips & Elixirs", categories: ["beverage"] },
-    { title: "The Breakfast Table", categories: ["breakfast"] },
-    { title: "Savory Mains & Bites", categories: ["mains", "appetizer", "dip"] },
-    { title: "Sweet Retreats", categories: ["dessert"] }
+    { title: "Indian Homestyle & Curries", categories: ["curry", "curries"] },
+    { title: "Everyday Proteins & Bowls", categories: ["mains", "bowls"] },
+    { title: "Morning Rituals & Bowls", categories: ["breakfast"] },
+    { title: "Air-Fried & Small Bites", categories: ["appetizer", "side", "sides", "dip"] },
+    { title: "The Café: Sips & Sweets", categories: ["beverage", "dessert"] }
 ];
 
 function loadRecipes() {
@@ -338,11 +339,11 @@ function openModal(recipeId) {
     const imageHtml = recipe.image
         ? `<div style="text-align:center;margin-bottom:2rem;position:relative;">
              <img src="${recipe.image}" alt="${recipe.title}" style="max-width:100%;height:auto;border-radius:16px;max-height:300px;object-fit:cover;box-shadow:0 16px 40px rgba(0,0,0,0.15);">
-             <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;">${recipe.category}</div>
+             <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;text-transform:capitalize;">${recipe.category}</div>
            </div>`
         : `<div style="text-align:center;margin-bottom:2rem;position:relative;background:var(--secondary);padding:3rem;border-radius:16px;">
              <h3>${recipe.title}</h3>
-             <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;">${recipe.category}</div>
+             <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;text-transform:capitalize;">${recipe.category}</div>
            </div>`;
     const referencesHtml = recipe.references && recipe.references.length > 0 ? `
         <div style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.25rem;">

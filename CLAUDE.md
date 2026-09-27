@@ -30,7 +30,7 @@ Recipe files load before `script.js`. If `registerRecipe` isn't defined yet, rec
 ### Home View vs. Search/Filter View
 
 `renderRecipes()` in `script.js` branches on whether a search term or active tag filters exist:
-- **No active search/filter**: Renders curated carousel sections defined by the `COLLECTIONS` array (Sips & Elixirs, The Breakfast Table, Savory Mains & Bites, Sweet Retreats), plus a "Fresh Finds" catch-all for uncategorized recipes.
+- **No active search/filter**: Renders curated carousel sections defined by the `COLLECTIONS` array (Indian Homestyle & Curries, Everyday Proteins & Bowls, Morning Rituals & Bowls, Air-Fried & Small Bites, The Café: Sips & Sweets), plus a "Fresh Finds" catch-all for uncategorized recipes.
 - **Active search/filter**: Renders a flat grid with a result count header.
 
 ### Ingredient Scaling
@@ -47,7 +47,7 @@ Ingredients can be stored as either plain strings or structured objects `{ amoun
         id: <next available integer>,
         title: "Recipe Name",
         description: "One-line description",
-        category: "beverage|breakfast|mains|dessert|appetizer|dip",
+        category: "curry|mains|breakfast|appetizer|side|beverage|dessert",
         tags: ["tag1", "tag2"],   // used for filter buttons
         time: "XX min",
         servings: "X",

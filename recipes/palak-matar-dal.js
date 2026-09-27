@@ -3,7 +3,7 @@
         id: 22,
         title: "Palak Matar Dal",
         description: "Toor and masoor dal with spinach and peas, using a tadka-first method for a rich garlic base. Onion-free.",
-        category: "mains",
+        category: "curry",
         tags: ["gluten-free"],
         time: "35 min",
         servings: "3",

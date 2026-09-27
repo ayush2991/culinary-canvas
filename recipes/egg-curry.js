@@ -3,7 +3,7 @@
         id: 20,
         title: "Egg Curry",
         description: "Hard-boiled eggs shallow-fried and simmered in a spiced tomato-onion gravy. Serve with paratha or basmati rice.",
-        category: "mains",
+        category: "curry",
         tags: ["dairy-free", "gluten-free"],
         time: "60 min",
         servings: "3",

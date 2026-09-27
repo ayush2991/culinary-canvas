@@ -4,7 +4,7 @@
         id: 4,
         title: "Chikudikaya (WIP)",
         description: "Cluster bean curry simmered in a tomato-onion masala with mustard seeds and spices. A classic Andhra comfort dish.",
-        category: "mains",
+        category: "curry",
         tags: ["dairy-free", "gluten-free"],
         time: "60 min",
         servings: "3",
