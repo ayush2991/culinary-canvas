@@ -2,7 +2,7 @@
     const recipe = {
         id: 10,
         title: "Masala Chai",
-        description: "A perfect cup of traditional masala chai, brewed with aromatic spices and fresh milk for a rich, cooked-milk flavor.",
+        description: "Traditional spiced black tea brewed with fresh milk.",
         category: "beverage",
         tags: ["gluten-free"],
         time: "10 min",

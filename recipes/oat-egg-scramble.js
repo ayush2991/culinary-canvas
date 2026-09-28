@@ -2,8 +2,7 @@
   const recipe = {
     id: 29,
     title: "Oat Egg Scramble",
-    description:
-      "A warm, high-protein oat and egg breakfast finished with banana, apple, maple syrup, and chocolate chips.",
+    description: "Warm oat and egg scramble topped with fruit and maple.",
     category: "breakfast",
     tags: ["gluten-free", "dairy-free"],
     time: "25 min",

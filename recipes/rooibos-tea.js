@@ -2,7 +2,7 @@
     const recipe = {
         id: 32,
         title: "Rooibos Tea",
-        description: "A soothing, naturally caffeine-free red tea steeped with honey and a splash of warm oat milk.",
+        description: "Soothing caffeine-free red tea with honey and oat milk.",
         category: "beverage",
         tags: ["caffeine-free", "gluten-free", "dairy-free"],
         time: "12 min",

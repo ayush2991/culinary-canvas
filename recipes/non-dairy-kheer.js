@@ -2,7 +2,7 @@
     const recipe = {
         id: 21,
         title: "Coconut Kheer",
-        description: "Plant-based Indian rice pudding made with coconut and almond milk, cardamom, and saffron. Dairy-free and rich.",
+        description: "Plant-based rice pudding with cardamom and saffron.",
         category: "dessert",
         tags: ["dairy-free", "gluten-free", "caffeine-free"],
         time: "60 min",

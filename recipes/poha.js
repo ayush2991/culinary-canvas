@@ -2,7 +2,7 @@
     const recipe = {
         id: 12,
         title: "Kanda Batata Poha",
-        description: "A classic Maharashtrian snack of flattened rice. Light, savory, and accented with onions, potatoes, and crunchy peanuts—the ultimate comfort breakfast.",
+        description: "Light, savory flattened rice with potatoes and peanuts.",
         category: "breakfast",
         tags: ["dairy-free", "gluten-free"],
         time: "20 min",

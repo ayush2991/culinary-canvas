@@ -2,7 +2,7 @@
     const recipe = {
         id: 13,
         title: "Semiya Upma",
-        description: "A quick, non-sticky South Indian breakfast. Roasted vermicelli tossed with crunchy nuts, tempered spices, and veggies for a perfectly textured morning meal.",
+        description: "Roasted vermicelli tossed with tempered spices and veggies.",
         category: "breakfast",
         tags: ["dairy-free"],
         time: "20 min",

@@ -2,7 +2,7 @@
     const recipe = {
         id: 14,
         title: "Seviyan Kheer",
-        description: "Wheat vermicelli simmered in whole milk with cardamom, saffron, and toasted nuts. Serve hot or chilled.",
+        description: "Cardamom vermicelli pudding topped with toasted nuts.",
         category: "dessert",
         tags: ["caffeine-free"],
         time: "25 min",

@@ -2,7 +2,7 @@
     const recipe = {
         id: 23,
         title: "Egg Bhurji",
-        description: "Masala scrambled eggs with onions, tomatoes, green chilies, and spices. A quick high-protein breakfast, great with rice.",
+        description: "Spiced Indian scrambled eggs with onions and green chilies.",
         category: "breakfast",
         tags: ["gluten-free", "dairy-free"],
         time: "15 min",

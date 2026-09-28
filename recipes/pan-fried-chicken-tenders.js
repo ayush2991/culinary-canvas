@@ -2,7 +2,7 @@
     const recipe = {
         id: 36,
         title: "Pan-Fried Chicken Tenders",
-        description: "Chicken tenders marinated in coconut cream, ginger-garlic, and warm chicken masala, then pan-fried until browned and crisp.",
+        description: "Spiced chicken tenders pan-fried until crisp and juicy.",
         category: "mains",
         tags: ["dairy-free", "gluten-free"],
         time: "40 min",

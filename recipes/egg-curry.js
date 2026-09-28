@@ -2,7 +2,7 @@
     const recipe = {
         id: 20,
         title: "Egg Curry",
-        description: "Hard-boiled eggs shallow-fried and simmered in a spiced tomato-onion gravy. Serve with paratha or basmati rice.",
+        description: "Golden boiled eggs simmered in a spiced tomato-onion gravy.",
         category: "curry",
         tags: ["dairy-free", "gluten-free"],
         time: "60 min",

@@ -2,7 +2,7 @@
     const recipe = {
         id: 35,
         title: "Baked Sweet Potato",
-        description: "Whole sweet potatoes baked until fluffy inside with tender, caramelized edges. An easy side dish with simple toppings.",
+        description: "Fluffy baked sweet potatoes with caramelized edges.",
         category: "side",
         tags: ["dairy-free", "gluten-free"],
         time: "90 min",

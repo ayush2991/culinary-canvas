@@ -3,7 +3,7 @@
   const recipe = {
     id: 25,
     title: "Spicy Garlic Tofu",
-    description: "Firm tofu in a spicy garlic sauce with soy, sriracha, and red chili. Ready in 20 minutes over rice.",
+    description: "Crispy firm tofu tossed in a spicy garlic-sriracha sauce.",
     category: "mains",
     tags: ["dairy-free"],
     time: "20 min",

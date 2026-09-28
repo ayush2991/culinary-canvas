@@ -2,7 +2,7 @@
     const recipe = {
         id: 17,
         title: "Air Fryer Broccoli",
-        description: "Ultra-crispy, healthy, and quick air-fried broccoli florets. A perfect side dish that takes only 10 minutes from prep to plate.",
+        description: "Crispy air-fried broccoli florets in just 10 minutes.",
         category: "appetizer",
         tags: ["dairy-free", "gluten-free"],
         time: "10 min",

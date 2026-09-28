@@ -2,7 +2,7 @@
     const recipe = {
         id: 8,
         title: "Instant Pot Oatmeal",
-        description: "Creamy, hands-off oatmeal made in the Instant Pot. Perfectly cooked rolled oats with warming spices and your favorite toppings.",
+        description: "Creamy hands-off oatmeal cooked with warming spices.",
         category: "breakfast",
         tags: ["gluten-free", "dairy-free"],
         time: "20 min",

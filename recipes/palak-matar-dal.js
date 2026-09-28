@@ -2,7 +2,7 @@
     const recipe = {
         id: 22,
         title: "Palak Matar Dal",
-        description: "Toor and masoor dal with spinach and peas, using a tadka-first method for a rich garlic base. Onion-free.",
+        description: "Garlicky lentils simmered with spinach and sweet peas.",
         category: "curry",
         tags: ["gluten-free"],
         time: "35 min",

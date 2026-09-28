@@ -2,8 +2,7 @@
   const recipe = {
     id: 33,
     title: "Veggie Pesto Pasta",
-    description:
-      "Gluten-free pasta tossed with pesto, sauteed broccoli, mushrooms, and spinach. A quick, veggie-packed weeknight dinner.",
+    description: "Pesto pasta tossed with broccoli, mushrooms, and spinach.",
     category: "mains",
     tags: ["gluten-free", "dairy-free"],
     time: "45 min",

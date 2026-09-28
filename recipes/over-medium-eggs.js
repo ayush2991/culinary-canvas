@@ -2,7 +2,7 @@
     const recipe = {
         id: 15,
         title: "Fried Eggs",
-        description: "Over-medium eggs with fully set whites and thick, jammy yolks. A 5-minute high-protein breakfast staple.",
+        description: "Jammy over-medium eggs cooked in just 5 minutes.",
         category: "breakfast",
         tags: ["gluten-free", "dairy-free"],
         time: "5 min",

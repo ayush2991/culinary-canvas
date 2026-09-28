@@ -2,8 +2,7 @@
   const recipe = {
     id: 34,
     title: "Air Fryer Green Beans",
-    description:
-      "Tender, lightly crisp green beans with onion powder and a squeeze of lemon. A quick, easy side dish from the air fryer.",
+    description: "Crisp green beans with lemon and onion powder.",
     category: "appetizer",
     tags: ["dairy-free", "gluten-free"],
     time: "10–11 min",

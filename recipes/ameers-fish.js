@@ -2,8 +2,7 @@
   const recipe = {
     id: 30,
     title: "Ameer's Coconut Fish",
-    description:
-      "Pan-seared white fish warmed in a quick coconut milk sauce with curry leaves, mustard seeds, ginger, garlic, and citrus.",
+    description: "Pan-seared fish in a fragrant coconut and curry leaf sauce.",
     category: "mains",
     tags: ["dairy-free", "gluten-free"],
     time: "20 min",

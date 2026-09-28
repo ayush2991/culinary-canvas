@@ -2,7 +2,7 @@
   const recipe = {
     id: 26,
     title: "Iced Black Sesame Latte",
-    description: "Decadent nutty latte ready in 5 minutes with just 5 ingredients.",
+    description: "Nutty iced latte ready in 5 minutes with 5 ingredients.",
     category: "beverage",
     tags: ["gluten-free", "dairy-free", "caffeine-free"],
     time: "5 min",

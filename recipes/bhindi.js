@@ -2,7 +2,7 @@
   const recipe = {
     id: 1,
     title: "Bhindi",
-    description: "Stir-fried okra with turmeric, cumin, and coriander. Cooks up crispy and non-sticky with onions and tomatoes.",
+    description: "Crispy stir-fried spiced okra with onions and tomatoes.",
     category: "curry",
     tags: ["dairy-free", "gluten-free"],
     time: "20 min",

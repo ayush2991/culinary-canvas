@@ -3,7 +3,7 @@
   const recipe = {
     id: 5,
     title: "Chocolate Mousse",
-    description: "Silky chocolate mousse blended with cocoa, honey, and almond milk. Chilled to set, ready in 40 minutes.",
+    description: "Silky chocolate mousse with cocoa, honey, and almond milk.",
     category: "dessert",
     tags: ["dairy-free", "gluten-free"],
     time: "40 min",

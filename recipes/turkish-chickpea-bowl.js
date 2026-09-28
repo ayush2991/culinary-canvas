@@ -2,7 +2,7 @@
   const recipe = {
     id: 27,
     title: "Vegan Turkish-Spiced Chickpea Bowls",
-    description: "Roasted Turkish-spiced chickpeas and veggies over pistachio-raisin rice with a lemon-herb hummus drizzle.",
+    description: "Spiced chickpeas and roasted veggies over pistachio rice.",
     category: "mains",
     tags: ["gluten-free", "dairy-free"],
     time: "40 min",

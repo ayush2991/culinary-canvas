@@ -2,8 +2,7 @@
   const recipe = {
     id: 31,
     title: "Tandoori Salmon",
-    description:
-      "A single salmon fillet rubbed with ginger, garlic, lime, and warm tandoori spices, then air-fried or broiled until flaky with charred edges.",
+    description: "Flaky salmon fillet rubbed with charred tandoori spices.",
     category: "mains",
     tags: ["dairy-free", "gluten-free"],
     time: "40 min",

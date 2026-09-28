@@ -2,8 +2,7 @@
   const recipe = {
     id: 37,
     title: "One Pot Chickpea Curry",
-    description:
-      "Tender chickpeas simmered in a spiced tomato-onion gravy infused with whole cardamom and cinnamon, finished with rich coconut cream.",
+    description: "Chickpeas in a spiced coconut-tomato gravy.",
     category: "curry",
     tags: ["gluten-free", "dairy-free"],
     time: "45 min",

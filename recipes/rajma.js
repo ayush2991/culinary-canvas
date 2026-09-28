@@ -2,7 +2,7 @@
     const recipe = {
         id: 19,
         title: "Rajma",
-        description: "Kidney beans simmered in a spiced tomato-onion gravy with yogurt. A North Indian staple, best with rice.",
+        description: "Kidney beans slow-simmered in a rich spiced tomato gravy.",
         category: "curry",
         tags: ["gluten-free"],
         time: "45 min",

@@ -65,7 +65,7 @@ function createRecipeCardHtml(recipe) {
         </div>
         <div class="recipe-content">
             <h3 class="recipe-title">${recipe.title}</h3>
-            <p class="recipe-description">${recipe.description}</p>
+            <p class="recipe-description" title="${recipe.description}">${recipe.description}</p>
             <div class="recipe-meta">
                 <div class="meta-item">
                     <svg width="14" height="14"><use href="#icon-time"/></svg>

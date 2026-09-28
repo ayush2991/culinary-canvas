@@ -2,7 +2,7 @@
     const recipe = {
         id: 18,
         title: "Rice Kheer",
-        description: "Classic Indian rice pudding slow-cooked with full-fat milk, cardamom, and saffron. A staple for celebrations.",
+        description: "Slow-cooked rice pudding with cardamom and saffron.",
         category: "dessert",
         tags: ["gluten-free", "caffeine-free"],
         time: "40 min",

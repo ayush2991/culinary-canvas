@@ -2,7 +2,7 @@
     const recipe = {
         id: 11,
         title: "Carrot Edamame Curry",
-        description: "Carrots and edamame stir-fried with mustard seeds, cumin, and finished with roasted sesame powder.",
+        description: "Carrots and edamame stir-fried with roasted sesame.",
         category: "curry",
         tags: ["dairy-free", "gluten-free"],
         time: "20 min",

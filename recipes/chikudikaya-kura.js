@@ -3,7 +3,7 @@
     const recipe = {
         id: 4,
         title: "Chikudikaya (WIP)",
-        description: "Cluster bean curry simmered in a tomato-onion masala with mustard seeds and spices. A classic Andhra comfort dish.",
+        description: "Cluster beans in a spiced Andhra tomato-onion curry.",
         category: "curry",
         tags: ["dairy-free", "gluten-free"],
         time: "60 min",

@@ -2,8 +2,7 @@
   const recipe = {
     id: 28,
     title: "Moong Dal Sprout Chaat",
-    description:
-      "A refreshing sprouted mung bean salad packed with fresh veggies, crunchy peanuts, and tangy spices.",
+    description: "Zesty sprouted mung bean salad with crunchy peanuts.",
     category: "appetizer",
     tags: ["gluten-free", "dairy-free"],
     time: "2 days",

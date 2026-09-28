@@ -3,7 +3,7 @@
   const recipe = {
     id: 6,
     title: "Refried Bean Dip",
-    description: "Refried beans sautéed with garlic, jalapeño, salsa, and vegan cheese. A smoky, crowd-pleasing dip in 20 minutes.",
+    description: "Warm refried beans sautéed with salsa, jalapeño, and cheese.",
     category: "appetizer",
     tags: ["dairy-free", "gluten-free"],
     time: "20 min",
